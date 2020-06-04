@@ -19,7 +19,7 @@ enum WeatherIconType: String {
 struct WeatherForecast {
     let countryName: String
     let cityName: String
-    let currentTemperature: String
+    let currentTemperature: Float
     let weatherIconType: WeatherIconType
     var weatherIcon: UIImage {
         return UIImage(named: weatherIconType.rawValue) ?? UIImage(named: "test_icon")!
@@ -29,17 +29,17 @@ struct WeatherForecast {
 }
 
 struct CurrentAdditionalInfo {
-    let wind: String
-    let windDeg: String
-    let humidity: String
-    let pressure: String
+    let wind: Float
+    let windDeg: Float
+    let humidity: Float
+    let pressure: Float
 }
 
 struct TemperatureInfo {
-    let time: String
+    let time: Int
     let weatherIconType: WeatherIconType
     var weatherIcon: UIImage {
         return UIImage(named: weatherIconType.rawValue) ?? UIImage(named: "test_icon")!
     }
-    let temperature: String
+    let temperature: Float
 }

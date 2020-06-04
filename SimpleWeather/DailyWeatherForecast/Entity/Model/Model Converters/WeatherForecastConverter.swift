@@ -48,26 +48,21 @@ class WeatherForecastConverter {
         
         let countryName = dailyWeatherResponse.systemInfo.countryName
         let cityName = dailyWeatherResponse.cityName
-        let currentTemperature = String(format: "%.1f", dailyWeatherResponse.mainInfo.currentTemperature)
+        let currentTemperature = dailyWeatherResponse.mainInfo.currentTemperature
         let currentWeatherIcon = weatherIconConverter(for: dailyWeatherResponse.weatherDescription[0].weatherType, true)
-        let currentAdditionalInfo = CurrentAdditionalInfo(wind: "\(String(dailyWeatherResponse.windInfo.windSpeed).replacingOccurrences(of: ".", with: ",")) m/h",
-            windDeg: "\(String(format: "%0.f", dailyWeatherResponse.windInfo.windDeg)) deg",
-                                                          humidity: "\(String(format: "%.0f", dailyWeatherResponse.mainInfo.currentHumidity))%",
-            pressure: "\(String(format: "%1.f", dailyWeatherResponse.mainInfo.currentPressure).replacingOccurrences(of: ".", with: ",")) Pa")
+        let currentAdditionalInfo =
+            CurrentAdditionalInfo(wind: dailyWeatherResponse.windInfo.windSpeed,
+                                  windDeg: dailyWeatherResponse.windInfo.windDeg,
+                                  humidity: dailyWeatherResponse.mainInfo.currentHumidity,
+                                  pressure: dailyWeatherResponse.mainInfo.currentPressure)
         
         var futureDays: [TemperatureInfo] = []
         
         for hourlyTemperatures in weeklyWeatherResponse.hourlyTemperatureList where checkWeatherResponse(hourlyTemperatures, calendar) {
-            let date = NSDate(timeIntervalSince1970: TimeInterval(hourlyTemperatures.timeStamp))
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "HH:mm"
-            dateFormatter.timeZone = TimeZone(secondsFromGMT: 0000)!
-            let formattedString = dateFormatter.string(from: date as Date)
-            
             let iconType = weatherIconConverter(for: hourlyTemperatures.weatherInfo[0].weatherType, false)
-            futureDays.append(TemperatureInfo(time: formattedString,
+            futureDays.append(TemperatureInfo(time: hourlyTemperatures.timeStamp,
                                               weatherIconType: iconType,
-                                              temperature: String(hourlyTemperatures.temperatureInfo.currentTemperature)))
+                                              temperature: hourlyTemperatures.temperatureInfo.currentTemperature))
         }
         
         return WeatherForecast(countryName: countryName,
