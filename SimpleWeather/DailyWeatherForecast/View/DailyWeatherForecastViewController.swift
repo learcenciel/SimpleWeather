@@ -11,6 +11,10 @@ import UIKit
 
 class DailyWeatherForecastViewController: UIViewController {
     
+    
+    // MARK: Outlets
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var daySelectedSegmentedControl: DaySelectControl!
     @IBOutlet weak var currentWeatherIconImageView: UIImageView!
     @IBOutlet weak var currentWeatherTemperatureLabel: UILabel!
@@ -21,14 +25,24 @@ class DailyWeatherForecastViewController: UIViewController {
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var windDegLabel: UILabel!
     
+    // MARK: Properties
+    
     var weatherForecast: WeatherForecast?
-    var presenter: DailyWeatherForecastPresenterProtocol?
+    var presenter: DailyWeatherForecastPresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupCollectionView()
-        presenter?.viewDidLoad(lat: 55.751244, lon: 37.618423)
+        setupRefreshControl()
+        presenter.viewDidLoad(lat: 55.751244, lon: 37.618423)
+    }
+    
+    // MARK: UI setup
+    
+    func setupRefreshControl() {
+        scrollView.refreshControl = UIRefreshControl()
+        scrollView.refreshControl?.addTarget(self, action: #selector(updateWeather), for: .valueChanged)
     }
     
     func setupCollectionView() {
@@ -36,23 +50,35 @@ class DailyWeatherForecastViewController: UIViewController {
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
         flowLayout.minimumLineSpacing = 44
     }
+    
+    @objc func updateWeather() {
+        presenter.updateWeather(lat: 55.751244, lon: 37.618423)
+    }
 }
+
+// MARK: DailyWeatherForecastViewProtocol conformation
 
 extension DailyWeatherForecastViewController: DailyWeatherForecastViewProtocol {
     
     func showCurrentWeather(with currentWeather: WeatherForecast) {
+        
+        guard let refreshControl = scrollView.refreshControl else { return }
+        if refreshControl.isRefreshing { refreshControl.endRefreshing() }
+        
         self.weatherForecast = currentWeather
         self.currentWeatherIconImageView.image = currentWeather.weatherIcon
-        self.currentWeatherTemperatureLabel.text = currentWeather.currentTemperature.replacingOccurrences(of: ".", with: ",")
+        self.currentWeatherTemperatureLabel.text = currentWeather.currentTemperature.getTemperature()
         self.currentWeatherCityNameLabel.text = currentWeather.cityName
-        self.windLabel.text = currentWeather.currentAdditionalInfo.wind
-        self.humidityLabel.text = currentWeather.currentAdditionalInfo.humidity
-        self.pressureLabel.text = currentWeather.currentAdditionalInfo.pressure
-        self.windDegLabel.text = currentWeather.currentAdditionalInfo.windDeg
+        self.windLabel.text = currentWeather.currentAdditionalInfo.wind.getWindSpeed()
+        self.humidityLabel.text = currentWeather.currentAdditionalInfo.humidity.getHumidity()
+        self.pressureLabel.text = currentWeather.currentAdditionalInfo.pressure.getPressure()
+        self.windDegLabel.text = currentWeather.currentAdditionalInfo.windDeg.getWindDegree()
         dailyHourlyForecastCollectionView.reloadData()
     }
     
 }
+
+// MARK: UICollectionViewDelegateFlowLayout
 
 extension DailyWeatherForecastViewController: UICollectionViewDelegateFlowLayout {
     
@@ -74,6 +100,8 @@ extension DailyWeatherForecastViewController: UICollectionViewDelegateFlowLayout
     }
 }
 
+// MARK: UICollectionViewDelegate
+
 extension DailyWeatherForecastViewController: UICollectionViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -84,6 +112,8 @@ extension DailyWeatherForecastViewController: UICollectionViewDelegate {
         daySelectedSegmentedControl.selectedIndex = Int(offSet + horizontalCenter) / Int(width)
     }
 }
+
+// MARK: UICollectionViewDataSource
 
 extension DailyWeatherForecastViewController: UICollectionViewDataSource {
     

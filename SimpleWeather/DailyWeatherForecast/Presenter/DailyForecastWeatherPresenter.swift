@@ -10,15 +10,25 @@ import Foundation
 
 class DailyForecastWeatherPresenter: DailyWeatherForecastPresenterProtocol {
     
-    var view: DailyWeatherForecastViewProtocol?
-    var interactor: DailyWeatherForecastInteractorProtocol?
-    var router: DailyWeatherForecastRouterProtocol?
+    var view: DailyWeatherForecastViewProtocol
+    var interactor: DailyWeatherForecastInteractorProtocol!
+    //var router: DailyWeatherForecastRouterProtocol?
+    
+    init(view: DailyWeatherForecastViewProtocol,
+         interactor: DailyWeatherForecastInteractorProtocol) {
+        self.view = view
+        self.interactor = interactor
+    }
     
     func viewDidLoad(lat: Float, lon: Float) {
-        interactor?.retreiveDailyWeatherForecast(lat: lat, lon: lon)
+        interactor.retreiveDailyWeatherForecast(lat: lat, lon: lon)
+    }
+    
+    func updateWeather(lat: Float, lon: Float) {
+        interactor.retreiveDailyWeatherForecast(lat: lat, lon: lon)
     }
     
     func didRetreiveWeatherForecast(_ weatherForecast: WeatherForecast) {
-        view?.showCurrentWeather(with: weatherForecast)
+        view.showCurrentWeather(with: weatherForecast)
     }
 }

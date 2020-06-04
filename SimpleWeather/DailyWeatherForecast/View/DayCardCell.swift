@@ -95,9 +95,9 @@ class DayCardCell: UICollectionViewCell {
         shapeLayer.fillColor = getPathColor(cardType: self.cardType).cgColor
         backgroundColor = getBackGroundColor(cardType: self.cardType)
         
-        self.timeLabel.text = weather.time
+        self.timeLabel.text = weather.time.getTime()
         let number = Double(weather.temperature)
-        self.temperatureLabel.text = "\(String(format: "%.0f", number!))°"
+        self.temperatureLabel.text = "\(String(format: "%.0f", number))°"
         self.iconImageView.image = weather.weatherIcon
         
         setNeedsLayout()

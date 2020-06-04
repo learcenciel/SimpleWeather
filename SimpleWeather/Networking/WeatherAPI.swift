@@ -10,10 +10,8 @@ import Foundation
 
 class WeatherAPI {
     
-    static let shared = WeatherAPI()
-    private init() {}
-    private let httpClient = HTTPClient()
-    
+    var httpClient: HTTPClient!
+
     func fetchCurrentWeather(parameters: [String: Any]?,
                              completionHandler: @escaping(Result<DailyWeatherResponse, HTTPErrors>) -> Void) {
         httpClient.get(url: "https://api.openweathermap.org/data/2.5/weather",
