@@ -11,9 +11,8 @@ import UIKit
 
 class DailyWeatherForecastViewController: UIViewController {
     
-    
     // MARK: Outlets
-    
+    //@IBOutlet weak var screenSelectTabBarView: ScreenSelectTabBarItem!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var daySelectedSegmentedControl: DaySelectControl!
     @IBOutlet weak var currentWeatherIconImageView: UIImageView!
@@ -35,7 +34,7 @@ class DailyWeatherForecastViewController: UIViewController {
         
         setupCollectionView()
         setupRefreshControl()
-        presenter.viewDidLoad(lat: 55.751244, lon: 37.618423)
+        presenter.viewDidLoad()
     }
     
     // MARK: UI setup
@@ -52,7 +51,7 @@ class DailyWeatherForecastViewController: UIViewController {
     }
     
     @objc func updateWeather() {
-        presenter.updateWeather(lat: 55.751244, lon: 37.618423)
+        presenter.updateWeather()
     }
 }
 

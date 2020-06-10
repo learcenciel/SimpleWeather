@@ -6,6 +6,7 @@
 //  Copyright © 2020 Alexander Team. All rights reserved.
 //
 
+import CoreLocation
 import UIKit
 
 protocol DailyWeatherForecastViewProtocol: class {
@@ -29,20 +30,21 @@ protocol DailyWeatherForecastPresenterProtocol: class {
     //var router: DailyWeatherForecastRouterProtocol? { get set }
     
     // VIEW -> PRESENTER
-    func viewDidLoad(lat: Float, lon: Float)
-    func updateWeather(lat: Float, lon: Float)
+    func viewDidLoad()
+    func updateWeather()
     
     // INTERACTOR -> PRESENTER
     func didRetreiveWeatherForecast(_ weatherForecast: WeatherForecast)
 }
 
-protocol DailyWeatherForecastInteractorProtocol: class {
+protocol DailyWeatherForecastInteractorProtocol: class, CLLocationManagerDelegate {
     var presenter: DailyWeatherForecastPresenterProtocol! { get set }
     var httpClient: WeatherAPI { get set }
     var modelConverter: WeatherForecastConverter { get set }
+    var locationManager: CoreLocationManager! { get set }
     
     // PRESENTER -> INTERACTOR
-    func retreiveDailyWeatherForecast(lat: Float, lon: Float)
+    func retreiveDailyWeatherForecast()
     
     // HTTPCLIENT -> INTERACTOR
     func didRetreieveWeatherForecastFromNetwork(_ weatherForecast: WeatherForecast?)
