@@ -86,13 +86,15 @@ class DayCardCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        shapeLayer.path = getPath(cardType: cardType).cgPath
     }
     
     func bind(_ weather: TemperatureInfo, cardType: CardType) {
         self.cardType = cardType
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
         shapeLayer.path = getPath(cardType: self.cardType).cgPath
         shapeLayer.fillColor = getPathColor(cardType: self.cardType).cgColor
+        CATransaction.commit()
         backgroundColor = getBackGroundColor(cardType: self.cardType)
         
         self.timeLabel.text = weather.time.getTime()

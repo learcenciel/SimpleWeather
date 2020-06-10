@@ -22,7 +22,7 @@ class HTTPClient {
     func get<T: Decodable>(url: String,
                            parameters: [String: Any]?, completionHandler: @escaping(Result<T, HTTPErrors>) -> Void) {
         var queryParameters = HTTPClient.commonParameters
-        
+
         if let parameters = parameters {
             for key in parameters.keys {
                 queryParameters[key] = parameters[key]

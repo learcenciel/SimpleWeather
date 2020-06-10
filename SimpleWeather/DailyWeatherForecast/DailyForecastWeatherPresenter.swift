@@ -20,12 +20,12 @@ class DailyForecastWeatherPresenter: DailyWeatherForecastPresenterProtocol {
         self.interactor = interactor
     }
     
-    func viewDidLoad(lat: Float, lon: Float) {
-        interactor.retreiveDailyWeatherForecast(lat: lat, lon: lon)
+    func viewDidLoad() {
+        interactor.retreiveDailyWeatherForecast()
     }
     
-    func updateWeather(lat: Float, lon: Float) {
-        interactor.retreiveDailyWeatherForecast(lat: lat, lon: lon)
+    func updateWeather() {
+        interactor.retreiveDailyWeatherForecast()
     }
     
     func didRetreiveWeatherForecast(_ weatherForecast: WeatherForecast) {
