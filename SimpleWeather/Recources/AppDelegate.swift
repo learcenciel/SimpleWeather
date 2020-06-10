@@ -16,8 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        //let dailyWeatherForecastViewController = DailyWeatherForecastConfigurator.createDailyWeatherForecastModule()
-        
         let container = DIContainer()
         container.append(framework: AppFramework.self)
         
@@ -29,8 +27,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let storyboard: UIStoryboard = container.resolve(name: "Main")
         
+        let vc = storyboard.instantiateInitialViewController() as! UITabBarController
+        
+        vc.tabBar.tintColor = .darkGray
+        vc.tabBar.unselectedItemTintColor = .lightGray
+        vc.tabBar.tintAdjustmentMode = .automatic
+        vc.tabBar.barTintColor = .white
+        vc.tabBar.layer.borderWidth = 0
+        vc.tabBar.layer.borderColor = UIColor.clear.cgColor
+        vc.tabBar.clipsToBounds = true
+        
         window = UIWindow(frame: UIScreen.main.bounds)
-        window!.rootViewController = storyboard.instantiateInitialViewController()
+        window!.rootViewController = vc
         window?.makeKeyAndVisible()
         
         return true

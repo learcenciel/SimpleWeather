@@ -6,13 +6,15 @@
 //  Copyright © 2020 Alexander Team. All rights reserved.
 //
 
-import Alamofire
+import Charts
 import UIKit
 
 class DailyWeatherForecastViewController: UIViewController {
     
     // MARK: Outlets
-    //@IBOutlet weak var screenSelectTabBarView: ScreenSelectTabBarItem!
+    
+    @IBOutlet weak var lineChartView: LineChartView!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var daySelectedSegmentedControl: DaySelectControl!
     @IBOutlet weak var currentWeatherIconImageView: UIImageView!
@@ -28,16 +30,38 @@ class DailyWeatherForecastViewController: UIViewController {
     
     var weatherForecast: WeatherForecast?
     var presenter: DailyWeatherForecastPresenterProtocol!
+    lazy var chartManager: ChartManager = {
+        return ChartManager(lineChartView: lineChartView, lineChartViewDelegate: self)
+    }()
+    
+    var isContentLoaded = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupCollectionView()
         setupRefreshControl()
+        updateChart()
         presenter.viewDidLoad()
+        showLoading()
     }
     
     // MARK: UI setup
+    
+    func showLoading() {
+        view.subviews.forEach { $0.isHidden = !$0.isHidden }
+        activityIndicatorView.isHidden = false
+        activityIndicatorView.startAnimating()
+        tabBarController?.tabBar.isHidden = true
+    }
+    
+    func showContent() {
+        isContentLoaded = true
+        view.subviews.forEach { $0.isHidden = !$0.isHidden }
+        activityIndicatorView.isHidden = true
+        activityIndicatorView.stopAnimating()
+        tabBarController?.tabBar.isHidden = false
+    }
     
     func setupRefreshControl() {
         scrollView.refreshControl = UIRefreshControl()
@@ -53,6 +77,46 @@ class DailyWeatherForecastViewController: UIViewController {
     @objc func updateWeather() {
         presenter.updateWeather()
     }
+     
+    func updateChart() {
+        
+        guard let futureDays = self.weatherForecast?.futureDays.chunked(into: 3) else { return }
+        
+        let currentDay = futureDays[self.daySelectedSegmentedControl.selectedIndex]
+        
+        let temps = currentDay.map { dayTemp in
+            Double(dayTemp.temperature)
+        }
+        
+        var entries = [ChartDataEntry]()
+        
+        for (index, temp) in temps.enumerated() {
+            entries.append(ChartDataEntry(x: Double(index), y: temp))
+        }
+        
+        chartManager.chartUpdate(entries: entries)
+        
+//        let beginIndex = 0 + self.daySelectedSegmentedControl.selectedIndex
+//        let endIndex = self.daySelectedSegmentedControl.selectedIndex + 3
+//        print(beginIndex)
+//        print(endIndex)
+//        guard let days = self.weatherForecast?.futureDays[beginIndex ... endIndex] else { return }
+//        var entries = [ChartDataEntry]()
+//
+//        for (index, day) in days.enumerated() {
+//            entries.append(ChartDataEntry(x: Double(Float(index)), y: Double(day.temperature)))
+//        }
+//
+//        chartManager.chartUpdate(entries: entries)
+    }
+}
+
+extension Array {
+    func chunked(into size: Int) -> [[Element]] {
+        return stride(from: 0, to: count, by: size).map {
+            Array(self[$0 ..< Swift.min($0 + size, count)])
+        }
+    }
 }
 
 // MARK: DailyWeatherForecastViewProtocol conformation
@@ -60,6 +124,8 @@ class DailyWeatherForecastViewController: UIViewController {
 extension DailyWeatherForecastViewController: DailyWeatherForecastViewProtocol {
     
     func showCurrentWeather(with currentWeather: WeatherForecast) {
+        
+        if isContentLoaded == false { showContent() }
         
         guard let refreshControl = scrollView.refreshControl else { return }
         if refreshControl.isRefreshing { refreshControl.endRefreshing() }
@@ -73,6 +139,12 @@ extension DailyWeatherForecastViewController: DailyWeatherForecastViewProtocol {
         self.pressureLabel.text = currentWeather.currentAdditionalInfo.pressure.getPressure()
         self.windDegLabel.text = currentWeather.currentAdditionalInfo.windDeg.getWindDegree()
         dailyHourlyForecastCollectionView.reloadData()
+        
+        let dayOne = self.weatherForecast?.futureDays[daySelectedSegmentedControl.selectedIndex]
+        let dayTwo = self.weatherForecast?.futureDays[daySelectedSegmentedControl.selectedIndex + 1]
+        let dayThree = self.weatherForecast?.futureDays[daySelectedSegmentedControl.selectedIndex + 2]
+        
+        updateChart()
     }
     
 }
@@ -110,6 +182,10 @@ extension DailyWeatherForecastViewController: UICollectionViewDelegate {
         
         daySelectedSegmentedControl.selectedIndex = Int(offSet + horizontalCenter) / Int(width)
     }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        updateChart()
+    }
 }
 
 // MARK: UICollectionViewDataSource
@@ -139,4 +215,8 @@ extension DailyWeatherForecastViewController: UICollectionViewDataSource {
         
         return cell
     }
+}
+
+extension DailyWeatherForecastViewController: ChartViewDelegate {
+    
 }

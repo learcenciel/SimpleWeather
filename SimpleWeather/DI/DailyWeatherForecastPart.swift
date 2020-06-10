@@ -6,14 +6,12 @@
 //  Copyright © 2020 Alexander Team. All rights reserved.
 //
 
+import CoreLocation
 import DITranquillity
 
 class DailyWeatherForecastPart: DIPart {
     static func load(container: DIContainer) {
         container.registerStoryboard(name: "Main")
-            .lifetime(.single)
-        
-        container.register(UITabBarController.self)
             .lifetime(.single)
         
         container.register(DailyWeatherForecastViewController.self)
@@ -27,9 +25,13 @@ class DailyWeatherForecastPart: DIPart {
         
         container.register(DailyWeatherForecastInteractor.init)
             .as(check: DailyWeatherForecastInteractorProtocol.self) {$0}
+            .as(CLLocationManagerDelegate.self)
             .injection(cycle: true, \.presenter)
+            .injection(cycle: true, \.locationManager)
             .lifetime(.objectGraph)
         
+        container.register(CoreLocationManager.init)
+            .lifetime(.objectGraph)
         // TODO: make router
     }
 }

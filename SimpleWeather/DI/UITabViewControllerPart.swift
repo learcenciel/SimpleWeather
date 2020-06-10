@@ -6,4 +6,11 @@
 //  Copyright © 2020 Alexander Team. All rights reserved.
 //
 
-import Foundation
+import DITranquillity
+
+class UITabViewControllerPart: DIPart {
+    static func load(container: DIContainer) {
+        container.register(UITableViewController.self)
+            .lifetime(.single)
+    }
+}

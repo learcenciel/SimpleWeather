@@ -14,10 +14,13 @@
 		2038EF83247CE13C0000A5A9 /* DailyWeatherForecastProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2038EF82247CE13C0000A5A9 /* DailyWeatherForecastProtocols.swift */; };
 		203BC42924890B1000692907 /* Int + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203BC42824890B1000692907 /* Int + Extension.swift */; };
 		203BC42B24890B7900692907 /* Float + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203BC42A24890B7900692907 /* Float + Extensions.swift */; };
+		203C6D34248BFCBA0075CF6C /* UITabViewControllerPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203C6D33248BFCBA0075CF6C /* UITabViewControllerPart.swift */; };
 		204030B2247E3788005EF087 /* DayCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204030B1247E3788005EF087 /* DayCardCell.swift */; };
 		204030B4247E59AB005EF087 /* DaySelectControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204030B3247E59AB005EF087 /* DaySelectControl.swift */; };
 		204E2C042488187200E5F991 /* DailyWeatherForecastPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204E2C032488187200E5F991 /* DailyWeatherForecastPart.swift */; };
 		204E2C0624881C7700E5F991 /* NetworkingPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204E2C0524881C7700E5F991 /* NetworkingPart.swift */; };
+		206CA5602489747000A8C987 /* CoreLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206CA55F2489747000A8C987 /* CoreLocationManager.swift */; };
+		20790D85248E4191000077FA /* ChartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20790D84248E4191000077FA /* ChartManager.swift */; };
 		20DD35AB247BBBCB00BD2E32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DD35AA247BBBCB00BD2E32 /* AppDelegate.swift */; };
 		20DD35AF247BBBCB00BD2E32 /* DailyWeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DD35AE247BBBCB00BD2E32 /* DailyWeatherForecastViewController.swift */; };
 		20DD35B2247BBBCB00BD2E32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20DD35B0247BBBCB00BD2E32 /* Main.storyboard */; };
@@ -38,10 +41,13 @@
 		2038EF82247CE13C0000A5A9 /* DailyWeatherForecastProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherForecastProtocols.swift; sourceTree = "<group>"; };
 		203BC42824890B1000692907 /* Int + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Extension.swift"; sourceTree = "<group>"; };
 		203BC42A24890B7900692907 /* Float + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float + Extensions.swift"; sourceTree = "<group>"; };
+		203C6D33248BFCBA0075CF6C /* UITabViewControllerPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabViewControllerPart.swift; sourceTree = "<group>"; };
 		204030B1247E3788005EF087 /* DayCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCardCell.swift; sourceTree = "<group>"; };
 		204030B3247E59AB005EF087 /* DaySelectControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySelectControl.swift; sourceTree = "<group>"; };
 		204E2C032488187200E5F991 /* DailyWeatherForecastPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherForecastPart.swift; sourceTree = "<group>"; };
 		204E2C0524881C7700E5F991 /* NetworkingPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingPart.swift; sourceTree = "<group>"; };
+		206CA55F2489747000A8C987 /* CoreLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationManager.swift; sourceTree = "<group>"; };
+		20790D84248E4191000077FA /* ChartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartManager.swift; sourceTree = "<group>"; };
 		20DD35A7247BBBCB00BD2E32 /* SimpleWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DD35AA247BBBCB00BD2E32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20DD35AE247BBBCB00BD2E32 /* DailyWeatherForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherForecastViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +84,7 @@
 				2037C615248815C5003C6BEF /* AppFramework.swift */,
 				204E2C032488187200E5F991 /* DailyWeatherForecastPart.swift */,
 				204E2C0524881C7700E5F991 /* NetworkingPart.swift */,
+				203C6D33248BFCBA0075CF6C /* UITabViewControllerPart.swift */,
 			);
 			path = DI;
 			sourceTree = "<group>";
@@ -96,63 +103,14 @@
 		2038EF7B247CDFDA0000A5A9 /* DailyWeatherForecast */ = {
 			isa = PBXGroup;
 			children = (
-				2038EF7C247CDFE60000A5A9 /* View */,
-				2038EF7D247CDFEA0000A5A9 /* Interactor */,
-				2038EF7E247CE0020000A5A9 /* Presenter */,
-				2038EF81247CE1270000A5A9 /* Protocols */,
-				2038EF7F247CE0070000A5A9 /* Entity */,
-				2038EF80247CE00E0000A5A9 /* Router */,
-			);
-			path = DailyWeatherForecast;
-			sourceTree = "<group>";
-		};
-		2038EF7C247CDFE60000A5A9 /* View */ = {
-			isa = PBXGroup;
-			children = (
+				20DD35CD247BF84E00BD2E32 /* ModelConverters */,
+				203C6D35248BFE390075CF6C /* Subviews */,
 				20DD35AE247BBBCB00BD2E32 /* DailyWeatherForecastViewController.swift */,
-				204030B1247E3788005EF087 /* DayCardCell.swift */,
-				204030B3247E59AB005EF087 /* DaySelectControl.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		2038EF7D247CDFEA0000A5A9 /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
 				2038D38E247D704F00151673 /* DailyWeatherForecastInteractor.swift */,
-			);
-			path = Interactor;
-			sourceTree = "<group>";
-		};
-		2038EF7E247CE0020000A5A9 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
 				2038D38C247D6FD500151673 /* DailyForecastWeatherPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		2038EF7F247CE0070000A5A9 /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-				20DD35C3247BEA9B00BD2E32 /* Model */,
-			);
-			path = Entity;
-			sourceTree = "<group>";
-		};
-		2038EF80247CE00E0000A5A9 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Router;
-			sourceTree = "<group>";
-		};
-		2038EF81247CE1270000A5A9 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
 				2038EF82247CE13C0000A5A9 /* DailyWeatherForecastProtocols.swift */,
 			);
-			path = Protocols;
+			path = DailyWeatherForecast;
 			sourceTree = "<group>";
 		};
 		203BC42724890B0700692907 /* Extensions */ = {
@@ -162,6 +120,31 @@
 				203BC42A24890B7900692907 /* Float + Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		203C6D35248BFE390075CF6C /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				204030B1247E3788005EF087 /* DayCardCell.swift */,
+				204030B3247E59AB005EF087 /* DaySelectControl.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		206CA55E2489744E00A8C987 /* CoreLocation */ = {
+			isa = PBXGroup;
+			children = (
+				206CA55F2489747000A8C987 /* CoreLocationManager.swift */,
+			);
+			path = CoreLocation;
+			sourceTree = "<group>";
+		};
+		20790D83248E4187000077FA /* ChartManager */ = {
+			isa = PBXGroup;
+			children = (
+				20790D84248E4191000077FA /* ChartManager.swift */,
+			);
+			path = ChartManager;
 			sourceTree = "<group>";
 		};
 		20DD359E247BBBCB00BD2E32 = {
@@ -185,10 +168,13 @@
 		20DD35A9247BBBCB00BD2E32 /* SimpleWeather */ = {
 			isa = PBXGroup;
 			children = (
-				203BC42724890B0700692907 /* Extensions */,
+				20790D83248E4187000077FA /* ChartManager */,
 				20DD35BB247BBBD100BD2E32 /* Info.plist */,
-				2037C614248815B1003C6BEF /* DI */,
 				2038EF77247CDE4D0000A5A9 /* Recources */,
+				203BC42724890B0700692907 /* Extensions */,
+				20DD35C3247BEA9B00BD2E32 /* Model */,
+				2037C614248815B1003C6BEF /* DI */,
+				206CA55E2489744E00A8C987 /* CoreLocation */,
 				20DD35C8247BF23700BD2E32 /* Networking */,
 				2038EF7B247CDFDA0000A5A9 /* DailyWeatherForecast */,
 			);
@@ -198,7 +184,6 @@
 		20DD35C3247BEA9B00BD2E32 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				20DD35CD247BF84E00BD2E32 /* Model Converters */,
 				20DD35C4247BEAEE00BD2E32 /* WeatherForecast.swift */,
 				20DD35C6247BEF8C00BD2E32 /* DailyWeatherResponse.swift */,
 				20DD35D0247BFBB100BD2E32 /* DailyHourlyWeatherResponse.swift */,
@@ -215,12 +200,12 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		20DD35CD247BF84E00BD2E32 /* Model Converters */ = {
+		20DD35CD247BF84E00BD2E32 /* ModelConverters */ = {
 			isa = PBXGroup;
 			children = (
 				20DD35CE247BF86700BD2E32 /* WeatherForecastConverter.swift */,
 			);
-			path = "Model Converters";
+			path = ModelConverters;
 			sourceTree = "<group>";
 		};
 		2AFCA35557CC1F46BE2F3855 /* Frameworks */ = {
@@ -360,15 +345,18 @@
 				2037C616248815C5003C6BEF /* AppFramework.swift in Sources */,
 				2038D38F247D704F00151673 /* DailyWeatherForecastInteractor.swift in Sources */,
 				20DD35CF247BF86700BD2E32 /* WeatherForecastConverter.swift in Sources */,
+				206CA5602489747000A8C987 /* CoreLocationManager.swift in Sources */,
 				20DD35C7247BEF8C00BD2E32 /* DailyWeatherResponse.swift in Sources */,
 				2038EF83247CE13C0000A5A9 /* DailyWeatherForecastProtocols.swift in Sources */,
 				20DD35CC247BF4DE00BD2E32 /* WeatherAPI.swift in Sources */,
 				204030B4247E59AB005EF087 /* DaySelectControl.swift in Sources */,
 				204E2C0624881C7700E5F991 /* NetworkingPart.swift in Sources */,
+				20790D85248E4191000077FA /* ChartManager.swift in Sources */,
 				204030B2247E3788005EF087 /* DayCardCell.swift in Sources */,
 				204E2C042488187200E5F991 /* DailyWeatherForecastPart.swift in Sources */,
 				20DD35CA247BF24600BD2E32 /* HTTPClient.swift in Sources */,
 				203BC42924890B1000692907 /* Int + Extension.swift in Sources */,
+				203C6D34248BFCBA0075CF6C /* UITabViewControllerPart.swift in Sources */,
 				20DD35AF247BBBCB00BD2E32 /* DailyWeatherForecastViewController.swift in Sources */,
 				20DD35AB247BBBCB00BD2E32 /* AppDelegate.swift in Sources */,
 				20DD35C5247BEAEE00BD2E32 /* WeatherForecast.swift in Sources */,
