@@ -32,6 +32,7 @@
 		20DD35CC247BF4DE00BD2E32 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DD35CB247BF4DE00BD2E32 /* WeatherAPI.swift */; };
 		20DD35CF247BF86700BD2E32 /* WeatherForecastConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DD35CE247BF86700BD2E32 /* WeatherForecastConverter.swift */; };
 		20DD35D1247BFBB100BD2E32 /* DailyHourlyWeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DD35D0247BFBB100BD2E32 /* DailyHourlyWeatherResponse.swift */; };
+		849A78922492449A0007F6AB /* DashedCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849A78912492449A0007F6AB /* DashedCircleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		20DD35CB247BF4DE00BD2E32 /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		20DD35CE247BF86700BD2E32 /* WeatherForecastConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastConverter.swift; sourceTree = "<group>"; };
 		20DD35D0247BFBB100BD2E32 /* DailyHourlyWeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyHourlyWeatherResponse.swift; sourceTree = "<group>"; };
+		849A78912492449A0007F6AB /* DashedCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedCircleView.swift; sourceTree = "<group>"; };
 		A0F093742A2DA482BBF29132 /* Pods-SimpleWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleWeather.release.xcconfig"; path = "Target Support Files/Pods-SimpleWeather/Pods-SimpleWeather.release.xcconfig"; sourceTree = "<group>"; };
 		CF291F015288F07BAD70C084 /* Pods-SimpleWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleWeather.debug.xcconfig"; path = "Target Support Files/Pods-SimpleWeather/Pods-SimpleWeather.debug.xcconfig"; sourceTree = "<group>"; };
 		E6E6C38FE002FD1150D7BAB8 /* Pods_SimpleWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleWeather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +129,7 @@
 			children = (
 				204030B1247E3788005EF087 /* DayCardCell.swift */,
 				204030B3247E59AB005EF087 /* DaySelectControl.swift */,
+				849A78912492449A0007F6AB /* DashedCircleView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				204030B2247E3788005EF087 /* DayCardCell.swift in Sources */,
 				204E2C042488187200E5F991 /* DailyWeatherForecastPart.swift in Sources */,
 				20DD35CA247BF24600BD2E32 /* HTTPClient.swift in Sources */,
+				849A78922492449A0007F6AB /* DashedCircleView.swift in Sources */,
 				203BC42924890B1000692907 /* Int + Extension.swift in Sources */,
 				203C6D34248BFCBA0075CF6C /* UITabViewControllerPart.swift in Sources */,
 				20DD35AF247BBBCB00BD2E32 /* DailyWeatherForecastViewController.swift in Sources */,

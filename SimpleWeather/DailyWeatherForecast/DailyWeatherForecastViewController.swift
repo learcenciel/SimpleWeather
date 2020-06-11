@@ -13,7 +13,7 @@ class DailyWeatherForecastViewController: UIViewController {
     
     // MARK: Outlets
     
-    @IBOutlet weak var lineChartView: LineChartView!
+    @IBOutlet weak var dashedCircleVIew: DashedCircleView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var daySelectedSegmentedControl: DaySelectControl!
@@ -30,9 +30,6 @@ class DailyWeatherForecastViewController: UIViewController {
     
     var weatherForecast: WeatherForecast?
     var presenter: DailyWeatherForecastPresenterProtocol!
-    lazy var chartManager: ChartManager = {
-        return ChartManager(lineChartView: lineChartView, lineChartViewDelegate: self)
-    }()
     
     var isContentLoaded = false
     
@@ -41,9 +38,9 @@ class DailyWeatherForecastViewController: UIViewController {
         
         setupCollectionView()
         setupRefreshControl()
-        updateChart()
         presenter.viewDidLoad()
         showLoading()
+        print(dashedCircleVIew.bounds)
     }
     
     // MARK: UI setup
@@ -77,46 +74,6 @@ class DailyWeatherForecastViewController: UIViewController {
     @objc func updateWeather() {
         presenter.updateWeather()
     }
-     
-    func updateChart() {
-        
-        guard let futureDays = self.weatherForecast?.futureDays.chunked(into: 3) else { return }
-        
-        let currentDay = futureDays[self.daySelectedSegmentedControl.selectedIndex]
-        
-        let temps = currentDay.map { dayTemp in
-            Double(dayTemp.temperature)
-        }
-        
-        var entries = [ChartDataEntry]()
-        
-        for (index, temp) in temps.enumerated() {
-            entries.append(ChartDataEntry(x: Double(index), y: temp))
-        }
-        
-        chartManager.chartUpdate(entries: entries)
-        
-//        let beginIndex = 0 + self.daySelectedSegmentedControl.selectedIndex
-//        let endIndex = self.daySelectedSegmentedControl.selectedIndex + 3
-//        print(beginIndex)
-//        print(endIndex)
-//        guard let days = self.weatherForecast?.futureDays[beginIndex ... endIndex] else { return }
-//        var entries = [ChartDataEntry]()
-//
-//        for (index, day) in days.enumerated() {
-//            entries.append(ChartDataEntry(x: Double(Float(index)), y: Double(day.temperature)))
-//        }
-//
-//        chartManager.chartUpdate(entries: entries)
-    }
-}
-
-extension Array {
-    func chunked(into size: Int) -> [[Element]] {
-        return stride(from: 0, to: count, by: size).map {
-            Array(self[$0 ..< Swift.min($0 + size, count)])
-        }
-    }
 }
 
 // MARK: DailyWeatherForecastViewProtocol conformation
@@ -139,12 +96,6 @@ extension DailyWeatherForecastViewController: DailyWeatherForecastViewProtocol {
         self.pressureLabel.text = currentWeather.currentAdditionalInfo.pressure.getPressure()
         self.windDegLabel.text = currentWeather.currentAdditionalInfo.windDeg.getWindDegree()
         dailyHourlyForecastCollectionView.reloadData()
-        
-        let dayOne = self.weatherForecast?.futureDays[daySelectedSegmentedControl.selectedIndex]
-        let dayTwo = self.weatherForecast?.futureDays[daySelectedSegmentedControl.selectedIndex + 1]
-        let dayThree = self.weatherForecast?.futureDays[daySelectedSegmentedControl.selectedIndex + 2]
-        
-        updateChart()
     }
     
 }
@@ -173,18 +124,20 @@ extension DailyWeatherForecastViewController: UICollectionViewDelegateFlowLayout
 
 // MARK: UICollectionViewDelegate
 
-extension DailyWeatherForecastViewController: UICollectionViewDelegate {
+extension DailyWeatherForecastViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offSet = scrollView.contentOffset.x
-        let width = scrollView.frame.width
-        let horizontalCenter = width / 2
         
-        daySelectedSegmentedControl.selectedIndex = Int(offSet + horizontalCenter) / Int(width)
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        updateChart()
+        if scrollView == self.scrollView {
+            dashedCircleVIew.animate(from: 1, to: 23, cur: 14)
+        } else {
+            
+            let offSet = scrollView.contentOffset.x
+            let width = scrollView.frame.width
+            let horizontalCenter = width / 2
+            
+            daySelectedSegmentedControl.selectedIndex = Int(offSet + horizontalCenter) / Int(width)
+        }
     }
 }
 
@@ -204,11 +157,11 @@ extension DailyWeatherForecastViewController: UICollectionViewDataSource {
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DayCardCell", for: indexPath) as? DayCardCell
-        else { fatalError() }
+            else { fatalError() }
         
         guard
             let dayWeather = weatherForecast?.futureDays[indexPath.section * 3 + indexPath.item]
-        else { fatalError() }
+            else { fatalError() }
         
         cell.bind(dayWeather,
                   cardType: CardType.allCases[indexPath.item])

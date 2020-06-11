@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7K5-xE-gCE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7K5-xE-gCE">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,14 +33,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OEd-eE-ggC" userLabel="Color View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="345"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="236"/>
                                 <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTK-0q-Cba">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oC6-HO-BeH" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="847"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="923"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PwH-28-IAa" userLabel="Top Container">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="227.66666666666666"/>
@@ -265,29 +265,40 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oBd-rY-C4p" customClass="LineChartView" customModule="Charts">
-                                                <rect key="frame" x="24" y="629" width="366" height="154"/>
-                                                <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunrise and Sunset" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KSU-tm-YDH">
+                                                <rect key="frame" x="24" y="629" width="190" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oTd-9v-5t6" customClass="DashedCircleView" customModule="SimpleWeather" customModuleProvider="target">
+                                                <rect key="frame" x="29.333333333333343" y="691" width="355.33333333333326" height="200"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="2p8-BU-rUm"/>
+                                                    <constraint firstAttribute="width" secondItem="oTd-9v-5t6" secondAttribute="height" multiplier="16:9" id="CIM-We-17A"/>
+                                                </constraints>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="PwH-28-IAa" firstAttribute="leading" secondItem="oC6-HO-BeH" secondAttribute="leading" id="6X6-09-wrC"/>
-                                            <constraint firstAttribute="bottom" secondItem="oBd-rY-C4p" secondAttribute="bottom" constant="64" id="6ua-Hd-7cr"/>
-                                            <constraint firstItem="oBd-rY-C4p" firstAttribute="leading" secondItem="oC6-HO-BeH" secondAttribute="leading" constant="24" id="AKm-kt-lbe"/>
+                                            <constraint firstItem="oTd-9v-5t6" firstAttribute="top" secondItem="KSU-tm-YDH" secondAttribute="bottom" constant="38" id="7Y6-NT-6Xl"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="my4-EV-k1n" secondAttribute="trailing" constant="14" id="EOx-ee-KpO"/>
                                             <constraint firstItem="my4-EV-k1n" firstAttribute="leading" secondItem="oC6-HO-BeH" secondAttribute="leading" constant="24" id="M6R-f5-CVi"/>
+                                            <constraint firstItem="KSU-tm-YDH" firstAttribute="top" secondItem="pfT-Ak-X3g" secondAttribute="bottom" constant="32" id="ORA-4d-vRg"/>
                                             <constraint firstItem="pfT-Ak-X3g" firstAttribute="top" secondItem="my4-EV-k1n" secondAttribute="bottom" constant="32" id="YoK-1S-fuF"/>
+                                            <constraint firstAttribute="bottom" secondItem="oTd-9v-5t6" secondAttribute="bottom" constant="32" id="Yxu-Nd-Z8c"/>
+                                            <constraint firstItem="KSU-tm-YDH" firstAttribute="leading" secondItem="pfT-Ak-X3g" secondAttribute="leading" id="aNk-Fg-q6a"/>
                                             <constraint firstItem="PwH-28-IAa" firstAttribute="bottom" secondItem="qwA-Lr-ID2" secondAttribute="top" id="dYG-XT-5Q5"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pfT-Ak-X3g" secondAttribute="trailing" constant="24" id="gxf-Gg-8LR"/>
                                             <constraint firstItem="PwH-28-IAa" firstAttribute="top" secondItem="oC6-HO-BeH" secondAttribute="top" id="hnf-UK-IeH"/>
-                                            <constraint firstItem="oBd-rY-C4p" firstAttribute="top" secondItem="pfT-Ak-X3g" secondAttribute="bottom" constant="32" id="jvv-Cl-cog"/>
                                             <constraint firstItem="pfT-Ak-X3g" firstAttribute="leading" secondItem="oC6-HO-BeH" secondAttribute="leading" constant="24" id="kxm-Ps-MdB"/>
                                             <constraint firstItem="my4-EV-k1n" firstAttribute="top" secondItem="sg8-k8-K8C" secondAttribute="bottom" id="llO-Sx-xWK"/>
-                                            <constraint firstAttribute="trailing" secondItem="oBd-rY-C4p" secondAttribute="trailing" constant="24" id="nDG-yL-5wz"/>
                                             <constraint firstAttribute="trailing" secondItem="qwA-Lr-ID2" secondAttribute="trailing" id="scm-t9-fHG"/>
                                             <constraint firstAttribute="trailing" secondItem="PwH-28-IAa" secondAttribute="trailing" id="urs-I3-4o8"/>
                                             <constraint firstItem="qwA-Lr-ID2" firstAttribute="leading" secondItem="oC6-HO-BeH" secondAttribute="leading" id="xJG-at-lfK"/>
+                                            <constraint firstItem="oTd-9v-5t6" firstAttribute="centerX" secondItem="oC6-HO-BeH" secondAttribute="centerX" id="xKP-8L-16v"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -301,6 +312,9 @@
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Nwm-RH-Pdt"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="2ka-j1-hVC"/>
+                                <connections>
+                                    <outlet property="delegate" destination="tgQ-FY-E2V" id="U0V-Mx-FYv"/>
+                                </connections>
                             </scrollView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="b9v-Wz-rx4">
                                 <rect key="frame" x="197" y="438" width="20" height="20"/>
@@ -320,7 +334,6 @@
                             <constraint firstItem="sg8-k8-K8C" firstAttribute="centerX" secondItem="pKX-YZ-7Dv" secondAttribute="centerX" id="nHc-bA-U8W"/>
                             <constraint firstItem="OEd-eE-ggC" firstAttribute="trailing" secondItem="pKX-YZ-7Dv" secondAttribute="trailing" id="oBV-nS-tRj"/>
                             <constraint firstItem="b9v-Wz-rx4" firstAttribute="centerY" secondItem="e9s-jc-paR" secondAttribute="centerY" id="qKD-fw-pfd"/>
-                            <constraint firstItem="oBd-rY-C4p" firstAttribute="height" secondItem="pKX-YZ-7Dv" secondAttribute="height" multiplier="0.2" id="xZ6-9e-fMX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pKX-YZ-7Dv"/>
                     </view>
@@ -331,9 +344,9 @@
                         <outlet property="currentWeatherIconImageView" destination="Wj9-Oq-3hu" id="cIJ-kB-zVJ"/>
                         <outlet property="currentWeatherTemperatureLabel" destination="1M1-kp-nbC" id="PLm-xi-CAo"/>
                         <outlet property="dailyHourlyForecastCollectionView" destination="sg8-k8-K8C" id="Xmf-LL-xOh"/>
+                        <outlet property="dashedCircleVIew" destination="oTd-9v-5t6" id="lC1-XN-1kG"/>
                         <outlet property="daySelectedSegmentedControl" destination="Tqu-LF-I59" id="n0e-5j-A6K"/>
                         <outlet property="humidityLabel" destination="nuD-R3-2xG" id="cIW-yW-Kag"/>
-                        <outlet property="lineChartView" destination="oBd-rY-C4p" id="bak-VA-Yng"/>
                         <outlet property="pressureLabel" destination="or5-0W-lyc" id="8Ou-ja-37m"/>
                         <outlet property="scrollView" destination="TTK-0q-Cba" id="vF5-XF-ZrI"/>
                         <outlet property="windDegLabel" destination="jMp-0m-kMC" id="nDI-B8-tCf"/>
