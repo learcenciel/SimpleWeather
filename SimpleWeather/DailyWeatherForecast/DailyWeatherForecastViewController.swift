@@ -32,6 +32,7 @@ class DailyWeatherForecastViewController: UIViewController {
     var presenter: DailyWeatherForecastPresenterProtocol!
     
     var isContentLoaded = false
+    var isDashedCircleViewAnimationNeedShow = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,6 @@ class DailyWeatherForecastViewController: UIViewController {
         setupRefreshControl()
         presenter.viewDidLoad()
         showLoading()
-        print(dashedCircleVIew.bounds)
     }
     
     // MARK: UI setup
@@ -73,6 +73,18 @@ class DailyWeatherForecastViewController: UIViewController {
     
     @objc func updateWeather() {
         presenter.updateWeather()
+    }
+    
+    func isVisible(view: UIView) -> Bool {
+        func isVisible(view: UIView, inView: UIView?) -> Bool {
+            guard let inView = inView else { return true }
+            let viewFrame = inView.convert(view.bounds, from: view)
+            if viewFrame.intersects(inView.bounds) {
+                return isVisible(view: view, inView: inView.superview)
+            }
+            return false
+        }
+        return isVisible(view: view, inView: view.superview)
     }
 }
 
@@ -127,9 +139,15 @@ extension DailyWeatherForecastViewController: UICollectionViewDelegateFlowLayout
 extension DailyWeatherForecastViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
         if scrollView == self.scrollView {
-            dashedCircleVIew.animate(from: 1, to: 23, cur: 14)
+            if isVisible(view: dashedCircleVIew) {
+                if isDashedCircleViewAnimationNeedShow {
+                    dashedCircleVIew.animate(from: 1, to: 23, cur: 17.5)
+                    isDashedCircleViewAnimationNeedShow = false
+                }
+            } else {
+                isDashedCircleViewAnimationNeedShow = true
+            }
         } else {
             
             let offSet = scrollView.contentOffset.x
