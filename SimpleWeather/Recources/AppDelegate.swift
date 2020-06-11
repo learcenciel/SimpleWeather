@@ -29,13 +29,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let vc = storyboard.instantiateInitialViewController() as! UITabBarController
         
-        vc.tabBar.tintColor = .darkGray
-        vc.tabBar.unselectedItemTintColor = .lightGray
-        vc.tabBar.tintAdjustmentMode = .automatic
-        vc.tabBar.barTintColor = .white
-        vc.tabBar.layer.borderWidth = 0
-        vc.tabBar.layer.borderColor = UIColor.clear.cgColor
-        vc.tabBar.clipsToBounds = true
+//        vc.tabBar.tintColor = .darkGray
+//        vc.tabBar.unselectedItemTintColor = .lightGray
+//        vc.tabBar.color
+//        vc.tabBar.tintAdjustmentMode = .automatic
+//        vc.tabBar.barTintColor = .white
+//        vc.tabBar.layer.borderWidth = 0
+//        vc.tabBar.layer.borderColor = UIColor.clear.cgColor
+//        vc.tabBar.clipsToBounds = true
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window!.rootViewController = vc

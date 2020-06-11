@@ -39,22 +39,22 @@ extension UIView {
     func getBackGroundColor(cardType: CardType) -> UIColor {
         switch cardType {
         case .day:
-            return #colorLiteral(red: 0.9411764706, green: 0.537254902, blue: 0.3607843137, alpha: 1)
+            return UIColor(named: "dayCardFirstDayBackgroundColor")!
         case .evening:
-            return #colorLiteral(red: 0.7019607843, green: 0.3921568627, blue: 0.5764705882, alpha: 1)
+            return UIColor(named: "dayCardSecondDayBackgroundColor")!
         case .night:
-            return #colorLiteral(red: 0.1803921569, green: 0.2823529412, blue: 0.3411764706, alpha: 1)
+            return UIColor(named: "dayCardThirdDayBackgroundColor")!
         }
     }
     
     func getPathColor(cardType: CardType) -> UIColor {
         switch cardType {
         case .day:
-            return #colorLiteral(red: 0.8823529412, green: 0.431372549, blue: 0.4823529412, alpha: 1)
+            return UIColor(named: "dayCardFirstDayPathColor")!
         case .evening:
-            return #colorLiteral(red: 0.4823529412, green: 0.3725490196, blue: 0.5607843137, alpha: 1)
+            return UIColor(named: "dayCardSecondDayPathColor")!
         case .night:
-            return #colorLiteral(red: 0.2862745098, green: 0.3411764706, blue: 0.4784313725, alpha: 1)
+            return UIColor(named: "dayCardThirdDayPathColor")!
         }
     }
 }

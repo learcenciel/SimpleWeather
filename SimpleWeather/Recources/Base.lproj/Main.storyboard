@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7K5-xE-gCE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7K5-xE-gCE">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,10 +12,18 @@
         <scene sceneID="UMl-ee-AME">
             <objects>
                 <tabBarController id="7K5-xE-gCE" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sUL-Jc-Uvm">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="sUL-Jc-Uvm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
+                                <color key="value" name="tabBarUnselectedItemColor"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" name="tabBarSelectedItemColor"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="tgQ-FY-E2V" kind="relationship" relationship="viewControllers" id="9Hv-u9-wTq"/>
@@ -29,18 +38,18 @@
             <objects>
                 <viewController storyboardIdentifier="vc" id="tgQ-FY-E2V" customClass="DailyWeatherForecastViewController" customModule="SimpleWeather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e9s-jc-paR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OEd-eE-ggC" userLabel="Color View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="236"/>
-                                <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="407"/>
+                                <color key="backgroundColor" name="upperViewBackgroundColor"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTK-0q-Cba">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oC6-HO-BeH" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="923"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="939"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PwH-28-IAa" userLabel="Top Container">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="227.66666666666666"/>
@@ -72,7 +81,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tbilisi, Georgia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NWb-Co-PgC">
                                                         <rect key="frame" x="141" y="185.66666666666666" width="132.33333333333337" height="24"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                                        <color key="textColor" white="0.45308593749999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="textColor" name="additionalInfoValueLabelColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -200,7 +209,7 @@
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="124 m/h" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="s6x-IE-W7b">
                                                                         <rect key="frame" x="87" y="0.0" width="63" height="19.333333333333332"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <color key="textColor" name="additionalInfoValueLabelColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
@@ -217,7 +226,7 @@
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" text="74%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="nuD-R3-2xG">
                                                                         <rect key="frame" x="87" y="0.0" width="63" height="19.333333333333332"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <color key="textColor" name="additionalInfoValueLabelColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
@@ -239,7 +248,7 @@
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" text="55%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="or5-0W-lyc">
                                                                         <rect key="frame" x="87.666666666666671" y="0.0" width="63.333333333333329" height="19.333333333333332"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <color key="textColor" name="additionalInfoValueLabelColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
@@ -256,7 +265,7 @@
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="1024" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="jMp-0m-kMC">
                                                                         <rect key="frame" x="87.666666666666686" y="0.0" width="63.333333333333343" height="19.333333333333332"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <color key="textColor" name="additionalInfoValueLabelColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
@@ -288,7 +297,7 @@
                                             <constraint firstItem="my4-EV-k1n" firstAttribute="leading" secondItem="oC6-HO-BeH" secondAttribute="leading" constant="24" id="M6R-f5-CVi"/>
                                             <constraint firstItem="KSU-tm-YDH" firstAttribute="top" secondItem="pfT-Ak-X3g" secondAttribute="bottom" constant="32" id="ORA-4d-vRg"/>
                                             <constraint firstItem="pfT-Ak-X3g" firstAttribute="top" secondItem="my4-EV-k1n" secondAttribute="bottom" constant="32" id="YoK-1S-fuF"/>
-                                            <constraint firstAttribute="bottom" secondItem="oTd-9v-5t6" secondAttribute="bottom" constant="32" id="Yxu-Nd-Z8c"/>
+                                            <constraint firstAttribute="bottom" secondItem="oTd-9v-5t6" secondAttribute="bottom" constant="48" id="Yxu-Nd-Z8c"/>
                                             <constraint firstItem="KSU-tm-YDH" firstAttribute="leading" secondItem="pfT-Ak-X3g" secondAttribute="leading" id="aNk-Fg-q6a"/>
                                             <constraint firstItem="PwH-28-IAa" firstAttribute="bottom" secondItem="qwA-Lr-ID2" secondAttribute="top" id="dYG-XT-5Q5"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pfT-Ak-X3g" secondAttribute="trailing" constant="24" id="gxf-Gg-8LR"/>
@@ -317,7 +326,7 @@
                                 </connections>
                             </scrollView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="b9v-Wz-rx4">
-                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                                <rect key="frame" x="197" y="396.66666666666669" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -362,5 +371,17 @@
         <image name="home_icon" width="25" height="25"/>
         <image name="mainClouds" width="96" height="96"/>
         <image name="rain" width="50" height="50"/>
+        <namedColor name="additionalInfoValueLabelColor">
+            <color red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="tabBarSelectedItemColor">
+            <color red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="tabBarUnselectedItemColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="upperViewBackgroundColor">
+            <color red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

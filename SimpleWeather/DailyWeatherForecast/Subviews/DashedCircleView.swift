@@ -115,8 +115,8 @@ private extension DashedCircleView {
         textlayer.isWrapped = true
         textlayer.borderColor = UIColor.black.cgColor
         textlayer.truncationMode = .end
-        textlayer.backgroundColor = UIColor.white.cgColor
-        textlayer.foregroundColor = UIColor.darkGray.cgColor
+        textlayer.backgroundColor = UIColor.clear.cgColor
+        textlayer.foregroundColor = UIColor(named: "additionalInfoValueLabelColor")?.cgColor //UIColor.darkGray.cgColor
         
         let textlayer2 = CATextLayer()
         textlayer2.frame.size = CGSize(width: 80, height: 50)
@@ -127,8 +127,8 @@ private extension DashedCircleView {
         textlayer2.isWrapped = true
         textlayer2.borderColor = UIColor.black.cgColor
         textlayer2.truncationMode = .end
-        textlayer2.backgroundColor = UIColor.white.cgColor
-        textlayer2.foregroundColor = UIColor.darkGray.cgColor
+        textlayer2.backgroundColor = UIColor.clear.cgColor
+        textlayer2.foregroundColor = UIColor(named: "additionalInfoValueLabelColor")?.cgColor //UIColor.darkGray.cgColor
 
         layer.addSublayer(textlayer)
         layer.addSublayer(textlayer2)

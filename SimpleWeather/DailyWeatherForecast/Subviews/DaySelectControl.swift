@@ -51,13 +51,13 @@ class DaySelectControl: UIControl {
             let label = UILabel(frame: .zero)
             label.text = items[index - 1]
             label.textAlignment = .center
-            label.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+            label.textColor = UIColor(named: "segmentedControlUnselectedColor")
             label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
             self.addSubview(label)
             labels.append(label)
         }
         
-        self.labels[0].textColor = .black
+        self.labels[0].textColor = UIColor(named: "segmentedContolSelectedColor")
     }
     
     override func layoutSubviews() {
@@ -97,10 +97,10 @@ class DaySelectControl: UIControl {
     }
     
     func displayNewSelectedIndex() {
-        self.labels[self.selectedIndex].textColor = .black
+        self.labels[self.selectedIndex].textColor = UIColor(named: "segmentedContolSelectedColor")
         for (index, item) in self.labels.enumerated() {
             if index != self.selectedIndex {
-                item.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                item.textColor = UIColor(named: "segmentedControlUnselectedColor")
             }
         }
     }

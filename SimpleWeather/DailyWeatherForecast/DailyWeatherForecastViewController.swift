@@ -45,6 +45,11 @@ class DailyWeatherForecastViewController: UIViewController {
     
     // MARK: UI setup
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UITabBar.appearance().barTintColor = UIColor(named: "tabBarBackgroundColor")
+    }
+    
     func showLoading() {
         view.subviews.forEach { $0.isHidden = !$0.isHidden }
         activityIndicatorView.isHidden = false
