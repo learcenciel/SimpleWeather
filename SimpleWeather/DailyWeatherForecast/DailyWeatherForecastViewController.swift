@@ -127,6 +127,7 @@ extension DailyWeatherForecastViewController: DailyWeatherForecastViewProtocol {
         self.sunrise = currentWeather.sunrise
         self.sunset = currentWeather.sunset
         self.timeZone = currentWeather.timeZone
+        
         dailyHourlyForecastCollectionView.reloadData()
     }
     
