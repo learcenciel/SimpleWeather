@@ -63,10 +63,6 @@ class DaySelectControl: UIControl {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        var selectedFrame = self.bounds
-        let newWidth = selectedFrame.width / CGFloat(items.count)
-        selectedFrame.size.width = newWidth
-        
         let labelHeight = self.bounds.height
         let labelWidth = self.bounds.width / CGFloat(labels.count)
         
@@ -76,24 +72,6 @@ class DaySelectControl: UIControl {
             let xPos = CGFloat(index) * labelWidth
             label.frame = CGRect(x: xPos, y: 0, width: labelWidth, height: labelHeight)
         }
-    }
-    
-    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        let location = touch.location(in: self)
-        var calculatedIndex: Int?
-        
-        for (index, item) in labels.enumerated() {
-            if (item.frame.contains(location)) {
-                calculatedIndex = index
-            }
-        }
-        
-        if calculatedIndex != nil {
-            selectedIndex = calculatedIndex!
-            sendActions(for: .valueChanged)
-        }
-        
-        return false
     }
     
     func displayNewSelectedIndex() {

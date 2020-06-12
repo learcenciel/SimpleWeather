@@ -9,11 +9,25 @@
 import Foundation
 
 extension Int {
-    func getTime() -> String? {
+    func getTimeForCardCell() -> String? {
+        
         let date = NSDate(timeIntervalSince1970: TimeInterval(self))
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0000)!
+        
+        let formattedString = dateFormatter.string(from: date as Date)
+        
+        return formattedString
+    }
+    
+    func getSunriseSunsetTime(with timeZone: Int) -> String? {
+        
+        let date = NSDate(timeIntervalSince1970: TimeInterval(self))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: timeZone)
+        
         let formattedString = dateFormatter.string(from: date as Date)
         
         return formattedString

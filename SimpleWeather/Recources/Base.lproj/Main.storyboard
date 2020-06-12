@@ -31,7 +31,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9DZ-2k-nni" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3558" y="-297"/>
+            <point key="canvasLocation" x="-3133" y="-348"/>
         </scene>
         <!--Home-->
         <scene sceneID="Xd5-E2-nHW">
@@ -41,8 +41,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OEd-eE-ggC" userLabel="Color View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="407"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OEd-eE-ggC" userLabel="Upper Color View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="285"/>
                                 <color key="backgroundColor" name="upperViewBackgroundColor"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTK-0q-Cba">
@@ -191,7 +191,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="pfT-Ak-X3g">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="pfT-Ak-X3g" userLabel="Additional Info StackView">
                                                 <rect key="frame" x="24" y="534.33333333333337" width="320" height="62.666666666666629"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vKu-4g-cUu">
@@ -301,6 +301,7 @@
                                             <constraint firstItem="KSU-tm-YDH" firstAttribute="leading" secondItem="pfT-Ak-X3g" secondAttribute="leading" id="aNk-Fg-q6a"/>
                                             <constraint firstItem="PwH-28-IAa" firstAttribute="bottom" secondItem="qwA-Lr-ID2" secondAttribute="top" id="dYG-XT-5Q5"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pfT-Ak-X3g" secondAttribute="trailing" constant="24" id="gxf-Gg-8LR"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KSU-tm-YDH" secondAttribute="trailing" constant="14" id="hme-ef-BEg"/>
                                             <constraint firstItem="PwH-28-IAa" firstAttribute="top" secondItem="oC6-HO-BeH" secondAttribute="top" id="hnf-UK-IeH"/>
                                             <constraint firstItem="pfT-Ak-X3g" firstAttribute="leading" secondItem="oC6-HO-BeH" secondAttribute="leading" constant="24" id="kxm-Ps-MdB"/>
                                             <constraint firstItem="my4-EV-k1n" firstAttribute="top" secondItem="sg8-k8-K8C" secondAttribute="bottom" id="llO-Sx-xWK"/>

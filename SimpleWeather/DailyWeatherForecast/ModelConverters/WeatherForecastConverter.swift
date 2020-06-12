@@ -67,8 +67,11 @@ class WeatherForecastConverter {
         
         return WeatherForecast(countryName: countryName,
                                cityName: cityName,
+                               timeZone: dailyWeatherResponse.timeZone,
                                currentTemperature: currentTemperature, weatherIconType: currentWeatherIcon,
                                futureDays: futureDays,
-                               currentAdditionalInfo: currentAdditionalInfo)
+                               currentAdditionalInfo: currentAdditionalInfo,
+                               sunrise: dailyWeatherResponse.systemInfo.sunrise,
+                               sunset: dailyWeatherResponse.systemInfo.sunset)
     }
 }

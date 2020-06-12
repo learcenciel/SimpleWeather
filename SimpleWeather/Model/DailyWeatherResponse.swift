@@ -40,9 +40,13 @@ struct CoordInfo: Decodable {
 
 struct SystemInfo: Decodable {
     let countryName: String
+    let sunrise: Int
+    let sunset: Int
     
     private enum CodingKeys: String, CodingKey {
         case countryName = "country"
+        case sunrise = "sunrise"
+        case sunset = "sunset"
     }
 }
 

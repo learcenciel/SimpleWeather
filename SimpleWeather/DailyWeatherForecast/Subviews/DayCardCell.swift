@@ -14,7 +14,7 @@ enum CardType: CaseIterable {
     case night
 }
 
-extension UIView {
+extension DayCardCell {
     func getPath(cardType: CardType) -> UIBezierPath {
         switch cardType {
         case .day:
@@ -89,18 +89,20 @@ class DayCardCell: UICollectionViewCell {
     }
     
     func bind(_ weather: TemperatureInfo, cardType: CardType) {
+        
         self.cardType = cardType
+        
+        backgroundColor = getBackGroundColor(cardType: self.cardType)
+        self.timeLabel.text = weather.time.getTimeForCardCell()
+        let number = Double(weather.temperature)
+        self.temperatureLabel.text = "\(String(format: "%.0f", number))°"
+        self.iconImageView.image = weather.weatherIcon
+        
         CATransaction.begin()
         CATransaction.setDisableActions(true)
         shapeLayer.path = getPath(cardType: self.cardType).cgPath
         shapeLayer.fillColor = getPathColor(cardType: self.cardType).cgColor
         CATransaction.commit()
-        backgroundColor = getBackGroundColor(cardType: self.cardType)
-        
-        self.timeLabel.text = weather.time.getTime()
-        let number = Double(weather.temperature)
-        self.temperatureLabel.text = "\(String(format: "%.0f", number))°"
-        self.iconImageView.image = weather.weatherIcon
         
         setNeedsLayout()
     }

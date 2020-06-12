@@ -32,6 +32,5 @@ class DailyWeatherForecastPart: DIPart {
         
         container.register(CoreLocationManager.init)
             .lifetime(.objectGraph)
-        // TODO: make router
     }
 }

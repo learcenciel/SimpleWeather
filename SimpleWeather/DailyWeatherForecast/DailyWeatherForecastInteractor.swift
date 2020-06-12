@@ -31,9 +31,10 @@ class DailyWeatherForecastInteractor: NSObject, DailyWeatherForecastInteractorPr
     }
     
     func retreiveCurrentDailyWeatherForecast() {
+        
         guard let lat = locations?.first?.coordinate.latitude,
             let lon = locations?.first?.coordinate.longitude
-            else { return }
+        else { return }
         
         if isComplete { return }
         
@@ -41,13 +42,15 @@ class DailyWeatherForecastInteractor: NSObject, DailyWeatherForecastInteractorPr
         
         httpClient.fetchCurrentWeather(
             parameters: ["lat": lat,
-                         "lon": lon, "units": "metric"],
+                         "lon": lon,
+                         "units": "metric"],
             completionHandler: { dailyWeatherResult in
                 switch dailyWeatherResult {
                 case .success(let dailyWeatherResponse):
                     self.httpClient.fetchCurrentHourlyWeather(
                         parameters: ["lat": lat,
-                                     "lon": lon, "units": "metric"],
+                                     "lon": lon,
+                                     "units": "metric"],
                         completionHandler: { dailyWeeklyHourlyResult in
                             switch dailyWeeklyHourlyResult {
                             case .success(let dailyWeeklyHourlyResponse):

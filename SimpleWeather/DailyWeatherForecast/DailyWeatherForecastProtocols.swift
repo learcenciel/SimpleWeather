@@ -27,7 +27,6 @@ protocol DailyWeatherForecastRouterProtocol: class {
 protocol DailyWeatherForecastPresenterProtocol: class {
     var view: DailyWeatherForecastViewProtocol { get set }
     var interactor: DailyWeatherForecastInteractorProtocol! { get set }
-    //var router: DailyWeatherForecastRouterProtocol? { get set }
     
     // VIEW -> PRESENTER
     func viewDidLoad()

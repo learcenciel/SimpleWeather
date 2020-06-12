@@ -20,7 +20,6 @@
 		204E2C042488187200E5F991 /* DailyWeatherForecastPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204E2C032488187200E5F991 /* DailyWeatherForecastPart.swift */; };
 		204E2C0624881C7700E5F991 /* NetworkingPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204E2C0524881C7700E5F991 /* NetworkingPart.swift */; };
 		206CA5602489747000A8C987 /* CoreLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206CA55F2489747000A8C987 /* CoreLocationManager.swift */; };
-		20790D85248E4191000077FA /* ChartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20790D84248E4191000077FA /* ChartManager.swift */; };
 		20DD35AB247BBBCB00BD2E32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DD35AA247BBBCB00BD2E32 /* AppDelegate.swift */; };
 		20DD35AF247BBBCB00BD2E32 /* DailyWeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DD35AE247BBBCB00BD2E32 /* DailyWeatherForecastViewController.swift */; };
 		20DD35B2247BBBCB00BD2E32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20DD35B0247BBBCB00BD2E32 /* Main.storyboard */; };
@@ -48,7 +47,6 @@
 		204E2C032488187200E5F991 /* DailyWeatherForecastPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherForecastPart.swift; sourceTree = "<group>"; };
 		204E2C0524881C7700E5F991 /* NetworkingPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingPart.swift; sourceTree = "<group>"; };
 		206CA55F2489747000A8C987 /* CoreLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationManager.swift; sourceTree = "<group>"; };
-		20790D84248E4191000077FA /* ChartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartManager.swift; sourceTree = "<group>"; };
 		20DD35A7247BBBCB00BD2E32 /* SimpleWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DD35AA247BBBCB00BD2E32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20DD35AE247BBBCB00BD2E32 /* DailyWeatherForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherForecastViewController.swift; sourceTree = "<group>"; };
@@ -142,14 +140,6 @@
 			path = CoreLocation;
 			sourceTree = "<group>";
 		};
-		20790D83248E4187000077FA /* ChartManager */ = {
-			isa = PBXGroup;
-			children = (
-				20790D84248E4191000077FA /* ChartManager.swift */,
-			);
-			path = ChartManager;
-			sourceTree = "<group>";
-		};
 		20DD359E247BBBCB00BD2E32 = {
 			isa = PBXGroup;
 			children = (
@@ -171,7 +161,6 @@
 		20DD35A9247BBBCB00BD2E32 /* SimpleWeather */ = {
 			isa = PBXGroup;
 			children = (
-				20790D83248E4187000077FA /* ChartManager */,
 				20DD35BB247BBBD100BD2E32 /* Info.plist */,
 				2038EF77247CDE4D0000A5A9 /* Recources */,
 				203BC42724890B0700692907 /* Extensions */,
@@ -354,7 +343,6 @@
 				20DD35CC247BF4DE00BD2E32 /* WeatherAPI.swift in Sources */,
 				204030B4247E59AB005EF087 /* DaySelectControl.swift in Sources */,
 				204E2C0624881C7700E5F991 /* NetworkingPart.swift in Sources */,
-				20790D85248E4191000077FA /* ChartManager.swift in Sources */,
 				204030B2247E3788005EF087 /* DayCardCell.swift in Sources */,
 				204E2C042488187200E5F991 /* DailyWeatherForecastPart.swift in Sources */,
 				20DD35CA247BF24600BD2E32 /* HTTPClient.swift in Sources */,

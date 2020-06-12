@@ -19,6 +19,7 @@ enum WeatherIconType: String {
 struct WeatherForecast {
     let countryName: String
     let cityName: String
+    let timeZone: Int
     let currentTemperature: Float
     let weatherIconType: WeatherIconType
     var weatherIcon: UIImage {
@@ -26,6 +27,8 @@ struct WeatherForecast {
     }
     let futureDays: [TemperatureInfo]
     let currentAdditionalInfo: CurrentAdditionalInfo
+    let sunrise: Int
+    let sunset: Int
 }
 
 struct CurrentAdditionalInfo {

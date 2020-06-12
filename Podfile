@@ -9,6 +9,5 @@ target 'SimpleWeather' do
   pod 'Alamofire'
   pod 'Kingfisher'
   pod 'DITranquillity'
-  pod 'Charts'
   
 end

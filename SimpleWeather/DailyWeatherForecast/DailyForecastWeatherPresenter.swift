@@ -12,7 +12,6 @@ class DailyForecastWeatherPresenter: DailyWeatherForecastPresenterProtocol {
     
     var view: DailyWeatherForecastViewProtocol
     var interactor: DailyWeatherForecastInteractorProtocol!
-    //var router: DailyWeatherForecastRouterProtocol?
     
     init(view: DailyWeatherForecastViewProtocol,
          interactor: DailyWeatherForecastInteractorProtocol) {

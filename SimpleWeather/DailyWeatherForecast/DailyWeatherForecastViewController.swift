@@ -6,7 +6,6 @@
 //  Copyright © 2020 Alexander Team. All rights reserved.
 //
 
-import Charts
 import UIKit
 
 class DailyWeatherForecastViewController: UIViewController {
@@ -34,6 +33,11 @@ class DailyWeatherForecastViewController: UIViewController {
     var isContentLoaded = false
     var isDashedCircleViewAnimationNeedShow = true
     
+    var sunrise = 0
+    var sunset = 0
+    var currentTime = 0
+    var timeZone = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,11 +48,6 @@ class DailyWeatherForecastViewController: UIViewController {
     }
     
     // MARK: UI setup
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UITabBar.appearance().barTintColor = UIColor(named: "tabBarBackgroundColor")
-    }
     
     func showLoading() {
         view.subviews.forEach { $0.isHidden = !$0.isHidden }
@@ -73,23 +72,36 @@ class DailyWeatherForecastViewController: UIViewController {
     func setupCollectionView() {
         let flowLayout = dailyHourlyForecastCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
-        flowLayout.minimumLineSpacing = 44
+        flowLayout.minimumLineSpacing = 48
     }
     
     @objc func updateWeather() {
         presenter.updateWeather()
     }
     
-    func isVisible(view: UIView) -> Bool {
+    func isDashedCircleViewVisible(view: UIView) -> Bool {
+        
         func isVisible(view: UIView, inView: UIView?) -> Bool {
+            
             guard let inView = inView else { return true }
+            
             let viewFrame = inView.convert(view.bounds, from: view)
             if viewFrame.intersects(inView.bounds) {
                 return isVisible(view: view, inView: inView.superview)
             }
+            
             return false
         }
+        
         return isVisible(view: view, inView: view.superview)
+    }
+    
+    func getCurrentTime() -> Int {
+        return Int(NSDate().timeIntervalSince1970)
+    }
+    
+    func checkIfTimeInRange(_ timeStamp: Int) -> Bool {
+        return timeStamp >= self.sunrise && timeStamp <= self.sunset
     }
 }
 
@@ -112,6 +124,9 @@ extension DailyWeatherForecastViewController: DailyWeatherForecastViewProtocol {
         self.humidityLabel.text = currentWeather.currentAdditionalInfo.humidity.getHumidity()
         self.pressureLabel.text = currentWeather.currentAdditionalInfo.pressure.getPressure()
         self.windDegLabel.text = currentWeather.currentAdditionalInfo.windDeg.getWindDegree()
+        self.sunrise = currentWeather.sunrise
+        self.sunset = currentWeather.sunset
+        self.timeZone = currentWeather.timeZone
         dailyHourlyForecastCollectionView.reloadData()
     }
     
@@ -145,10 +160,21 @@ extension DailyWeatherForecastViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == self.scrollView {
-            if isVisible(view: dashedCircleVIew) {
+            if isDashedCircleViewVisible(view: dashedCircleVIew) {
                 if isDashedCircleViewAnimationNeedShow {
-                    dashedCircleVIew.animate(from: 1, to: 23, cur: 17.5)
-                    isDashedCircleViewAnimationNeedShow = false
+                    if checkIfTimeInRange(getCurrentTime()) {
+                        dashedCircleVIew.animate(from: self.sunrise,
+                                                 to: self.sunset,
+                                                 cur: getCurrentTime(),
+                                                 timeZone: self.timeZone)
+                        isDashedCircleViewAnimationNeedShow = false
+                    } else {
+                        dashedCircleVIew.animate(from: self.sunrise,
+                                                 to: self.sunset,
+                                                 cur: self.sunset,
+                                                 timeZone: self.timeZone)
+                        isDashedCircleViewAnimationNeedShow = false
+                    }
                 }
             } else {
                 isDashedCircleViewAnimationNeedShow = true
@@ -191,8 +217,4 @@ extension DailyWeatherForecastViewController: UICollectionViewDataSource {
         
         return cell
     }
-}
-
-extension DailyWeatherForecastViewController: ChartViewDelegate {
-    
 }

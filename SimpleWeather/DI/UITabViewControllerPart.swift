@@ -10,7 +10,7 @@ import DITranquillity
 
 class UITabViewControllerPart: DIPart {
     static func load(container: DIContainer) {
-        container.register(UITableViewController.self)
+        container.register(UITabBarController.self)
             .lifetime(.single)
     }
 }
