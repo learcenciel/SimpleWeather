@@ -33,9 +33,9 @@ class DailyWeatherForecastViewController: UIViewController {
     var isContentLoaded = false
     var isDashedCircleViewAnimationNeedShow = true
     
-    var sunrise = 0
-    var sunset = 0
-    var currentTime = 0
+    var sunrise = Date()
+    var sunset = Date()
+    var currentTime = Date()
     var timeZone = 0
     
     override func viewDidLoad() {
@@ -96,12 +96,12 @@ class DailyWeatherForecastViewController: UIViewController {
         return isVisible(view: view, inView: view.superview)
     }
     
-    func getCurrentTime() -> Int {
-        return Int(NSDate().timeIntervalSince1970)
+    func getCurrentTime() -> Date {
+        return NSDate() as Date
     }
     
-    func checkIfTimeInRange(_ timeStamp: Int) -> Bool {
-        return timeStamp >= self.sunrise && timeStamp <= self.sunset
+    func checkIfTimeInRange(_ currentTime: Date) -> Bool {
+        return currentTime >= self.sunrise && currentTime <= self.sunset
     }
 }
 
@@ -163,19 +163,17 @@ extension DailyWeatherForecastViewController: UIScrollViewDelegate {
         if scrollView == self.scrollView {
             if isDashedCircleViewVisible(view: dashedCircleVIew) {
                 if isDashedCircleViewAnimationNeedShow {
-                    if checkIfTimeInRange(getCurrentTime()) {
-                        dashedCircleVIew.animate(from: self.sunrise,
-                                                 to: self.sunset,
-                                                 cur: getCurrentTime(),
-                                                 timeZone: self.timeZone)
-                        isDashedCircleViewAnimationNeedShow = false
-                    } else {
-                        dashedCircleVIew.animate(from: self.sunrise,
-                                                 to: self.sunset,
-                                                 cur: self.sunset,
-                                                 timeZone: self.timeZone)
-                        isDashedCircleViewAnimationNeedShow = false
-                    }
+                    
+                    let currentTime = getCurrentTime()
+                    let isTimeInRange = checkIfTimeInRange(currentTime)
+                    let cur = isTimeInRange ? currentTime : self.sunset
+                    
+                    dashedCircleVIew.animate(sunrise: self.sunrise,
+                                             sunset: self.sunset,
+                                             currentTime: cur,
+                                             timeZone: self.timeZone)
+                    
+                    isDashedCircleViewAnimationNeedShow = false
                 }
             } else {
                 isDashedCircleViewAnimationNeedShow = true

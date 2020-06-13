@@ -13,18 +13,23 @@ class DashedCircleView: UIView {
    
     // MARK: Layer properties
     
-    var strokeFillCircleLayer = CAShapeLayer()
-    var staticCircleLayer = CAShapeLayer()
-    var maskCircleLayer = CAShapeLayer()
-    var movingCircleLayer = CAShapeLayer()
-    var movingCircleSunBeamsLayer = CAShapeLayer()
-    var horizontalLineLayer = CAShapeLayer()
-    var horizonLine = CAShapeLayer()
+    private var strokeFillCircleLayer = CAShapeLayer()
+    private var staticCircleLayer = CAShapeLayer()
+    private var maskCircleLayer = CAShapeLayer()
+    private var movingCircleLayer = CAShapeLayer()
+    private var movingCircleSunBeamsLayer = CAShapeLayer()
+    private var horizontalLineLayer = CAShapeLayer()
+    private var horizonLine = CAShapeLayer()
     
     private let timeStringFont = UIFont.systemFont(ofSize: 18, weight: .heavy)
+    private let dateFormatter = DateFormatter()
     
-    var sunriseTimeString = "05:24" as NSString
-    var sunsetTimeString = "23:04" as NSString
+    private var sunriseTimeString = "05:24" as NSString
+    private var sunsetTimeString = "23:04" as NSString
+    
+    private var currentTimestamp = 0
+    private var sunriseTimestamp = 0
+    private var sunsetTimestamp = 0
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
@@ -42,75 +47,76 @@ class DashedCircleView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+        updatePaths()
         setNeedsDisplay()
-        
-        let horizontalLinePath = UIBezierPath()
-        horizontalLinePath.move(to: CGPoint(x: 20, y: bounds.size.height - 45))
-        horizontalLinePath.addLine(to: CGPoint(x: bounds.maxX - 20, y: bounds.size.height - 45))
-        horizontalLineLayer.path = horizontalLinePath.cgPath
-        
-        strokeFillCircleLayer.path = UIBezierPath(arcCenter: CGPoint(x: bounds.size.width / 2, y: bounds.size.height - 45),
-        radius: max(bounds.size.height, bounds.size.width) / 3,
-        startAngle: 0,
-        endAngle: .pi,
-        clockwise: false).cgPath
-        
-        staticCircleLayer.path =
-        UIBezierPath(arcCenter: CGPoint(x: bounds.size.width / 2,
-                                        y: bounds.size.height - 45),
-                     radius: max(bounds.size.height, bounds.size.width) / 3,
-                     startAngle: 0,
-                     endAngle: .pi,
-                     clockwise: false).cgPath
-        
-        
     }
     
-    func createHorizonLine() {
-        horizontalLineLayer.strokeColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1).cgColor
-        horizontalLineLayer.lineWidth = 1.0
-        layer.addSublayer(horizontalLineLayer)
+    func updatePaths() {
+        let horizontalLinePath = UIBezierPath()
+               horizontalLinePath.move(to: CGPoint(x: 20, y: bounds.size.height - 45))
+               horizontalLinePath.addLine(to: CGPoint(x: bounds.maxX - 20, y: bounds.size.height - 45))
+               horizontalLineLayer.path = horizontalLinePath.cgPath
+               
+               strokeFillCircleLayer.path = UIBezierPath(arcCenter: CGPoint(x: bounds.size.width / 2, y: bounds.size.height - 45),
+               radius: max(bounds.size.height, bounds.size.width) / 3,
+               startAngle: 0,
+               endAngle: .pi,
+               clockwise: false).cgPath
+               
+               staticCircleLayer.path =
+               UIBezierPath(arcCenter: CGPoint(x: bounds.size.width / 2,
+                                               y: bounds.size.height - 45),
+                            radius: max(bounds.size.height, bounds.size.width) / 3,
+                            startAngle: 0,
+                            endAngle: .pi,
+                            clockwise: false).cgPath
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        createHorizonLine()
-        createStrokeFillCircleLayer()
-        createStaticCircleLayer()
     }
    
     required init?(coder aDecoder: NSCoder) {
         
         super.init(coder: aDecoder)
-
         
         createHorizonLine()
         createStrokeFillCircleLayer()
         createStaticCircleLayer()
     }
     
+    func setupDateFormatter(timeZone: Int, sunrise: Date, sunset: Date, currentTime: Date) {
+        
+        dateFormatter.dateFormat = "HH:mm"//"EE" to get short style
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: timeZone)
+        
+        self.sunriseTimeString = dateFormatter.string(from: sunrise).capitalized as NSString
+        self.sunsetTimeString = dateFormatter.string(from: sunset).capitalized as NSString
+
+        self.currentTimestamp = Int(currentTime.timeIntervalSince1970)
+        self.sunriseTimestamp = Int(sunrise.timeIntervalSince1970)
+        self.sunsetTimestamp = Int(sunset.timeIntervalSince1970)
+    }
+    
     // MARK: start animation by calling this func
     
-    func animate(from: Int, to: Int, cur: Int, timeZone: Int) {
-
+    func animate(sunrise: Date, sunset: Date, currentTime: Date, timeZone: Int) {
+        
+        setupDateFormatter(timeZone: timeZone, sunrise: sunrise, sunset: sunset, currentTime: currentTime)
+        
         maskCircleLayer.removeAllAnimations()
         movingCircleLayer.removeAllAnimations()
         
-        self.sunriseTimeString = from.getSunriseSunsetTime(with: timeZone)! as NSString
-        self.sunsetTimeString = to.getSunriseSunsetTime(with: timeZone)! as NSString
-        
         self.createMovingCircle()
-        self.createMaskCircleLayer(from: from, to: to, cur: cur)
-        self.rotateMovingCircle(from: from, to: to, cur: cur)
+        self.createMaskCircleLayer(from: sunriseTimestamp, to: sunsetTimestamp, cur: currentTimestamp)
+        self.rotateMovingCircle(from: sunriseTimestamp, to: sunsetTimestamp, cur: currentTimestamp)
         self.animateBeams()
     }
 }
  
 private extension DashedCircleView {
    
-    private func getPathMask(size: CGSize,
+    private func createSunBeams(size: CGSize,
                              teethCount: UInt,
                              teethSize: CGSize,
                              radius: CGFloat) -> CGPath? {
@@ -134,6 +140,12 @@ private extension DashedCircleView {
         return returnPath.copy()
     }
    
+    func createHorizonLine() {
+        horizontalLineLayer.strokeColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1).cgColor
+        horizontalLineLayer.lineWidth = 1.0
+        layer.addSublayer(horizontalLineLayer)
+    }
+    
     func createStrokeFillCircleLayer() {
         
         strokeFillCircleLayer.lineWidth = 2.0
@@ -148,6 +160,7 @@ private extension DashedCircleView {
     }
     
     func createStaticCircleLayer() {
+        
         staticCircleLayer.lineWidth = 2.0
         staticCircleLayer.masksToBounds = false
         staticCircleLayer.strokeColor =  UIColor.lightGray.cgColor
@@ -156,6 +169,7 @@ private extension DashedCircleView {
         staticCircleLayer.lineDashPattern = [8, 8]
         staticCircleLayer.strokeStart = 0.0
         staticCircleLayer.strokeEnd = 1.0
+        
         layer.addSublayer(staticCircleLayer)
     }
     
@@ -209,7 +223,7 @@ private extension DashedCircleView {
         movingCircleLayer.bounds = movingCircleLayerRect
         movingCircleLayer.zPosition = 1
         movingCircleSunBeamsLayer.path =
-            getPathMask(size: CGSize(width: 20, height: 20),
+            createSunBeams(size: CGSize(width: 20, height: 20),
                         teethCount: 8,
                         teethSize: CGSize(width: 2, height: 10),
                         radius: 14)

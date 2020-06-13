@@ -27,8 +27,8 @@ struct WeatherForecast {
     }
     let futureDays: [TemperatureInfo]
     let currentAdditionalInfo: CurrentAdditionalInfo
-    let sunrise: Int
-    let sunset: Int
+    let sunrise: Date
+    let sunset: Date
 }
 
 struct CurrentAdditionalInfo {
