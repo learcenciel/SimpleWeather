@@ -27,7 +27,7 @@ class DailyWeatherForecastInteractor: NSObject, DailyWeatherForecastInteractorPr
     }
     
     func retreiveDailyWeatherForecast() {
-        locationManager.getCurrentLocation()
+        self.locationManager.getCurrentLocation()
     }
     
     func retreiveCurrentDailyWeatherForecast() {
@@ -81,10 +81,15 @@ class DailyWeatherForecastInteractor: NSObject, DailyWeatherForecastInteractorPr
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print(status)
+        if status == .authorizedAlways || status == .authorizedWhenInUse {
+            self.retreiveDailyWeatherForecast()
+        } else if status == .denied {
+            self.presenter.didRetrieveLocationError("Please give location determination access in settings")
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error.localizedDescription)
+        presenter.didRetrieveLocationError(error.localizedDescription)
     }
 }

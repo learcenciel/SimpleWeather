@@ -53,6 +53,10 @@ class CoreLocationManager {
     }
     
     func getCurrentLocation() {
+        
+        guard CLLocationManager.authorizationStatus() == .authorizedAlways ||
+            CLLocationManager.authorizationStatus() == .authorizedWhenInUse else { return }
+        
         locationManager.requestLocation()
     }
 }

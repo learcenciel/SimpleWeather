@@ -12,6 +12,7 @@ class DailyWeatherForecastViewController: UIViewController {
     
     // MARK: Outlets
     
+    @IBOutlet weak var locationAccessHintLabel: UILabel!
     @IBOutlet weak var dashedCircleVIew: DashedCircleView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -64,6 +65,10 @@ class DailyWeatherForecastViewController: UIViewController {
         tabBarController?.tabBar.isHidden = false
     }
     
+    func showLocationAccessHint(_ show: Bool) {
+        locationAccessHintLabel.isHidden = !show
+    }
+    
     func setupRefreshControl() {
         scrollView.refreshControl = UIRefreshControl()
         scrollView.refreshControl?.addTarget(self, action: #selector(updateWeather), for: .valueChanged)
@@ -108,6 +113,19 @@ class DailyWeatherForecastViewController: UIViewController {
 // MARK: DailyWeatherForecastViewProtocol conformation
 
 extension DailyWeatherForecastViewController: DailyWeatherForecastViewProtocol {
+    
+    func showLocationError(_ error: String) {
+        if activityIndicatorView.isAnimating {
+            activityIndicatorView.stopAnimating()
+            self.showToast(message: error, font: .systemFont(ofSize: 14))
+            self.showLocationAccessHint(true)
+            self.activityIndicatorView.isHidden = true
+            
+            if (error == "The operation couldn’t be completed. (kCLErrorDomain error 0.)") {
+                presenter.viewDidLoad()
+            }
+        }
+    }
     
     func showCurrentWeather(with currentWeather: WeatherForecast) {
         

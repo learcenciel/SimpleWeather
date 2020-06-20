@@ -30,4 +30,8 @@ class DailyForecastWeatherPresenter: DailyWeatherForecastPresenterProtocol {
     func didRetreiveWeatherForecast(_ weatherForecast: WeatherForecast) {
         view.showCurrentWeather(with: weatherForecast)
     }
+    
+    func didRetrieveLocationError(_ error: String) {
+        view.showLocationError(error)
+    }
 }

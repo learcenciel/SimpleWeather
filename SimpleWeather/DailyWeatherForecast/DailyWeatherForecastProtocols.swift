@@ -14,6 +14,7 @@ protocol DailyWeatherForecastViewProtocol: class {
     
     // PRESENTER -> VIEW
     func showCurrentWeather(with currentWeather: WeatherForecast)
+    func showLocationError(_ error: String)
 }
 
 protocol DailyWeatherForecastConfiguratorProtocol: class {
@@ -34,6 +35,7 @@ protocol DailyWeatherForecastPresenterProtocol: class {
     
     // INTERACTOR -> PRESENTER
     func didRetreiveWeatherForecast(_ weatherForecast: WeatherForecast)
+    func didRetrieveLocationError(_ error: String)
 }
 
 protocol DailyWeatherForecastInteractorProtocol: class, CLLocationManagerDelegate {

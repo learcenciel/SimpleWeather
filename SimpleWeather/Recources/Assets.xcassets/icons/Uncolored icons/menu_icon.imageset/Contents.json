@@ -25,7 +25,7 @@
       "scale" : "1x"
     },
     {
-      "filename" : "weekly.png",
+      "filename" : "icons8-menu-rounded-51.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -36,7 +36,7 @@
           "value" : "light"
         }
       ],
-      "filename" : "icons8-wednesday-50.png",
+      "filename" : "icons8-menu-rounded-50.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -47,7 +47,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "weekly-1.png",
+      "filename" : "home_icon.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -81,6 +81,6 @@
     "version" : 1
   },
   "properties" : {
-    "template-rendering-intent" : "template"
+    "template-rendering-intent" : "original"
   }
 }
