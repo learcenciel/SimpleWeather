@@ -9,14 +9,20 @@
 import UIKit
 
 class WeeklyWeatherForecastViewController: UIViewController {
-
+    
     @IBOutlet weak var weekDaysCollectionView: UICollectionView!
+    
+    var presenter: WeeklyWeatherForecastPresenterProtocol!
     
     var weeks = ["S", "M", "T", "W", "T", "F", "S"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setupWeekDaysCollectionView()
+    }
+    
+    func setupWeekDaysCollectionView() {
         let layout = weekDaysCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.sectionInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
         layout.minimumLineSpacing = 14
@@ -29,48 +35,38 @@ class WeeklyWeatherForecastViewController: UIViewController {
     }
 }
 
+// MARK: DailyWeatherForecastViewProtocol conformation
+
+extension WeeklyWeatherForecastViewController: WeeklyWeatherForecastViewProtocol {
+     
+}
+
+
+// MARK: UICollectionViewDataSource
+
 extension WeeklyWeatherForecastViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         weeks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! KekCell
-        cell.label.text = weeks[indexPath.item]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! WeekDayWeatherCell
+        cell.dayTitle.text = weeks[indexPath.item]
         return cell
     }
-    
-    
 }
+
+// MARK: UICollectionViewDelegate
 
 extension WeeklyWeatherForecastViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! KekCell
-        cell.setHiglighted(true)
+        let cell = collectionView.cellForItem(at: indexPath) as! WeekDayWeatherCell
+        cell.setSelected(true)
         print(collectionView.indexPathsForSelectedItems ?? 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! KekCell
-        cell.setHiglighted(false)
+        let cell = collectionView.cellForItem(at: indexPath) as! WeekDayWeatherCell
+        cell.setSelected(false)
     }
-}
-
-class KekCell: UICollectionViewCell {
-    
-    @IBOutlet weak var label: UILabel!
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        self.backgroundColor = .clear
-    }
-    
-    func setHiglighted(_ isHiglighted: Bool) {
-        if isHiglighted {
-            self.label.textColor = UIColor(named: "SelectedDayColor")
-        } else {
-            self.label.textColor = UIColor(named: "UnselectedDayColor")
-        }
-    }
-    
 }

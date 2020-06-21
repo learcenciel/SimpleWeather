@@ -7,6 +7,7 @@
 //
 
 import DITranquillity
+import GooglePlaces
 import UIKit
 
 @UIApplicationMain
@@ -15,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        GMSPlacesClient.provideAPIKey("AIzaSyC9xYUyQ5C1QvIszXJ81BGfGWKIi7UN7SM")
         
         let container = DIContainer()
         container.append(framework: AppFramework.self)

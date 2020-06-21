@@ -17,14 +17,6 @@ protocol DailyWeatherForecastViewProtocol: class {
     func showLocationError(_ error: String)
 }
 
-protocol DailyWeatherForecastConfiguratorProtocol: class {
-    static func createDailyWeatherForecastModule() -> UIViewController
-}
-
-protocol DailyWeatherForecastRouterProtocol: class {
-    func showWeeklyChart(from view: DailyWeatherForecastViewProtocol, forCity cityId: Int)
-}
-
 protocol DailyWeatherForecastPresenterProtocol: class {
     var view: DailyWeatherForecastViewProtocol { get set }
     var interactor: DailyWeatherForecastInteractorProtocol! { get set }
@@ -43,6 +35,7 @@ protocol DailyWeatherForecastInteractorProtocol: class, CLLocationManagerDelegat
     var httpClient: WeatherAPI { get set }
     var modelConverter: WeatherForecastConverter { get set }
     var locationManager: CoreLocationManager! { get set }
+    var databaseManager: DatabaseManager { get set }
     
     // PRESENTER -> INTERACTOR
     func retreiveDailyWeatherForecast()

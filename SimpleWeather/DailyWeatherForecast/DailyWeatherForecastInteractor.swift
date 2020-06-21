@@ -15,24 +15,29 @@ class DailyWeatherForecastInteractor: NSObject, DailyWeatherForecastInteractorPr
     var presenter: DailyWeatherForecastPresenterProtocol!
     var httpClient: WeatherAPI
     var modelConverter: WeatherForecastConverter
-    
-    var locations: [CLLocation]?
+    var databaseManager: DatabaseManager
+    var currentUserSession: CurrentUserSession
     
     var isComplete = false
     
     init(httpClient: WeatherAPI,
-         modelConverter: WeatherForecastConverter) {
+         modelConverter: WeatherForecastConverter,
+         databaseManager: DatabaseManager,
+         currentUserSession: CurrentUserSession) {
         self.httpClient = httpClient
         self.modelConverter = modelConverter
+        self.databaseManager = databaseManager
+        self.currentUserSession = currentUserSession
     }
     
     func retreiveDailyWeatherForecast() {
         self.locationManager.getCurrentLocation()
     }
     
-    func retreiveCurrentDailyWeatherForecast() {
+    func retreiveCurrentDailyWeatherForecast(_ locations: [CLLocation]?, isCurrent: Bool) {
         
-        guard let lat = locations?.first?.coordinate.latitude,
+        guard
+            let lat = locations?.first?.coordinate.latitude,
             let lon = locations?.first?.coordinate.longitude
         else { return }
         
@@ -58,6 +63,10 @@ class DailyWeatherForecastInteractor: NSObject, DailyWeatherForecastInteractorPr
                                     self.modelConverter.convertWeatherForecast(dailyWeatherResponse,
                                                                                dailyWeeklyHourlyResponse)
                                 self.didRetreieveWeatherForecastFromNetwork(weatherForecast)
+                                self.saveCitiesToDatabase(weatherForecast.cityName,
+                                                          lattitude: Float(lat),
+                                                          longitude: Float(lon),
+                                                          isCurrent: isCurrent)
                                 self.isComplete = false
                             case .failure(let err):
                                 print(err)
@@ -69,6 +78,15 @@ class DailyWeatherForecastInteractor: NSObject, DailyWeatherForecastInteractorPr
         })
     }
     
+    func saveCitiesToDatabase(_ weatherCityName: String,
+                              lattitude: Float,
+                              longitude: Float,
+                              isCurrent: Bool) {
+        databaseManager.saveCity(weatherCityName,
+                                 lattitude: lattitude,
+                                 longtitude: longitude, isCurrent: isCurrent)
+    }
+    
     func didRetreieveWeatherForecastFromNetwork(_ weatherForecast: WeatherForecast?) {
         if let weatherForecast = weatherForecast {
             self.presenter.didRetreiveWeatherForecast(weatherForecast)
@@ -76,8 +94,13 @@ class DailyWeatherForecastInteractor: NSObject, DailyWeatherForecastInteractorPr
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.locations = locations
-        self.retreiveCurrentDailyWeatherForecast()
+        if let currentCity = currentUserSession.currentCity {
+            let locations = [CLLocation(latitude: CLLocationDegrees(currentCity.lattitude),
+                                        longitude: CLLocationDegrees(currentCity.longtitude))]
+            self.retreiveCurrentDailyWeatherForecast(locations, isCurrent: currentCity.isCurrent)
+        } else {
+            self.retreiveCurrentDailyWeatherForecast(locations, isCurrent: true)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
