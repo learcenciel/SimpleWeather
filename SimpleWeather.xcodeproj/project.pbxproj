@@ -28,6 +28,8 @@
 		20671455249F2D1100220D73 /* WeatherCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20671454249F2D1100220D73 /* WeatherCity.swift */; };
 		206CA5602489747000A8C987 /* CoreLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206CA55F2489747000A8C987 /* CoreLocationManager.swift */; };
 		2077C664249B872C00A116CB /* WeeklyWeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077C663249B872C00A116CB /* WeeklyWeatherForecastViewController.swift */; };
+		208352F724A07F8C005B253B /* SettingsWeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208352F624A07F8C005B253B /* SettingsWeatherForecastViewController.swift */; };
+		208352FA24A0809F005B253B /* SettingsMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208352F924A0809F005B253B /* SettingsMenuCell.swift */; };
 		2086946B249740C500C59891 /* ViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2086946A249740C500C59891 /* ViewController + Extension.swift */; };
 		20DD35AB247BBBCB00BD2E32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DD35AA247BBBCB00BD2E32 /* AppDelegate.swift */; };
 		20DD35AF247BBBCB00BD2E32 /* DailyWeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DD35AE247BBBCB00BD2E32 /* DailyWeatherForecastViewController.swift */; };
@@ -64,6 +66,8 @@
 		20671454249F2D1100220D73 /* WeatherCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCity.swift; sourceTree = "<group>"; };
 		206CA55F2489747000A8C987 /* CoreLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationManager.swift; sourceTree = "<group>"; };
 		2077C663249B872C00A116CB /* WeeklyWeatherForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWeatherForecastViewController.swift; sourceTree = "<group>"; };
+		208352F624A07F8C005B253B /* SettingsWeatherForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWeatherForecastViewController.swift; sourceTree = "<group>"; };
+		208352F924A0809F005B253B /* SettingsMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenuCell.swift; sourceTree = "<group>"; };
 		2086946A249740C500C59891 /* ViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController + Extension.swift"; sourceTree = "<group>"; };
 		20DD35A7247BBBCB00BD2E32 /* SimpleWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DD35AA247BBBCB00BD2E32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -188,6 +192,23 @@
 			path = CoreLocation;
 			sourceTree = "<group>";
 		};
+		208352F324A07E66005B253B /* SettingsWeatherForecast */ = {
+			isa = PBXGroup;
+			children = (
+				208352F824A0808D005B253B /* Subviews */,
+				208352F624A07F8C005B253B /* SettingsWeatherForecastViewController.swift */,
+			);
+			path = SettingsWeatherForecast;
+			sourceTree = "<group>";
+		};
+		208352F824A0808D005B253B /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				208352F924A0809F005B253B /* SettingsMenuCell.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
 		20DD359E247BBBCB00BD2E32 = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +240,7 @@
 				20DD35C8247BF23700BD2E32 /* Networking */,
 				2038EF7B247CDFDA0000A5A9 /* DailyWeatherForecast */,
 				20671449249F24D900220D73 /* WeeklyWeatherForecast */,
+				208352F324A07E66005B253B /* SettingsWeatherForecast */,
 			);
 			path = SimpleWeather;
 			sourceTree = "<group>";
@@ -415,11 +437,13 @@
 				204030B4247E59AB005EF087 /* DaySelectControl.swift in Sources */,
 				204E2C0624881C7700E5F991 /* NetworkingPart.swift in Sources */,
 				203D537E249F767800AFA7B3 /* CurrentUserSession.swift in Sources */,
+				208352F724A07F8C005B253B /* SettingsWeatherForecastViewController.swift in Sources */,
 				204030B2247E3788005EF087 /* DayCardCell.swift in Sources */,
 				2086946B249740C500C59891 /* ViewController + Extension.swift in Sources */,
 				204E2C042488187200E5F991 /* DailyWeatherForecastPart.swift in Sources */,
 				20DD35CA247BF24600BD2E32 /* HTTPClient.swift in Sources */,
 				849A78922492449A0007F6AB /* DashedCircleView.swift in Sources */,
+				208352FA24A0809F005B253B /* SettingsMenuCell.swift in Sources */,
 				203BC42924890B1000692907 /* Int + Extension.swift in Sources */,
 				203C6D34248BFCBA0075CF6C /* UITabViewControllerPart.swift in Sources */,
 				2067144D249F25AD00220D73 /* WeeklyWeatherForecastProtocols.swift in Sources */,

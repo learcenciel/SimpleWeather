@@ -148,7 +148,6 @@ extension DailyWeatherForecastViewController: DailyWeatherForecastViewProtocol {
         
         dailyHourlyForecastCollectionView.reloadData()
     }
-    
 }
 
 // MARK: UICollectionViewDelegateFlowLayout
