@@ -41,10 +41,6 @@ class DailyWeatherForecastInteractor: NSObject, DailyWeatherForecastInteractorPr
             let lon = locations?.first?.coordinate.longitude
         else { return }
         
-        if isComplete { return }
-        
-        isComplete = true
-        
         httpClient.fetchCurrentWeather(
             parameters: ["lat": lat,
                          "lon": lon,
@@ -94,6 +90,13 @@ class DailyWeatherForecastInteractor: NSObject, DailyWeatherForecastInteractorPr
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        if isComplete { return }
+        
+        isComplete = true
+        
+        print(databaseManager.getCities())
+        
         if let currentCity = currentUserSession.currentCity {
             let locations = [CLLocation(latitude: CLLocationDegrees(currentCity.lattitude),
                                         longitude: CLLocationDegrees(currentCity.longtitude))]
