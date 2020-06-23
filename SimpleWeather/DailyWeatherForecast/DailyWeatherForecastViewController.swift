@@ -12,7 +12,6 @@ class DailyWeatherForecastViewController: UIViewController {
     
     // MARK: Outlets
     
-    @IBOutlet weak var locationAccessHintLabel: UILabel!
     @IBOutlet weak var dashedCircleVIew: DashedCircleView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -25,6 +24,14 @@ class DailyWeatherForecastViewController: UIViewController {
     @IBOutlet weak var pressureLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var windDegLabel: UILabel!
+    
+    let locationAccessHintLabel: UILabel = {
+        let locationAccessHintLabel = UILabel()
+        locationAccessHintLabel.translatesAutoresizingMaskIntoConstraints = false
+        locationAccessHintLabel.text = "Please, allow location access in settings"
+        locationAccessHintLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        return locationAccessHintLabel
+    }()
     
     // MARK: Properties
     
@@ -42,6 +49,7 @@ class DailyWeatherForecastViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupLocationAccessHintLabel()
         setupCollectionView()
         setupRefreshControl()
         presenter.viewDidLoad()
@@ -54,6 +62,15 @@ class DailyWeatherForecastViewController: UIViewController {
     }
     
     // MARK: UI setup
+    
+    func setupLocationAccessHintLabel() {
+        view.addSubview(locationAccessHintLabel)
+        NSLayoutConstraint.activate([
+            locationAccessHintLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            locationAccessHintLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        locationAccessHintLabel.isHidden = false
+    }
     
     func showLoading() {
         view.subviews.forEach { $0.isHidden = !$0.isHidden }
@@ -68,10 +85,6 @@ class DailyWeatherForecastViewController: UIViewController {
         activityIndicatorView.isHidden = true
         activityIndicatorView.stopAnimating()
         tabBarController?.tabBar.isHidden = false
-    }
-    
-    func showLocationAccessHint(_ show: Bool) {
-        locationAccessHintLabel.isHidden = !show
     }
     
     func setupRefreshControl() {
@@ -123,7 +136,7 @@ extension DailyWeatherForecastViewController: DailyWeatherForecastViewProtocol {
         if activityIndicatorView.isAnimating {
             activityIndicatorView.stopAnimating()
             self.showToast(message: error, font: .systemFont(ofSize: 14))
-            self.showLocationAccessHint(true)
+            self.locationAccessHintLabel.isHidden = false
             self.activityIndicatorView.isHidden = true
             
             if (error == "The operation couldn’t be completed. (kCLErrorDomain error 0.)") {
@@ -138,6 +151,8 @@ extension DailyWeatherForecastViewController: DailyWeatherForecastViewProtocol {
         
         guard let refreshControl = scrollView.refreshControl else { return }
         if refreshControl.isRefreshing { refreshControl.endRefreshing() }
+        
+        locationAccessHintLabel.isHidden = true
         
         self.weatherForecast = currentWeather
         self.currentWeatherIconImageView.image = currentWeather.weatherIcon

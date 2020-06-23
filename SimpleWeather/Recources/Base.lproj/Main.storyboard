@@ -43,12 +43,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please, allow location access in settings" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EUh-UH-YnN">
-                                <rect key="frame" x="24" y="285" width="327" height="48"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OEd-eE-ggC" userLabel="Upper Color View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="340.5"/>
                                 <color key="backgroundColor" name="upperViewBackgroundColor"/>
@@ -369,14 +363,10 @@
                             <constraint firstItem="TTK-0q-Cba" firstAttribute="trailing" secondItem="pKX-YZ-7Dv" secondAttribute="trailing" id="4ll-cO-aAh"/>
                             <constraint firstItem="OEd-eE-ggC" firstAttribute="bottom" secondItem="sg8-k8-K8C" secondAttribute="centerY" id="960-Tz-A5g"/>
                             <constraint firstItem="OEd-eE-ggC" firstAttribute="top" secondItem="e9s-jc-paR" secondAttribute="top" id="Fo1-Df-ez8"/>
-                            <constraint firstItem="EUh-UH-YnN" firstAttribute="leading" secondItem="pKX-YZ-7Dv" secondAttribute="leading" constant="24" id="PWz-12-kO7"/>
                             <constraint firstItem="TTK-0q-Cba" firstAttribute="top" secondItem="pKX-YZ-7Dv" secondAttribute="top" id="ZXH-ST-8xY"/>
                             <constraint firstItem="pKX-YZ-7Dv" firstAttribute="bottom" secondItem="TTK-0q-Cba" secondAttribute="bottom" id="bnQ-cE-lPi"/>
-                            <constraint firstItem="EUh-UH-YnN" firstAttribute="centerY" secondItem="pKX-YZ-7Dv" secondAttribute="centerY" id="dJM-CQ-oyg"/>
                             <constraint firstItem="TTK-0q-Cba" firstAttribute="leading" secondItem="pKX-YZ-7Dv" secondAttribute="leading" id="dTd-l6-bAn"/>
-                            <constraint firstItem="pKX-YZ-7Dv" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EUh-UH-YnN" secondAttribute="trailing" constant="24" id="gtz-oS-8YH"/>
                             <constraint firstItem="sg8-k8-K8C" firstAttribute="height" secondItem="pKX-YZ-7Dv" secondAttribute="height" multiplier="0.3" id="hZM-v8-JuJ"/>
-                            <constraint firstItem="EUh-UH-YnN" firstAttribute="centerX" secondItem="pKX-YZ-7Dv" secondAttribute="centerX" id="hxf-fL-Csy"/>
                             <constraint firstItem="oTd-9v-5t6" firstAttribute="width" secondItem="pKX-YZ-7Dv" secondAttribute="width" multiplier="0.9" id="mRf-hQ-SK2"/>
                             <constraint firstItem="sg8-k8-K8C" firstAttribute="centerX" secondItem="pKX-YZ-7Dv" secondAttribute="centerX" id="nHc-bA-U8W"/>
                             <constraint firstItem="OEd-eE-ggC" firstAttribute="trailing" secondItem="pKX-YZ-7Dv" secondAttribute="trailing" id="oBV-nS-tRj"/>
@@ -394,7 +384,6 @@
                         <outlet property="dashedCircleVIew" destination="oTd-9v-5t6" id="lC1-XN-1kG"/>
                         <outlet property="daySelectedSegmentedControl" destination="Tqu-LF-I59" id="n0e-5j-A6K"/>
                         <outlet property="humidityLabel" destination="nuD-R3-2xG" id="cIW-yW-Kag"/>
-                        <outlet property="locationAccessHintLabel" destination="EUh-UH-YnN" id="EGN-4T-VS4"/>
                         <outlet property="pressureLabel" destination="or5-0W-lyc" id="8Ou-ja-37m"/>
                         <outlet property="scrollView" destination="TTK-0q-Cba" id="vF5-XF-ZrI"/>
                         <outlet property="windDegLabel" destination="jMp-0m-kMC" id="nDI-B8-tCf"/>
