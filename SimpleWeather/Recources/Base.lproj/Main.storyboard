@@ -44,7 +44,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OEd-eE-ggC" userLabel="Upper Color View">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="82.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="340.5"/>
                                 <color key="backgroundColor" name="upperViewBackgroundColor"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTK-0q-Cba">
@@ -337,11 +337,11 @@
                             <constraint firstItem="b9v-Wz-rx4" firstAttribute="centerX" secondItem="e9s-jc-paR" secondAttribute="centerX" id="3gH-nB-uvf"/>
                             <constraint firstItem="TTK-0q-Cba" firstAttribute="trailing" secondItem="pKX-YZ-7Dv" secondAttribute="trailing" id="4ll-cO-aAh"/>
                             <constraint firstItem="OEd-eE-ggC" firstAttribute="bottom" secondItem="sg8-k8-K8C" secondAttribute="centerY" id="960-Tz-A5g"/>
+                            <constraint firstItem="sg8-k8-K8C" firstAttribute="height" secondItem="e9s-jc-paR" secondAttribute="height" multiplier="0.3" id="CPB-TZ-t8D"/>
                             <constraint firstItem="OEd-eE-ggC" firstAttribute="top" secondItem="e9s-jc-paR" secondAttribute="top" id="Fo1-Df-ez8"/>
                             <constraint firstItem="TTK-0q-Cba" firstAttribute="top" secondItem="pKX-YZ-7Dv" secondAttribute="top" id="ZXH-ST-8xY"/>
                             <constraint firstItem="pKX-YZ-7Dv" firstAttribute="bottom" secondItem="TTK-0q-Cba" secondAttribute="bottom" id="bnQ-cE-lPi"/>
                             <constraint firstItem="TTK-0q-Cba" firstAttribute="leading" secondItem="pKX-YZ-7Dv" secondAttribute="leading" id="dTd-l6-bAn"/>
-                            <constraint firstItem="sg8-k8-K8C" firstAttribute="height" secondItem="pKX-YZ-7Dv" secondAttribute="height" multiplier="0.3" priority="999" id="hZM-v8-JuJ"/>
                             <constraint firstItem="oTd-9v-5t6" firstAttribute="width" secondItem="pKX-YZ-7Dv" secondAttribute="width" multiplier="0.9" id="mRf-hQ-SK2"/>
                             <constraint firstItem="sg8-k8-K8C" firstAttribute="centerX" secondItem="pKX-YZ-7Dv" secondAttribute="centerX" id="nHc-bA-U8W"/>
                             <constraint firstItem="OEd-eE-ggC" firstAttribute="trailing" secondItem="pKX-YZ-7Dv" secondAttribute="trailing" id="oBV-nS-tRj"/>
