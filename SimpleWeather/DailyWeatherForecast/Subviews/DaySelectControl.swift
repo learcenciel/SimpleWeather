@@ -47,9 +47,9 @@ class DaySelectControl: UIControl {
         
         labels.removeAll(keepingCapacity: true)
         
-        for index in 1...items.count {
+        for index in 0 ..< items.count {
             let label = UILabel(frame: .zero)
-            label.text = items[index - 1]
+            label.text = items[index]
             label.textAlignment = .center
             label.textColor = UIColor(named: "segmentedControlUnselectedColor")
             label.font = UIFont.systemFont(ofSize: 14, weight: .medium)

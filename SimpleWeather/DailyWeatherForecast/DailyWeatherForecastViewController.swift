@@ -67,7 +67,9 @@ class DailyWeatherForecastViewController: UIViewController {
         view.addSubview(locationAccessHintLabel)
         NSLayoutConstraint.activate([
             locationAccessHintLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            locationAccessHintLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            locationAccessHintLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            locationAccessHintLabel.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 24),
+            locationAccessHintLabel.trailingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: -24)
         ])
         locationAccessHintLabel.isHidden = false
     }
@@ -126,6 +128,25 @@ class DailyWeatherForecastViewController: UIViewController {
     func checkIfTimeInRange(_ currentTime: Date) -> Bool {
         return currentTime >= self.sunrise && currentTime <= self.sunset
     }
+    
+    func updateDaySegmentedControl(items: [[TemperatureInfo]]) {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: timeZone)
+        
+        var dateItems: [String] = []
+        
+        for (index, date) in items.enumerated() {
+            if index == 0 || index == 1 || index == 2 {
+                let date = Date(timeIntervalSince1970: TimeInterval(date[0].time))
+                let item = dateFormatter.string(from: date)
+                dateItems.append(item)
+            }
+        }
+        
+        self.daySelectedSegmentedControl.items = dateItems
+    }
 }
 
 // MARK: DailyWeatherForecastViewProtocol conformation
@@ -162,6 +183,7 @@ extension DailyWeatherForecastViewController: DailyWeatherForecastViewProtocol {
         self.humidityLabel.text = currentWeather.currentAdditionalInfo.humidity.getHumidity()
         self.pressureLabel.text = currentWeather.currentAdditionalInfo.pressure.getPressure()
         self.windDegLabel.text = currentWeather.currentAdditionalInfo.windDeg.getWindDegree()
+        self.updateDaySegmentedControl(items: currentWeather.futureDays.chunked(into: 3))
         self.sunrise = currentWeather.sunrise
         self.sunset = currentWeather.sunset
         self.timeZone = currentWeather.timeZone
@@ -188,7 +210,8 @@ extension DailyWeatherForecastViewController: UICollectionViewDelegateFlowLayout
         
         let width = (collectionViewWidth - extraSpace - inset) / numberofItem
         
-        return CGSize(width: width, height: dailyHourlyForecastCollectionView.bounds.size.height * 0.7)
+        return CGSize(width: width,
+                      height: dailyHourlyForecastCollectionView.bounds.size.height * 0.7)
     }
 }
 
