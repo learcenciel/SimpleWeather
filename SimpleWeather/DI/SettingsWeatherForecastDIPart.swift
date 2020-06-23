@@ -10,7 +10,7 @@ import Foundation
 import GooglePlaces
 import DITranquillity
 
-class SettingsWeatherForecastPart: DIPart {
+class SettingsWeatherForecastDIPart: DIPart {
     static func load(container: DIContainer) {
         
         container.register(SettingsWeatherForecastViewController.self)

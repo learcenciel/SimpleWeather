@@ -8,7 +8,7 @@
 
 import DITranquillity
 
-class UITabViewControllerPart: DIPart {
+class UITabViewControllerDIPart: DIPart {
     static func load(container: DIContainer) {
         container.register(UITabBarController.self)
             .lifetime(.single)

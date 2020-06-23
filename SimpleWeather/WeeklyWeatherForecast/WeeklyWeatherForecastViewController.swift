@@ -44,6 +44,7 @@ extension WeeklyWeatherForecastViewController: WeeklyWeatherForecastViewProtocol
 // MARK: UICollectionViewDataSource
 
 extension WeeklyWeatherForecastViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         weeks.count
     }

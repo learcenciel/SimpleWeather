@@ -31,7 +31,7 @@ class DailyWeatherForecastInteractor: NSObject, DailyWeatherForecastInteractorPr
     }
     
     func retreiveDailyWeatherForecast() {
-        self.locationManager.getCurrentLocation()
+        self.locationManager.requestCurrentLocation()
     }
     
     func retreiveCurrentDailyWeatherForecast(_ cityName: String?, _ locations: [CLLocation]?, isCurrent: Bool) {

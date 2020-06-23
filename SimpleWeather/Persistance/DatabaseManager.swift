@@ -29,17 +29,17 @@ class DatabaseManager {
         return Array(realm.objects(WeatherCity.self))
     }
     
-    func deleteCity(_ weatherCity: WeatherCity) {
+    func delete(city: WeatherCity) {
         try! realm.write {
-            realm.delete(weatherCity)
+            realm.delete(city)
         }
     }
     
-    func saveCity(_ weatherCityName: String,
+    func saveCity(_ name: String,
                   lattitude: Double,
                   longtitude: Double,
                   isCurrent: Bool) {
-        let weatherCity = WeatherCity(cityName: weatherCityName,
+        let weatherCity = WeatherCity(cityName: name,
                                       lattitude: lattitude,
                                       longtitude: longtitude, isCurrent: isCurrent)
         try! realm.write {

@@ -8,7 +8,7 @@
 
 import DITranquillity
 
-class NetworkingPart: DIPart {
+class NetworkingDIPart: DIPart {
     static func load(container: DIContainer) {
         container.register(WeatherForecastConverter.init)
         container.register(WeatherAPI.init)

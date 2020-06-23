@@ -9,7 +9,7 @@
 import CoreLocation
 import DITranquillity
 
-class DailyWeatherForecastPart: DIPart {
+class DailyWeatherForecastDIPart: DIPart {
     static func load(container: DIContainer) {
         container.registerStoryboard(name: "Main")
             .lifetime(.single)

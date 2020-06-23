@@ -9,7 +9,7 @@
 import Foundation
 import DITranquillity
 
-class WeeklyWeatherForecastPart: DIPart {
+class WeeklyWeatherForecastDIPart: DIPart {
     static func load(container: DIContainer) {
         
         container.register(WeeklyWeatherForecastViewController.self)
