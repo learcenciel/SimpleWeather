@@ -18,7 +18,6 @@ class WeeklyWeatherForecastViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupWeekDaysCollectionView()
     }
     

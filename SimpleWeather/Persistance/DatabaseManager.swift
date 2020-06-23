@@ -36,14 +36,14 @@ class DatabaseManager {
     }
     
     func saveCity(_ weatherCityName: String,
-                  lattitude: Float,
-                  longtitude: Float,
+                  lattitude: Double,
+                  longtitude: Double,
                   isCurrent: Bool) {
         let weatherCity = WeatherCity(cityName: weatherCityName,
                                       lattitude: lattitude,
                                       longtitude: longtitude, isCurrent: isCurrent)
         try! realm.write {
-            realm.add(weatherCity, update: .modified)
+            realm.add(weatherCity, update: .all)
         }
     }
 }

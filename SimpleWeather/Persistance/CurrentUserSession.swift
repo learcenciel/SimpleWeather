@@ -12,16 +12,22 @@ class CurrentUserSession {
     
     var databaseManager: DatabaseManager!
     
-    lazy var currentCity: WeatherCity? = {
-        return  databaseManager.getCities().first { return $0.isCurrent }
-    }()
+    func getCurrentCity() -> WeatherCity? {
+        return databaseManager.getCities().first {
+            return $0.isCurrent
+        }
+    }
     
-    func selectCurrentCity(_ currentCityName: String) {
+    func selectCurrentCity(_ currentCityName: String,
+                           lattitude: Double,
+                           longtitude: Double) {
         databaseManager.getCities().forEach { weatherCity in
             databaseManager.saveCity(weatherCity.cityName,
-                     lattitude: weatherCity.lattitude,
-                     longtitude: weatherCity.longtitude,
-                     isCurrent: weatherCity.cityName == currentCityName)
+                                     lattitude: weatherCity.lattitude,
+                                     longtitude: weatherCity.longtitude,
+                                     isCurrent: false)
+            
+            databaseManager.saveCity(currentCityName, lattitude: lattitude, longtitude: longtitude, isCurrent: true)
         }
     }
 }

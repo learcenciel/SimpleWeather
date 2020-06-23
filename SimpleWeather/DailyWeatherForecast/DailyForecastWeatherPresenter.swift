@@ -11,7 +11,7 @@ import Foundation
 class DailyForecastWeatherPresenter: DailyWeatherForecastPresenterProtocol {
     
     var view: DailyWeatherForecastViewProtocol
-    var interactor: DailyWeatherForecastInteractorProtocol!
+    var interactor: DailyWeatherForecastInteractorProtocol
     
     init(view: DailyWeatherForecastViewProtocol,
          interactor: DailyWeatherForecastInteractorProtocol) {

@@ -12,13 +12,13 @@ import RealmSwift
 class WeatherCity: Object {
     
     @objc dynamic var cityName: String
-    @objc dynamic var lattitude: Float
-    @objc dynamic var longtitude: Float
+    @objc dynamic var lattitude: Double
+    @objc dynamic var longtitude: Double
     @objc dynamic var isCurrent: Bool
     
     init(cityName: String,
-         lattitude: Float,
-         longtitude: Float,
+         lattitude: Double,
+         longtitude: Double,
          isCurrent: Bool) {
         self.cityName = cityName
         self.lattitude = lattitude

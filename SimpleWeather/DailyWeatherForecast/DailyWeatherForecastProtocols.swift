@@ -19,7 +19,7 @@ protocol DailyWeatherForecastViewProtocol: class {
 
 protocol DailyWeatherForecastPresenterProtocol: class {
     var view: DailyWeatherForecastViewProtocol { get set }
-    var interactor: DailyWeatherForecastInteractorProtocol! { get set }
+    var interactor: DailyWeatherForecastInteractorProtocol { get set }
     
     // VIEW -> PRESENTER
     func viewDidLoad()

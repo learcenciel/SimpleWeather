@@ -48,6 +48,11 @@ class DailyWeatherForecastViewController: UIViewController {
         showLoading()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter.updateWeather()
+    }
+    
     // MARK: UI setup
     
     func showLoading() {
