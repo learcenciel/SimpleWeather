@@ -50,7 +50,8 @@ extension WeeklyWeatherForecastViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! WeekDayWeatherCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId",
+                                                      for: indexPath) as! WeekDayWeatherCell
         cell.dayTitle.text = weeks[indexPath.item]
         return cell
     }
@@ -59,10 +60,10 @@ extension WeeklyWeatherForecastViewController: UICollectionViewDataSource {
 // MARK: UICollectionViewDelegate
 
 extension WeeklyWeatherForecastViewController: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! WeekDayWeatherCell
         cell.setSelected(true)
-        print(collectionView.indexPathsForSelectedItems ?? 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

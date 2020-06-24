@@ -34,12 +34,17 @@ class DashedCircleView: UIView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
 
-        sunriseTimeString.draw(at: CGPoint(x: bounds.midX - max(bounds.size.height, bounds.size.width) / 3 - 30, y: bounds.size.height - 18), withAttributes: [
+        sunriseTimeString.draw(at: CGPoint(x: bounds.midX - max(bounds.size.height, bounds.size.width) / 3 - 30,
+                                           y: bounds.size.height - 18),
+                               withAttributes: [
             NSAttributedString.Key.font: timeStringFont,
             NSAttributedString.Key.foregroundColor: UIColor(named: "additionalInfoValueLabelColor")!
         ])
         
-        sunsetTimeString.draw(at: CGPoint(x: bounds.midX + max(bounds.size.height, bounds.size.width) / 3 - 20, y: bounds.size.height - 18), withAttributes: [
+        sunsetTimeString.draw(at: CGPoint(x: bounds.midX + max(bounds.size.height,
+                                                               bounds.size.width) / 3 - 20,
+                                          y: bounds.size.height - 18),
+                              withAttributes: [
             NSAttributedString.Key.font: timeStringFont,
             NSAttributedString.Key.foregroundColor: UIColor(named: "additionalInfoValueLabelColor")!
         ])
@@ -51,14 +56,18 @@ class DashedCircleView: UIView {
         setNeedsDisplay()
     }
     
-    func updatePaths() {
+    private func updatePaths() {
         let horizontalLinePath = UIBezierPath()
-               horizontalLinePath.move(to: CGPoint(x: 20, y: bounds.size.height - 45))
-               horizontalLinePath.addLine(to: CGPoint(x: bounds.maxX - 20, y: bounds.size.height - 45))
+               horizontalLinePath.move(to: CGPoint(x: 20,
+                                                   y: bounds.size.height - 45))
+               horizontalLinePath.addLine(to: CGPoint(x: bounds.maxX - 20,
+                                                      y: bounds.size.height - 45))
                horizontalLineLayer.path = horizontalLinePath.cgPath
                
-               strokeFillCircleLayer.path = UIBezierPath(arcCenter: CGPoint(x: bounds.size.width / 2, y: bounds.size.height - 45),
-               radius: max(bounds.size.height, bounds.size.width) / 3,
+               strokeFillCircleLayer.path = UIBezierPath(arcCenter: CGPoint(x: bounds.size.width / 2,
+                                                                            y: bounds.size.height - 45),
+               radius: max(bounds.size.height,
+                           bounds.size.width) / 3,
                startAngle: 0,
                endAngle: .pi,
                clockwise: false).cgPath
@@ -77,7 +86,6 @@ class DashedCircleView: UIView {
     }
    
     required init?(coder aDecoder: NSCoder) {
-        
         super.init(coder: aDecoder)
         
         createHorizonLine()
@@ -85,8 +93,7 @@ class DashedCircleView: UIView {
         createStaticCircleLayer()
     }
     
-    func setupDateFormatter(timeZone: Int, sunrise: Date, sunset: Date, currentTime: Date) {
-        
+    private func configureDates(timeZone: Int, sunrise: Date, sunset: Date, currentTime: Date) {
         dateFormatter.dateFormat = "HH:mm"//"EE" to get short style
         dateFormatter.timeZone = TimeZone(secondsFromGMT: timeZone)
         
@@ -101,21 +108,23 @@ class DashedCircleView: UIView {
     // MARK: start animation by calling this func
     
     func animate(sunrise: Date, sunset: Date, currentTime: Date, timeZone: Int) {
-        
-        setupDateFormatter(timeZone: timeZone, sunrise: sunrise, sunset: sunset, currentTime: currentTime)
+        configureDates(timeZone: timeZone, sunrise: sunrise, sunset: sunset, currentTime: currentTime)
         
         maskCircleLayer.removeAllAnimations()
         movingCircleLayer.removeAllAnimations()
         
         self.createMovingCircle()
-        self.createMaskCircleLayer(from: sunriseTimestamp, to: sunsetTimestamp, cur: currentTimestamp)
-        self.rotateMovingCircle(from: sunriseTimestamp, to: sunsetTimestamp, cur: currentTimestamp)
+        self.createMaskCircleLayer(from: sunriseTimestamp,
+                                   to: sunsetTimestamp,
+                                   cur: currentTimestamp)
+        self.rotateMovingCircle(from: sunriseTimestamp,
+                                to: sunsetTimestamp,
+                                cur: currentTimestamp)
         self.animateBeams()
     }
 }
  
 private extension DashedCircleView {
-   
     private func createSunBeams(size: CGSize,
                              teethCount: UInt,
                              teethSize: CGSize,
@@ -127,12 +136,17 @@ private extension DashedCircleView {
             CGFloat(2 * Double.pi) / CGFloat(teethCount) // The change in angle between paths
  
         // Create the template path of a single shape.
-        let rect = CGRect(x: -teethSize.width * 0.5, y: radius, width: teethSize.width, height: teethSize.height)
-        let p = CGPath(roundedRect: rect, cornerWidth: teethSize.height / 2, cornerHeight: teethSize.height / 2, transform: nil)
+        let rect = CGRect(x: -teethSize.width * 0.5, y: radius,
+                          width: teethSize.width,
+                          height: teethSize.height)
+        let p = CGPath(roundedRect: rect, cornerWidth: teethSize.height / 2,
+                       cornerHeight: teethSize.height / 2,
+                       transform: nil)
         let returnPath = CGMutablePath()
  
         for i in 0 ..< teethCount { // Copy, translate and rotate shapes around
-            let translate = CGAffineTransform(translationX: halfWidth, y: halfHeight)
+            let translate = CGAffineTransform(translationX: halfWidth,
+                                              y: halfHeight)
             let rotate = translate.rotated(by: deltaAngle * CGFloat(i))
             returnPath.addPath(p, transform: rotate)
         }
@@ -140,14 +154,13 @@ private extension DashedCircleView {
         return returnPath.copy()
     }
    
-    func createHorizonLine() {
+    private func createHorizonLine() {
         horizontalLineLayer.strokeColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1).cgColor
         horizontalLineLayer.lineWidth = 1.0
         layer.addSublayer(horizontalLineLayer)
     }
     
-    func createStrokeFillCircleLayer() {
-        
+    private func createStrokeFillCircleLayer() {
         strokeFillCircleLayer.lineWidth = 2.0
         strokeFillCircleLayer.masksToBounds = false
         strokeFillCircleLayer.strokeColor =  #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1).cgColor
@@ -159,8 +172,7 @@ private extension DashedCircleView {
         strokeFillCircleLayer.strokeEnd = 1.0
     }
     
-    func createStaticCircleLayer() {
-        
+    private func createStaticCircleLayer() {
         staticCircleLayer.lineWidth = 2.0
         staticCircleLayer.masksToBounds = false
         staticCircleLayer.strokeColor =  UIColor.lightGray.cgColor
@@ -173,8 +185,7 @@ private extension DashedCircleView {
         layer.addSublayer(staticCircleLayer)
     }
     
-    func createMaskCircleLayer(from: Int, to: Int, cur: Int) {
-        
+    private func createMaskCircleLayer(from: Int, to: Int, cur: Int) {
         maskCircleLayer.path = UIBezierPath(ovalIn: bounds).cgPath
         maskCircleLayer.lineWidth = 2.0
         maskCircleLayer.masksToBounds = false
@@ -201,16 +212,17 @@ private extension DashedCircleView {
         dashedCircleStrokeAnimation.isRemovedOnCompletion = false
         
         maskCircleLayer.add(dashedCircleStrokeAnimation, forKey: dashedCircleStrokeAnimation.keyPath)
-        maskCircleLayer.path = UIBezierPath(arcCenter: CGPoint(x: bounds.size.width / 2, y: bounds.size.height - 45),
-                                        radius: max(bounds.size.height, bounds.size.width) / 3,
+        maskCircleLayer.path = UIBezierPath(arcCenter: CGPoint(x: bounds.size.width / 2,
+                                                               y: bounds.size.height - 45),
+                                        radius: max(bounds.size.height,
+                                                    bounds.size.width) / 3,
                                         startAngle: 0,
                                         endAngle: .pi,
                                         clockwise: false).cgPath
         layer.addSublayer(maskCircleLayer)
     }
    
-    func createMovingCircle() {
-       
+    private func createMovingCircle() {
         let movingCircleLayerRect =
             CGRect(x: 0,
                    y: 0,
@@ -232,14 +244,15 @@ private extension DashedCircleView {
         layer.addSublayer(movingCircleLayer)
     }
    
-    func rotateMovingCircle(from: Int, to: Int, cur: Int) {
-       
+    private func rotateMovingCircle(from: Int, to: Int, cur: Int) {
         let estimatedTime: Double = Double(to - from)
         let beginTime: Double = Double(cur - from)
         let endAngle: Double = beginTime / estimatedTime
 
-        let circlePath = UIBezierPath(arcCenter: CGPoint(x: bounds.size.width / 2, y: bounds.size.height - 45),
-                                      radius: max(bounds.size.height, bounds.size.width) / 3,
+        let circlePath = UIBezierPath(arcCenter: CGPoint(x: bounds.size.width / 2,
+                                                         y: bounds.size.height - 45),
+                                      radius: max(bounds.size.height,
+                                                  bounds.size.width) / 3,
                                       startAngle: .pi,
                                       endAngle: CGFloat(-Double.pi * (1 - endAngle)),
                                       clockwise: true).cgPath
@@ -259,8 +272,7 @@ private extension DashedCircleView {
         movingCircleLayer.add(rotateMovingCircleAnimation, forKey: "orbit")
     }
    
-    func animateBeams() {
-        
+    private func animateBeams() {
         movingCircleSunBeamsLayer.removeAnimation(forKey: "beamAnimation")
         movingCircleSunBeamsLayer.frame = movingCircleLayer.bounds
         

@@ -9,7 +9,6 @@
 import UIKit
 
 extension UIViewController {
-    
     func showToast(message : String, font: UIFont) {
         
         var tabBarHeight: CGFloat = 0

@@ -6,6 +6,7 @@
 //  Copyright © 2020 Alexander Team. All rights reserved.
 //
 
+import CoreLocation
 import Foundation
 
 class DailyForecastWeatherPresenter: DailyWeatherForecastPresenterProtocol {
@@ -31,7 +32,18 @@ class DailyForecastWeatherPresenter: DailyWeatherForecastPresenterProtocol {
         view.showCurrentWeather(with: weatherForecast)
     }
     
-    func didRetrieveLocationError(_ error: String) {
-        view.showLocationError(error)
+    func didRetreieveLocationAccessDenied(_ error: String) {
+        view.showLocationError("Please give an location access in settings")
+    }
+    
+    func didRetrieveLocationError(_ error: CLError) {
+        switch error {
+        case CLError.locationUnknown:
+            view.showLocationError("Location Unknown")
+        case CLError.denied:
+            view.showLocationError("Location access denied")
+        default:
+            view.showLocationError("Unknown error")
+        }
     }
 }

@@ -12,7 +12,6 @@ class NetworkingDIPart: DIPart {
     static func load(container: DIContainer) {
         container.register(WeatherForecastConverter.init)
         container.register(WeatherAPI.init)
-            .injection(\.httpClient)
             .lifetime(.single)
         container.register(HTTPClient.init)
     }

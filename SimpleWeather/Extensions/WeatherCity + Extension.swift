@@ -6,4 +6,11 @@
 //  Copyright © 2020 Alexander Team. All rights reserved.
 //
 
-import Foundation
+import CoreLocation
+
+extension RealmCity {
+    var location: CLLocation {
+        return CLLocation(latitude: self.lattitude,
+                          longitude: self.longtitude)
+    }
+}

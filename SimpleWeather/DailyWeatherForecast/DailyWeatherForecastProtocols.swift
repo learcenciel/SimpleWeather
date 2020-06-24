@@ -27,7 +27,8 @@ protocol DailyWeatherForecastPresenterProtocol: class {
     
     // INTERACTOR -> PRESENTER
     func didRetreiveWeatherForecast(_ weatherForecast: WeatherForecast)
-    func didRetrieveLocationError(_ error: String)
+    func didRetrieveLocationError(_ error: CLError)
+    func didRetreieveLocationAccessDenied(_ error: String)
 }
 
 protocol DailyWeatherForecastInteractorProtocol: class, CLLocationManagerDelegate {
@@ -41,5 +42,5 @@ protocol DailyWeatherForecastInteractorProtocol: class, CLLocationManagerDelegat
     func retreiveDailyWeatherForecast()
     
     // HTTPCLIENT -> INTERACTOR
-    func didRetreieveWeatherForecastFromNetwork(_ weatherForecast: WeatherForecast?)
+    func didRetreieveWeatherForecastFromNetwork(_ weatherForecast: WeatherForecast)
 }

@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+extension Date {
+    func checkIfDateInRange(start: Date, end: Date) -> Bool {
+        return self >= start && self <= end
+    }
+}

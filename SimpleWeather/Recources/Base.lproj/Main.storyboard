@@ -104,10 +104,10 @@
                                                 <rect key="frame" x="0.0" y="228" width="375" height="205.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tqu-LF-I59" customClass="DaySelectControl" customModule="SimpleWeather" customModuleProvider="target">
-                                                        <rect key="frame" x="67.5" y="0.0" width="240" height="20"/>
+                                                        <rect key="frame" x="87.5" y="0.0" width="200" height="20"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="240" id="upn-dz-DwS"/>
+                                                            <constraint firstAttribute="width" constant="200" id="upn-dz-DwS"/>
                                                             <constraint firstAttribute="height" constant="20" id="xhJ-j7-8JP"/>
                                                         </constraints>
                                                     </view>
@@ -356,12 +356,12 @@
                         <outlet property="currentWeatherIconImageView" destination="Wj9-Oq-3hu" id="cIJ-kB-zVJ"/>
                         <outlet property="currentWeatherTemperatureLabel" destination="1M1-kp-nbC" id="PLm-xi-CAo"/>
                         <outlet property="dailyHourlyForecastCollectionView" destination="sg8-k8-K8C" id="Xmf-LL-xOh"/>
-                        <outlet property="dashedCircleVIew" destination="oTd-9v-5t6" id="lC1-XN-1kG"/>
-                        <outlet property="daySelectedSegmentedControl" destination="Tqu-LF-I59" id="n0e-5j-A6K"/>
+                        <outlet property="dashedCircleView" destination="oTd-9v-5t6" id="lC1-XN-1kG"/>
                         <outlet property="humidityLabel" destination="nuD-R3-2xG" id="cIW-yW-Kag"/>
                         <outlet property="pressureLabel" destination="or5-0W-lyc" id="8Ou-ja-37m"/>
                         <outlet property="scrollView" destination="TTK-0q-Cba" id="vF5-XF-ZrI"/>
-                        <outlet property="windDegLabel" destination="jMp-0m-kMC" id="nDI-B8-tCf"/>
+                        <outlet property="selectedDaySegmentedControl" destination="Tqu-LF-I59" id="n0e-5j-A6K"/>
+                        <outlet property="windDirectionLabel" destination="jMp-0m-kMC" id="nDI-B8-tCf"/>
                         <outlet property="windLabel" destination="s6x-IE-W7b" id="K8c-xY-9qa"/>
                     </connections>
                 </viewController>

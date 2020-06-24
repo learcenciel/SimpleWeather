@@ -12,8 +12,7 @@
 		2038D38D247D6FD500151673 /* DailyForecastWeatherPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2038D38C247D6FD500151673 /* DailyForecastWeatherPresenter.swift */; };
 		2038D38F247D704F00151673 /* DailyWeatherForecastInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2038D38E247D704F00151673 /* DailyWeatherForecastInteractor.swift */; };
 		2038EF83247CE13C0000A5A9 /* DailyWeatherForecastProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2038EF82247CE13C0000A5A9 /* DailyWeatherForecastProtocols.swift */; };
-		203BC42924890B1000692907 /* Int + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203BC42824890B1000692907 /* Int + Extension.swift */; };
-		203BC42B24890B7900692907 /* Float + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203BC42A24890B7900692907 /* Float + Extensions.swift */; };
+		203BC42B24890B7900692907 /* WeatherForecast + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203BC42A24890B7900692907 /* WeatherForecast + Extensions.swift */; };
 		203C6D34248BFCBA0075CF6C /* UITabViewControllerDIPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203C6D33248BFCBA0075CF6C /* UITabViewControllerDIPart.swift */; };
 		203D537E249F767800AFA7B3 /* CurrentUserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D537D249F767800AFA7B3 /* CurrentUserSession.swift */; };
 		203D5381249F792D00AFA7B3 /* PersistanceDIPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D5380249F792D00AFA7B3 /* PersistanceDIPart.swift */; };
@@ -25,13 +24,15 @@
 		2067144D249F25AD00220D73 /* WeeklyWeatherForecastProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2067144C249F25AD00220D73 /* WeeklyWeatherForecastProtocols.swift */; };
 		20671450249F26A900220D73 /* WeekDayWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2067144F249F26A900220D73 /* WeekDayWeatherCell.swift */; };
 		20671453249F2C5900220D73 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20671452249F2C5900220D73 /* DatabaseManager.swift */; };
-		20671455249F2D1100220D73 /* WeatherCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20671454249F2D1100220D73 /* WeatherCity.swift */; };
+		20671455249F2D1100220D73 /* RealmCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20671454249F2D1100220D73 /* RealmCity.swift */; };
 		206CA5602489747000A8C987 /* CoreLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206CA55F2489747000A8C987 /* CoreLocationManager.swift */; };
 		2073BF8B24A23B41006E4787 /* Array + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2073BF8A24A23B41006E4787 /* Array + Extension.swift */; };
 		2077C664249B872C00A116CB /* WeeklyWeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077C663249B872C00A116CB /* WeeklyWeatherForecastViewController.swift */; };
 		208352F724A07F8C005B253B /* SettingsWeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208352F624A07F8C005B253B /* SettingsWeatherForecastViewController.swift */; };
 		208352FA24A0809F005B253B /* SettingsMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208352F924A0809F005B253B /* SettingsMenuCell.swift */; };
 		2086946B249740C500C59891 /* ViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2086946A249740C500C59891 /* ViewController + Extension.swift */; };
+		20B2BDE124A2873800F20EEC /* WeatherCity + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B2BDE024A2873800F20EEC /* WeatherCity + Extension.swift */; };
+		20B2BDE324A28A8000F20EEC /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B2BDE224A28A8000F20EEC /* Date + Extension.swift */; };
 		20DD35AB247BBBCB00BD2E32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DD35AA247BBBCB00BD2E32 /* AppDelegate.swift */; };
 		20DD35AF247BBBCB00BD2E32 /* DailyWeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DD35AE247BBBCB00BD2E32 /* DailyWeatherForecastViewController.swift */; };
 		20DD35B2247BBBCB00BD2E32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20DD35B0247BBBCB00BD2E32 /* Main.storyboard */; };
@@ -57,8 +58,7 @@
 		2038D38C247D6FD500151673 /* DailyForecastWeatherPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastWeatherPresenter.swift; sourceTree = "<group>"; };
 		2038D38E247D704F00151673 /* DailyWeatherForecastInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherForecastInteractor.swift; sourceTree = "<group>"; };
 		2038EF82247CE13C0000A5A9 /* DailyWeatherForecastProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherForecastProtocols.swift; sourceTree = "<group>"; };
-		203BC42824890B1000692907 /* Int + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Extension.swift"; sourceTree = "<group>"; };
-		203BC42A24890B7900692907 /* Float + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float + Extensions.swift"; sourceTree = "<group>"; };
+		203BC42A24890B7900692907 /* WeatherForecast + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherForecast + Extensions.swift"; sourceTree = "<group>"; };
 		203C6D33248BFCBA0075CF6C /* UITabViewControllerDIPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabViewControllerDIPart.swift; sourceTree = "<group>"; };
 		203D537D249F767800AFA7B3 /* CurrentUserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserSession.swift; sourceTree = "<group>"; };
 		203D5380249F792D00AFA7B3 /* PersistanceDIPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceDIPart.swift; sourceTree = "<group>"; };
@@ -70,13 +70,15 @@
 		2067144C249F25AD00220D73 /* WeeklyWeatherForecastProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWeatherForecastProtocols.swift; sourceTree = "<group>"; };
 		2067144F249F26A900220D73 /* WeekDayWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDayWeatherCell.swift; sourceTree = "<group>"; };
 		20671452249F2C5900220D73 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
-		20671454249F2D1100220D73 /* WeatherCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCity.swift; sourceTree = "<group>"; };
+		20671454249F2D1100220D73 /* RealmCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCity.swift; sourceTree = "<group>"; };
 		206CA55F2489747000A8C987 /* CoreLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationManager.swift; sourceTree = "<group>"; };
 		2073BF8A24A23B41006E4787 /* Array + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array + Extension.swift"; sourceTree = "<group>"; };
 		2077C663249B872C00A116CB /* WeeklyWeatherForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWeatherForecastViewController.swift; sourceTree = "<group>"; };
 		208352F624A07F8C005B253B /* SettingsWeatherForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWeatherForecastViewController.swift; sourceTree = "<group>"; };
 		208352F924A0809F005B253B /* SettingsMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenuCell.swift; sourceTree = "<group>"; };
 		2086946A249740C500C59891 /* ViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController + Extension.swift"; sourceTree = "<group>"; };
+		20B2BDE024A2873800F20EEC /* WeatherCity + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherCity + Extension.swift"; sourceTree = "<group>"; };
+		20B2BDE224A28A8000F20EEC /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
 		20DD35A7247BBBCB00BD2E32 /* SimpleWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DD35AA247BBBCB00BD2E32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20DD35AE247BBBCB00BD2E32 /* DailyWeatherForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherForecastViewController.swift; sourceTree = "<group>"; };
@@ -155,10 +157,11 @@
 		203BC42724890B0700692907 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				203BC42824890B1000692907 /* Int + Extension.swift */,
-				203BC42A24890B7900692907 /* Float + Extensions.swift */,
+				203BC42A24890B7900692907 /* WeatherForecast + Extensions.swift */,
 				2086946A249740C500C59891 /* ViewController + Extension.swift */,
 				2073BF8A24A23B41006E4787 /* Array + Extension.swift */,
+				20B2BDE024A2873800F20EEC /* WeatherCity + Extension.swift */,
+				20B2BDE224A28A8000F20EEC /* Date + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -271,7 +274,7 @@
 				20DD35C4247BEAEE00BD2E32 /* WeatherForecast.swift */,
 				20DD35C6247BEF8C00BD2E32 /* DailyWeatherResponse.swift */,
 				20DD35D0247BFBB100BD2E32 /* DailyHourlyWeatherResponse.swift */,
-				20671454249F2D1100220D73 /* WeatherCity.swift */,
+				20671454249F2D1100220D73 /* RealmCity.swift */,
 				20FCBF8F24A1C1A0008E3319 /* SettingsMenuItem.swift */,
 			);
 			path = Model;
@@ -444,7 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				203BC42B24890B7900692907 /* Float + Extensions.swift in Sources */,
+				203BC42B24890B7900692907 /* WeatherForecast + Extensions.swift in Sources */,
 				20FCBF9524A1C58A008E3319 /* SettingsWeatherForecastPresenter.swift in Sources */,
 				2038D38D247D6FD500151673 /* DailyForecastWeatherPresenter.swift in Sources */,
 				2037C616248815C5003C6BEF /* AppFramework.swift in Sources */,
@@ -454,6 +457,7 @@
 				206CA5602489747000A8C987 /* CoreLocationManager.swift in Sources */,
 				20DD35C7247BEF8C00BD2E32 /* DailyWeatherResponse.swift in Sources */,
 				2038EF83247CE13C0000A5A9 /* DailyWeatherForecastProtocols.swift in Sources */,
+				20B2BDE324A28A8000F20EEC /* Date + Extension.swift in Sources */,
 				20DD35CC247BF4DE00BD2E32 /* WeatherAPI.swift in Sources */,
 				2067144B249F254F00220D73 /* WeeklyWeatherForecastDIPart.swift in Sources */,
 				2073BF8B24A23B41006E4787 /* Array + Extension.swift in Sources */,
@@ -469,7 +473,6 @@
 				849A78922492449A0007F6AB /* DashedCircleView.swift in Sources */,
 				20FCBF9324A1C318008E3319 /* SettingsWeatherForecastProtocols.swift in Sources */,
 				208352FA24A0809F005B253B /* SettingsMenuCell.swift in Sources */,
-				203BC42924890B1000692907 /* Int + Extension.swift in Sources */,
 				203C6D34248BFCBA0075CF6C /* UITabViewControllerDIPart.swift in Sources */,
 				2067144D249F25AD00220D73 /* WeeklyWeatherForecastProtocols.swift in Sources */,
 				20DD35AF247BBBCB00BD2E32 /* DailyWeatherForecastViewController.swift in Sources */,
@@ -477,9 +480,10 @@
 				20FCBF9924A1CAAE008E3319 /* SettingsWeatherForecastInteractor.swift in Sources */,
 				20DD35C5247BEAEE00BD2E32 /* WeatherForecast.swift in Sources */,
 				20671450249F26A900220D73 /* WeekDayWeatherCell.swift in Sources */,
+				20B2BDE124A2873800F20EEC /* WeatherCity + Extension.swift in Sources */,
 				20FCBF9024A1C1A0008E3319 /* SettingsMenuItem.swift in Sources */,
 				2077C664249B872C00A116CB /* WeeklyWeatherForecastViewController.swift in Sources */,
-				20671455249F2D1100220D73 /* WeatherCity.swift in Sources */,
+				20671455249F2D1100220D73 /* RealmCity.swift in Sources */,
 				20DD35D1247BFBB100BD2E32 /* DailyHourlyWeatherResponse.swift in Sources */,
 				20671453249F2C5900220D73 /* DatabaseManager.swift in Sources */,
 				20FCBF9724A1C776008E3319 /* SettingsWeatherForecastRouter.swift in Sources */,

@@ -10,9 +10,13 @@ import Foundation
 
 class CurrentUserSession {
     
-    var databaseManager: DatabaseManager!
+    private let databaseManager: DatabaseManager
     
-    func getCurrentCity() -> WeatherCity? {
+    init(databaseManager: DatabaseManager) {
+        self.databaseManager = databaseManager
+    }
+    
+    func getCurrentCity() -> RealmCity? {
         return databaseManager.getCities().first {
             return $0.isCurrent
         }
@@ -22,7 +26,7 @@ class CurrentUserSession {
                            lattitude: Double,
                            longtitude: Double) {
         databaseManager.getCities().forEach { weatherCity in
-            databaseManager.saveCity(weatherCity.cityName,
+            databaseManager.saveCity(weatherCity.name,
                                      lattitude: weatherCity.lattitude,
                                      longtitude: weatherCity.longtitude,
                                      isCurrent: false)

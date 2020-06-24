@@ -10,7 +10,7 @@ import Foundation
 
 struct DailyWeatherResponse: Decodable {
     let cityName: String
-    let systemInfo: SystemInfo
+    let systemInfo: SunriseSunsetInfo
     let windInfo: WindInfo
     let mainInfo: MainInfo
     let weatherDescription: [WeatherDescription]
@@ -38,7 +38,7 @@ struct CoordInfo: Decodable {
     }
 }
 
-struct SystemInfo: Decodable {
+struct SunriseSunsetInfo: Decodable {
     let countryName: String
     let sunrise: Date
     let sunset: Date

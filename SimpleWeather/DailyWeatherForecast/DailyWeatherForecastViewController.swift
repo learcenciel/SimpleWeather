@@ -12,10 +12,10 @@ class DailyWeatherForecastViewController: UIViewController {
     
     // MARK: Outlets
     
-    @IBOutlet weak var dashedCircleVIew: DashedCircleView!
+    @IBOutlet weak var dashedCircleView: DashedCircleView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var daySelectedSegmentedControl: DaySelectControl!
+    @IBOutlet weak var selectedDaySegmentedControl: DaySelectControl!
     @IBOutlet weak var currentWeatherIconImageView: UIImageView!
     @IBOutlet weak var currentWeatherTemperatureLabel: UILabel!
     @IBOutlet weak var currentWeatherCityNameLabel: UILabel!
@@ -23,9 +23,9 @@ class DailyWeatherForecastViewController: UIViewController {
     @IBOutlet weak var windLabel: UILabel!
     @IBOutlet weak var pressureLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
-    @IBOutlet weak var windDegLabel: UILabel!
+    @IBOutlet weak var windDirectionLabel: UILabel!
     
-    let locationAccessHintLabel: UILabel = {
+    private let locationAccessHintLabel: UILabel = {
         let locationAccessHintLabel = UILabel()
         locationAccessHintLabel.translatesAutoresizingMaskIntoConstraints = false
         locationAccessHintLabel.text = "Please, allow location access in settings"
@@ -35,16 +35,16 @@ class DailyWeatherForecastViewController: UIViewController {
     
     // MARK: Properties
     
-    var weatherForecast: WeatherForecast?
+    private var weatherForecast: WeatherForecast?
     var presenter: DailyWeatherForecastPresenterProtocol!
     
-    var isContentLoaded = false
-    var isDashedCircleViewAnimationNeedShow = true
+    private var isContentLoaded = false
+    private var isDashedCircleViewAnimationNeedShow = true
     
-    var sunrise = Date()
-    var sunset = Date()
-    var currentTime = Date()
-    var timeZone = 0
+    private var sunrise = Date()
+    private var sunset = Date()
+    private var currentTime = Date()
+    private var timeZone = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +53,7 @@ class DailyWeatherForecastViewController: UIViewController {
         setupCollectionView()
         setupRefreshControl()
         presenter.viewDidLoad()
-        showLoading()
+        showProgress(true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,7 +63,7 @@ class DailyWeatherForecastViewController: UIViewController {
     
     // MARK: UI setup
     
-    func setupLocationAccessHintLabel() {
+    private func setupLocationAccessHintLabel() {
         view.addSubview(locationAccessHintLabel)
         NSLayoutConstraint.activate([
             locationAccessHintLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -71,43 +71,37 @@ class DailyWeatherForecastViewController: UIViewController {
             locationAccessHintLabel.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 24),
             locationAccessHintLabel.trailingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: -24)
         ])
-        locationAccessHintLabel.isHidden = false
+        setLocationAccessHintHidden(false)
     }
     
-    func showLoading() {
-        view.subviews.forEach { $0.isHidden = !$0.isHidden }
-        activityIndicatorView.isHidden = false
-        activityIndicatorView.startAnimating()
-        tabBarController?.tabBar.isHidden = true
+    private func showProgress(_ isLoading: Bool) {
+        view.subviews.forEach { $0.isHidden = isLoading }
+        activityIndicatorView.isHidden = isLoading == false
+        isLoading == true ? activityIndicatorView.startAnimating() : activityIndicatorView.stopAnimating()
+        tabBarController?.tabBar.isHidden = isLoading == true
     }
     
-    func showContent() {
-        isContentLoaded = true
-        view.subviews.forEach { $0.isHidden = !$0.isHidden }
-        activityIndicatorView.isHidden = true
-        activityIndicatorView.stopAnimating()
-        tabBarController?.tabBar.isHidden = false
+    func setLocationAccessHintHidden(_ isHidden: Bool) {
+        locationAccessHintLabel.isHidden = isHidden
     }
     
-    func setupRefreshControl() {
+    private func setupRefreshControl() {
         scrollView.refreshControl = UIRefreshControl()
         scrollView.refreshControl?.addTarget(self, action: #selector(updateWeather), for: .valueChanged)
     }
     
-    func setupCollectionView() {
+    private func setupCollectionView() {
         let flowLayout = dailyHourlyForecastCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
         flowLayout.minimumLineSpacing = 48
     }
     
-    @objc func updateWeather() {
+    @objc private func updateWeather() {
         presenter.updateWeather()
     }
     
-    func isDashedCircleViewVisible(view: UIView) -> Bool {
-        
+   private func isDashedCircleViewVisible(view: UIView) -> Bool {
         func isVisible(view: UIView, inView: UIView?) -> Bool {
-            
             guard let inView = inView else { return true }
             
             let viewFrame = inView.convert(view.bounds, from: view)
@@ -121,15 +115,11 @@ class DailyWeatherForecastViewController: UIViewController {
         return isVisible(view: view, inView: view.superview)
     }
     
-    func getCurrentTime() -> Date {
-        return NSDate() as Date
-    }
-    
-    func checkIfTimeInRange(_ currentTime: Date) -> Bool {
+    private func checkIfTimeInRange(_ currentTime: Date) -> Bool {
         return currentTime >= self.sunrise && currentTime <= self.sunset
     }
     
-    func updateDaySegmentedControl(items: [[TemperatureInfo]]) {
+    private func updateDaySegmentedControl(items: [[TemperatureInfo]]) {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM"
@@ -145,7 +135,7 @@ class DailyWeatherForecastViewController: UIViewController {
             }
         }
         
-        self.daySelectedSegmentedControl.items = dateItems
+        self.selectedDaySegmentedControl.items = dateItems
     }
 }
 
@@ -154,35 +144,33 @@ class DailyWeatherForecastViewController: UIViewController {
 extension DailyWeatherForecastViewController: DailyWeatherForecastViewProtocol {
     
     func showLocationError(_ error: String) {
-        if activityIndicatorView.isAnimating {
-            activityIndicatorView.stopAnimating()
-            self.showToast(message: error, font: .systemFont(ofSize: 14))
-            self.locationAccessHintLabel.isHidden = false
-            self.activityIndicatorView.isHidden = true
-            
-            if (error == "The operation couldn’t be completed. (kCLErrorDomain error 0.)") {
-                presenter.viewDidLoad()
-            }
+        activityIndicatorView.stopAnimating()
+        self.showToast(message: error, font: .systemFont(ofSize: 14))
+        self.setLocationAccessHintHidden(false)
+        self.activityIndicatorView.isHidden = true
+        
+        if (error == "The operation couldn’t be completed. (kCLErrorDomain error 0.)") {
+            presenter.viewDidLoad()
         }
     }
     
     func showCurrentWeather(with currentWeather: WeatherForecast) {
         
-        if isContentLoaded == false { showContent() }
+        showProgress(false)
         
         guard let refreshControl = scrollView.refreshControl else { return }
-        if refreshControl.isRefreshing { refreshControl.endRefreshing() }
+        refreshControl.endRefreshing()
         
         locationAccessHintLabel.isHidden = true
         
         self.weatherForecast = currentWeather
         self.currentWeatherIconImageView.image = currentWeather.weatherIcon
-        self.currentWeatherTemperatureLabel.text = currentWeather.currentTemperature.getTemperature()
+        self.currentWeatherTemperatureLabel.text = currentWeather.getTemperature()
         self.currentWeatherCityNameLabel.text = currentWeather.cityName
-        self.windLabel.text = currentWeather.currentAdditionalInfo.wind.getWindSpeed()
-        self.humidityLabel.text = currentWeather.currentAdditionalInfo.humidity.getHumidity()
-        self.pressureLabel.text = currentWeather.currentAdditionalInfo.pressure.getPressure()
-        self.windDegLabel.text = currentWeather.currentAdditionalInfo.windDeg.getWindDegree()
+        self.windLabel.text = currentWeather.getWindSpeed()
+        self.humidityLabel.text = currentWeather.getHumidity()
+        self.pressureLabel.text = currentWeather.getPressure()
+        self.windDirectionLabel.text = currentWeather.getWindDegree()
         self.updateDaySegmentedControl(items: currentWeather.futureDays.chunked(into: 3))
         self.sunrise = currentWeather.sunrise
         self.sunset = currentWeather.sunset
@@ -195,7 +183,6 @@ extension DailyWeatherForecastViewController: DailyWeatherForecastViewProtocol {
 // MARK: UICollectionViewDelegateFlowLayout
 
 extension DailyWeatherForecastViewController: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
@@ -220,15 +207,25 @@ extension DailyWeatherForecastViewController: UICollectionViewDelegateFlowLayout
 extension DailyWeatherForecastViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView == self.scrollView {
-            if isDashedCircleViewVisible(view: dashedCircleVIew) {
+        guard self.scrollView === scrollView
+            else {
+                let offSet = scrollView.contentOffset.x
+                let width = scrollView.frame.width
+                let horizontalCenter = width / 2
+
+                selectedDaySegmentedControl.selectedIndex = Int(offSet + horizontalCenter) / Int(width)
+                
+                return
+        }
+            if isDashedCircleViewVisible(view: dashedCircleView) {
                 if isDashedCircleViewAnimationNeedShow {
                     
-                    let currentTime = getCurrentTime()
-                    let isTimeInRange = checkIfTimeInRange(currentTime)
+                    let currentTime = NSDate() as Date
+                    let isTimeInRange = currentTime.checkIfDateInRange(start: self.sunrise,
+                                                                       end: self.sunset)
                     let cur = isTimeInRange ? currentTime : self.sunset
                     
-                    dashedCircleVIew.animate(sunrise: self.sunrise,
+                    dashedCircleView.animate(sunrise: self.sunrise,
                                              sunset: self.sunset,
                                              currentTime: cur,
                                              timeZone: self.timeZone)
@@ -238,14 +235,6 @@ extension DailyWeatherForecastViewController: UIScrollViewDelegate {
             } else {
                 isDashedCircleViewAnimationNeedShow = true
             }
-        } else {
-            
-            let offSet = scrollView.contentOffset.x
-            let width = scrollView.frame.width
-            let horizontalCenter = width / 2
-            
-            daySelectedSegmentedControl.selectedIndex = Int(offSet + horizontalCenter) / Int(width)
-        }
     }
 }
 

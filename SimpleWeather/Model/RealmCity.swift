@@ -11,7 +11,7 @@ import RealmSwift
 
 class RealmCity: Object {
     
-    @objc dynamic var cityName: String
+    @objc dynamic var name: String
     @objc dynamic var lattitude: Double
     @objc dynamic var longtitude: Double
     @objc dynamic var isCurrent: Bool
@@ -20,20 +20,20 @@ class RealmCity: Object {
          lattitude: Double,
          longtitude: Double,
          isCurrent: Bool) {
-        self.cityName = cityName
+        self.name = cityName
         self.lattitude = lattitude
         self.longtitude = longtitude
         self.isCurrent = isCurrent
     }
     
     required init() {
-        self.cityName = ""
+        self.name = ""
         self.lattitude = 0.0
         self.longtitude = 0.0
         self.isCurrent = false
     }
     
     override class func primaryKey() -> String? {
-        return "cityName"
+        return "name"
     }
 }

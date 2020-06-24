@@ -10,7 +10,11 @@ import Foundation
 
 class WeatherAPI {
     
-    var httpClient: HTTPClient!
+    private let httpClient: HTTPClient
+    
+    init(httpClient: HTTPClient) {
+        self.httpClient = httpClient
+    }
 
     func fetchCurrentWeather(parameters: [String: Any]?,
                              completionHandler: @escaping(Result<DailyWeatherResponse, HTTPErrors>) -> Void) {

@@ -15,7 +15,7 @@ enum CardType: CaseIterable {
 }
 
 extension DayCardCell {
-    func getPath(cardType: CardType) -> UIBezierPath {
+    func getPath(for cardType: CardType) -> UIBezierPath {
         switch cardType {
         case .day:
             return UIBezierPath(roundedRect: CGRect(x: 0,
@@ -36,7 +36,7 @@ extension DayCardCell {
         }
     }
     
-    func getBackGroundColor(cardType: CardType) -> UIColor {
+    func getBackGroundColor(for cardType: CardType) -> UIColor {
         switch cardType {
         case .day:
             return UIColor(named: "dayCardFirstDayBackgroundColor")!
@@ -47,7 +47,7 @@ extension DayCardCell {
         }
     }
     
-    func getPathColor(cardType: CardType) -> UIColor {
+    func getPathColor(for: CardType) -> UIColor {
         switch cardType {
         case .day:
             return UIColor(named: "dayCardFirstDayPathColor")!
@@ -84,26 +84,33 @@ class DayCardCell: UICollectionViewCell {
         clipsToBounds = true
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-    
     func bind(_ weather: TemperatureInfo, cardType: CardType) {
         
         self.cardType = cardType
         
-        backgroundColor = getBackGroundColor(cardType: self.cardType)
-        self.timeLabel.text = weather.time.getTimeForCardCell()
+        backgroundColor = getBackGroundColor(for: self.cardType)
+        self.timeLabel.text = configureDate(for: weather.time)
         let number = Double(weather.temperature)
         self.temperatureLabel.text = "\(String(format: "%.0f", number))°"
         self.iconImageView.image = weather.weatherIcon
         
         CATransaction.begin()
         CATransaction.setDisableActions(true)
-        shapeLayer.path = getPath(cardType: self.cardType).cgPath
-        shapeLayer.fillColor = getPathColor(cardType: self.cardType).cgColor
+        shapeLayer.path = getPath(for: self.cardType).cgPath
+        shapeLayer.fillColor = getPathColor(for: self.cardType).cgColor
         CATransaction.commit()
         
         setNeedsLayout()
+    }
+    
+    private func configureDate(for time: Int) -> String? {
+        let date = NSDate(timeIntervalSince1970: TimeInterval(time))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0000)!
+        
+        let formattedString = dateFormatter.string(from: date as Date)
+        
+        return formattedString
     }
 }
