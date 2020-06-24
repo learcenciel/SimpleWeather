@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class WeatherCity: Object {
+class RealmCity: Object {
     
     @objc dynamic var cityName: String
     @objc dynamic var lattitude: Double
