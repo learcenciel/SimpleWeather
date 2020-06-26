@@ -11,14 +11,14 @@ import Foundation
 
 class DailyWeatherForecastInteractor: NSObject, DailyWeatherForecastInteractorProtocol {
     
-    var locationManager: CoreLocationManager!
     var presenter: DailyWeatherForecastPresenterProtocol!
-    var httpClient: WeatherAPI
-    var modelConverter: WeatherForecastConverter
-    var databaseManager: DatabaseManager
-    var currentUserSession: CurrentUserSession
+    var locationManager: CoreLocationManager!
+    private var httpClient: WeatherAPI
+    private var modelConverter: WeatherForecastConverter
+    private var databaseManager: DatabaseManager
+    private var currentUserSession: CurrentUserSession
     
-    var isFetchComplete = false
+    private var isFetchComplete = false
     
     init(httpClient: WeatherAPI,
          modelConverter: WeatherForecastConverter,
@@ -34,7 +34,7 @@ class DailyWeatherForecastInteractor: NSObject, DailyWeatherForecastInteractorPr
         self.locationManager.requestCurrentLocation()
     }
     
-    func retreiveCurrentDailyWeatherForecast(_ cityName: String?, _ locations: [CLLocation]?, isCurrent: Bool) {
+    private func retreiveCurrentDailyWeatherForecast(_ cityName: String?, _ locations: [CLLocation]?, isCurrent: Bool) {
         guard let coords = locations?.first?.coordinate else { return }
         
         httpClient.fetchCurrentWeather(
@@ -54,7 +54,7 @@ class DailyWeatherForecastInteractor: NSObject, DailyWeatherForecastInteractorPr
         })
     }
     
-    func fetchCurrentHourlyWeatherForecast(coords: CLLocationCoordinate2D,
+    private func fetchCurrentHourlyWeatherForecast(coords: CLLocationCoordinate2D,
                                            dailyWeatherResponse: DailyWeatherResponse,
                                            cityName: String?,
                                            isCurrent: Bool) {
@@ -82,7 +82,7 @@ class DailyWeatherForecastInteractor: NSObject, DailyWeatherForecastInteractorPr
         })
     }
     
-    func saveCitiesToDatabase(_ weatherCityName: String,
+    private func saveCitiesToDatabase(_ weatherCityName: String,
                               lattitude: Double,
                               longitude: Double,
                               isCurrent: Bool) {
@@ -91,7 +91,7 @@ class DailyWeatherForecastInteractor: NSObject, DailyWeatherForecastInteractorPr
                                  longtitude: longitude, isCurrent: isCurrent)
     }
     
-    func didRetreieveWeatherForecastFromNetwork(_ weatherForecast: WeatherForecast) {
+    private func didRetreieveWeatherForecastFromNetwork(_ weatherForecast: WeatherForecast) {
         self.presenter.didRetreiveWeatherForecast(weatherForecast)
     }
     

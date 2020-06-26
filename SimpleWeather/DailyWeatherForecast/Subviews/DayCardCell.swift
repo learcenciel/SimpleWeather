@@ -15,7 +15,7 @@ enum CardType: CaseIterable {
 }
 
 extension DayCardCell {
-    func getPath(for cardType: CardType) -> UIBezierPath {
+    private func getPath(for cardType: CardType) -> UIBezierPath {
         switch cardType {
         case .day:
             return UIBezierPath(roundedRect: CGRect(x: 0,
@@ -36,7 +36,7 @@ extension DayCardCell {
         }
     }
     
-    func getBackGroundColor(for cardType: CardType) -> UIColor {
+    private func getBackGroundColor(for cardType: CardType) -> UIColor {
         switch cardType {
         case .day:
             return UIColor(named: "dayCardFirstDayBackgroundColor")!
@@ -47,7 +47,7 @@ extension DayCardCell {
         }
     }
     
-    func getPathColor(for: CardType) -> UIColor {
+    private func getPathColor(for: CardType) -> UIColor {
         switch cardType {
         case .day:
             return UIColor(named: "dayCardFirstDayPathColor")!
@@ -66,7 +66,7 @@ class DayCardCell: UICollectionViewCell {
     @IBOutlet weak var temperatureLabel: UILabel!
     
     var cardType: CardType = .day
-    let shapeLayer = CAShapeLayer()
+    private let shapeLayer = CAShapeLayer()
         
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -92,7 +92,8 @@ class DayCardCell: UICollectionViewCell {
         self.timeLabel.text = configureDate(for: weather.time)
         let number = Double(weather.temperature)
         self.temperatureLabel.text = "\(String(format: "%.0f", number))°"
-        self.iconImageView.image = weather.weatherIcon
+        self.iconImageView.image = weather.weatherIcon.withRenderingMode(.alwaysTemplate)
+        self.iconImageView.tintColor = .white
         
         CATransaction.begin()
         CATransaction.setDisableActions(true)

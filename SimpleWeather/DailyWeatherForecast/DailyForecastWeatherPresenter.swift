@@ -10,7 +10,6 @@ import CoreLocation
 import Foundation
 
 class DailyForecastWeatherPresenter: DailyWeatherForecastPresenterProtocol {
-    
     var view: DailyWeatherForecastViewProtocol
     var interactor: DailyWeatherForecastInteractorProtocol
     

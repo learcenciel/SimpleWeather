@@ -12,7 +12,7 @@ import UIKit
 
 class SettingsWeatherForecastRouter: SettingsWeatherForecastRouterProtocol {
     
-    var container: DIContainer
+    private var container: DIContainer
     var presenter: SettingsWeatherForecastPresenterProtocol
     
     init(container: DIContainer,

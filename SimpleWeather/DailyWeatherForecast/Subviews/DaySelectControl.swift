@@ -34,13 +34,13 @@ class DaySelectControl: UIControl {
         setupView()
     }
     
-    func setupView() {
+    private func setupView() {
         backgroundColor = .clear
         isUserInteractionEnabled = false
         setupLabels()
     }
     
-    func setupLabels() {
+    private func setupLabels() {
         for label in labels {
             label.removeFromSuperview()
         }

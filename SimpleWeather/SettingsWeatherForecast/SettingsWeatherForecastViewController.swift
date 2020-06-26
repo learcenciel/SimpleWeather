@@ -10,16 +10,15 @@ import UIKit
 
 class SettingsWeatherForecastViewController: UIViewController {
     
+    @IBOutlet weak var tv: UITableView!
+    
     private enum CellType: String, CaseIterable {
         case chooseCity = "Search City"
         case selectExistingCity = "Select City"
         case aboutApp = "About App"
     }
     
-    @IBOutlet weak var tv: UITableView!
-    var presenter: SettingsWeatherForecastPresenterProtocol!
-    
-    let menuItems: [SettingsMenuItem] =
+    private let menuItems: [SettingsMenuItem] =
         [SettingsMenuItem(menuItemTitle: CellType.chooseCity.rawValue,
                           menuItemDescription: "Search a new city",
                           menuItemIcon: "settings_location_icon"),
@@ -29,6 +28,8 @@ class SettingsWeatherForecastViewController: UIViewController {
          SettingsMenuItem(menuItemTitle: CellType.aboutApp.rawValue,
                           menuItemDescription: "About this app",
                           menuItemIcon: "settings_about_icon")]
+    
+    var presenter: SettingsWeatherForecastPresenterProtocol!
 }
 
 extension SettingsWeatherForecastViewController: UITableViewDelegate {

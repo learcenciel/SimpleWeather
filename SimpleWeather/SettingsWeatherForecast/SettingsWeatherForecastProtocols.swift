@@ -6,12 +6,10 @@
 //  Copyright © 2020 Alexander Team. All rights reserved.
 //
 
-import DITranquillity
 import GooglePlaces
 import UIKit
 
 protocol SettingsWeatherForecastViewProtocol: class {
-    
     var presenter: SettingsWeatherForecastPresenterProtocol! { get set }
     
     // PRESENTER -> VIEW
@@ -19,7 +17,6 @@ protocol SettingsWeatherForecastViewProtocol: class {
 }
 
 protocol SettingsWeatherForecastPresenterProtocol: GMSAutocompleteViewControllerDelegate, NSObject {
-    
     var view: SettingsWeatherForecastViewProtocol { get set }
     var interactor: SettingsWeatherForecastInteractorProtocol { get set }
     var router: SettingsWeatherForecastRouterProtocol! { get set }
@@ -29,22 +26,14 @@ protocol SettingsWeatherForecastPresenterProtocol: GMSAutocompleteViewController
     
     // INTERACTOR -> PRESENTER
     func didSelectCurrentCity()
-    
-    // CityPicker Delegate -> PRESENTER
-    func didChooseCity(cityName: String, lattitude: Double, longtitude: Double)
 }
 
 protocol SettingsWeatherForecastRouterProtocol: class {
-    
-    var container: DIContainer { get set }
-    
     // PRESENTER -> ROUTER
     func presentCityChooser(from view: SettingsWeatherForecastViewProtocol)
 }
 
 protocol SettingsWeatherForecastInteractorProtocol: class {
-    
-    var currentUserSession: CurrentUserSession { get set }
     var presenter: SettingsWeatherForecastPresenterProtocol! { get set }
     
     // PRESENTER -> INTERACTOR

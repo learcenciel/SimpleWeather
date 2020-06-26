@@ -6,13 +6,12 @@
 //  Copyright © 2020 Alexander Team. All rights reserved.
 //
 
+import DITranquillity
 import Foundation
 import GooglePlaces
-import DITranquillity
 
 class SettingsWeatherForecastDIPart: DIPart {
     static func load(container: DIContainer) {
-        
         container.register(SettingsWeatherForecastViewController.self)
             .as(check: SettingsWeatherForecastViewProtocol.self) {$0}
             .injection(cycle: true, \.presenter)

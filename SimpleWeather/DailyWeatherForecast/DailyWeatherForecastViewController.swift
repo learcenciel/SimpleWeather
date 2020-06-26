@@ -90,14 +90,14 @@ class DailyWeatherForecastViewController: UIViewController {
         scrollView.refreshControl?.addTarget(self, action: #selector(updateWeather), for: .valueChanged)
     }
     
+    @objc private func updateWeather() {
+        presenter.updateWeather()
+    }
+    
     private func setupCollectionView() {
         let flowLayout = dailyHourlyForecastCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
         flowLayout.minimumLineSpacing = 48
-    }
-    
-    @objc private func updateWeather() {
-        presenter.updateWeather()
     }
     
    private func isDashedCircleViewVisible(view: UIView) -> Bool {
@@ -120,7 +120,6 @@ class DailyWeatherForecastViewController: UIViewController {
     }
     
     private func updateDaySegmentedControl(items: [[TemperatureInfo]]) {
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: timeZone)
@@ -142,7 +141,6 @@ class DailyWeatherForecastViewController: UIViewController {
 // MARK: DailyWeatherForecastViewProtocol conformation
 
 extension DailyWeatherForecastViewController: DailyWeatherForecastViewProtocol {
-    
     func showLocationError(_ error: String) {
         activityIndicatorView.stopAnimating()
         self.showToast(message: error, font: .systemFont(ofSize: 14))
@@ -155,7 +153,6 @@ extension DailyWeatherForecastViewController: DailyWeatherForecastViewProtocol {
     }
     
     func showCurrentWeather(with currentWeather: WeatherForecast) {
-        
         showProgress(false)
         
         guard let refreshControl = scrollView.refreshControl else { return }
@@ -175,6 +172,8 @@ extension DailyWeatherForecastViewController: DailyWeatherForecastViewProtocol {
         self.sunrise = currentWeather.sunrise
         self.sunset = currentWeather.sunset
         self.timeZone = currentWeather.timeZone
+        self.dailyHourlyForecastCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredHorizontally, animated: false)
+        self.selectedDaySegmentedControl.selectedIndex = 0
         
         dailyHourlyForecastCollectionView.reloadData()
     }
@@ -254,14 +253,13 @@ extension DailyWeatherForecastViewController: UICollectionViewDataSource {
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DayCardCell", for: indexPath) as? DayCardCell
-            else { fatalError() }
+        else { fatalError() }
         
         guard
             let dayWeather = weatherForecast?.futureDays[indexPath.section * 3 + indexPath.item]
-            else { fatalError() }
+        else { fatalError() }
         
-        cell.bind(dayWeather,
-                  cardType: CardType.allCases[indexPath.item])
+        cell.bind(dayWeather, cardType: CardType.allCases[indexPath.item])
         
         return cell
     }

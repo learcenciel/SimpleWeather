@@ -29,4 +29,9 @@ class WeatherAPI {
                        parameters: parameters,
                        completionHandler: completionHandler)
     }
+    
+    func fetchWeeklyHourlyWeather(parameters: [String: Any]?,
+                                  completionHandler: @escaping(Result<WeeklyHourlyWeatherResponse, HTTPErrors>) -> Void) {
+        httpClient.get(url: "https://api.openweathermap.org/data/2.5/forecast", parameters: parameters, completionHandler: completionHandler)
+    }
 }

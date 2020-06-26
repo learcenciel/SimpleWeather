@@ -23,8 +23,8 @@ class CurrentUserSession {
     }
     
     func selectCurrentCity(_ currentCityName: String,
-                           lattitude: Double,
-                           longtitude: Double) {
+                           _ lattitude: Double,
+                           _ longtitude: Double) {
         databaseManager.getCities().forEach { weatherCity in
             databaseManager.saveCity(weatherCity.name,
                                      lattitude: weatherCity.lattitude,

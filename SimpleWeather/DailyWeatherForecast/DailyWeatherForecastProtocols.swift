@@ -33,14 +33,7 @@ protocol DailyWeatherForecastPresenterProtocol: class {
 
 protocol DailyWeatherForecastInteractorProtocol: class, CLLocationManagerDelegate {
     var presenter: DailyWeatherForecastPresenterProtocol! { get set }
-    var httpClient: WeatherAPI { get set }
-    var modelConverter: WeatherForecastConverter { get set }
-    var locationManager: CoreLocationManager! { get set }
-    var databaseManager: DatabaseManager { get set }
     
     // PRESENTER -> INTERACTOR
     func retreiveDailyWeatherForecast()
-    
-    // HTTPCLIENT -> INTERACTOR
-    func didRetreieveWeatherForecastFromNetwork(_ weatherForecast: WeatherForecast)
 }

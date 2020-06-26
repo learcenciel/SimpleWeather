@@ -9,8 +9,7 @@
 import Foundation
 
 class SettingsWeatherForecastInteractor: SettingsWeatherForecastInteractorProtocol {
-    
-    var currentUserSession: CurrentUserSession
+    private var currentUserSession: CurrentUserSession
     var presenter: SettingsWeatherForecastPresenterProtocol!
     
     init(currentUserSession: CurrentUserSession) {
@@ -21,8 +20,8 @@ class SettingsWeatherForecastInteractor: SettingsWeatherForecastInteractorProtoc
                            lattitude: Double,
                            longtitude: Double) {
         currentUserSession.selectCurrentCity(cityName,
-                                             lattitude: lattitude,
-                                             longtitude: longtitude)
+                                             lattitude,
+                                             longtitude)
         presenter.didSelectCurrentCity()
     }
 }

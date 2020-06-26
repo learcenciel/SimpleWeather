@@ -9,13 +9,12 @@
 import Foundation
 
 extension WeatherForecast {
-    
     func getTemperature() -> String? {
         return String(format: "%.1f", self.currentTemperature).replacingOccurrences(of: ".", with: ",") + "°"
     }
     
     func getWindSpeed() -> String? {
-        return String(format: "%.1f", self.currentAdditionalInfo.wind).replacingOccurrences(of: ".", with: ",") + " m/h"
+        return String(format: "%.1f", self.currentAdditionalInfo.windSpeed).replacingOccurrences(of: ".", with: ",") + " m/h"
     }
     
     func getHumidity() -> String? {
@@ -27,6 +26,6 @@ extension WeatherForecast {
     }
     
     func getWindDegree() -> String? {
-        return String(format: "%.0f", self.currentAdditionalInfo.windDeg).replacingOccurrences(of: ".", with: ",") + " deg"
+        return String(format: "%.0f", self.currentAdditionalInfo.windDegree).replacingOccurrences(of: ".", with: ",") + " deg"
     }
 }

@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		137E022BBC77B637133847FE /* Pods_SimpleWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6E6C38FE002FD1150D7BAB8 /* Pods_SimpleWeather.framework */; };
+		2018424724A4689400946662 /* WeekDayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2018424624A4689400946662 /* WeekDayItem.swift */; };
+		2018424924A46B6400946662 /* WeeklyHourlyWeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2018424824A46B6400946662 /* WeeklyHourlyWeatherResponse.swift */; };
+		2018424B24A46F2600946662 /* WeeklyWeatherForecastPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2018424A24A46F2600946662 /* WeeklyWeatherForecastPresenter.swift */; };
+		2018424D24A46FFF00946662 /* WeeklyHourlyWeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2018424C24A46FFF00946662 /* WeeklyHourlyWeatherForecast.swift */; };
+		2018425024A473DE00946662 /* WeeklyWeatherForecastConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2018424F24A473DE00946662 /* WeeklyWeatherForecastConverter.swift */; };
+		2018425224A4B24400946662 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2018425124A4B24400946662 /* String + Extension.swift */; };
+		202A59A024A5CE710083ED06 /* WeeklyWeatherForecastInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A599F24A5CE710083ED06 /* WeeklyWeatherForecastInteractor.swift */; };
 		2037C616248815C5003C6BEF /* AppFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037C615248815C5003C6BEF /* AppFramework.swift */; };
 		2038D38D247D6FD500151673 /* DailyForecastWeatherPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2038D38C247D6FD500151673 /* DailyForecastWeatherPresenter.swift */; };
 		2038D38F247D704F00151673 /* DailyWeatherForecastInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2038D38E247D704F00151673 /* DailyWeatherForecastInteractor.swift */; };
@@ -54,6 +61,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2018424624A4689400946662 /* WeekDayItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDayItem.swift; sourceTree = "<group>"; };
+		2018424824A46B6400946662 /* WeeklyHourlyWeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyHourlyWeatherResponse.swift; sourceTree = "<group>"; };
+		2018424A24A46F2600946662 /* WeeklyWeatherForecastPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWeatherForecastPresenter.swift; sourceTree = "<group>"; };
+		2018424C24A46FFF00946662 /* WeeklyHourlyWeatherForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyHourlyWeatherForecast.swift; sourceTree = "<group>"; };
+		2018424F24A473DE00946662 /* WeeklyWeatherForecastConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWeatherForecastConverter.swift; sourceTree = "<group>"; };
+		2018425124A4B24400946662 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
+		202A599F24A5CE710083ED06 /* WeeklyWeatherForecastInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWeatherForecastInteractor.swift; sourceTree = "<group>"; };
 		2037C615248815C5003C6BEF /* AppFramework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFramework.swift; sourceTree = "<group>"; };
 		2038D38C247D6FD500151673 /* DailyForecastWeatherPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastWeatherPresenter.swift; sourceTree = "<group>"; };
 		2038D38E247D704F00151673 /* DailyWeatherForecastInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherForecastInteractor.swift; sourceTree = "<group>"; };
@@ -116,6 +130,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2018424E24A473C800946662 /* ModelConverters */ = {
+			isa = PBXGroup;
+			children = (
+				2018424F24A473DE00946662 /* WeeklyWeatherForecastConverter.swift */,
+			);
+			path = ModelConverters;
+			sourceTree = "<group>";
+		};
 		2037C614248815B1003C6BEF /* DI */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +184,7 @@
 				2073BF8A24A23B41006E4787 /* Array + Extension.swift */,
 				20B2BDE024A2873800F20EEC /* WeatherCity + Extension.swift */,
 				20B2BDE224A28A8000F20EEC /* Date + Extension.swift */,
+				2018425124A4B24400946662 /* String + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -179,8 +202,11 @@
 		20671449249F24D900220D73 /* WeeklyWeatherForecast */ = {
 			isa = PBXGroup;
 			children = (
+				2018424E24A473C800946662 /* ModelConverters */,
 				2067144E249F269700220D73 /* Subviews */,
 				2077C663249B872C00A116CB /* WeeklyWeatherForecastViewController.swift */,
+				2018424A24A46F2600946662 /* WeeklyWeatherForecastPresenter.swift */,
+				202A599F24A5CE710083ED06 /* WeeklyWeatherForecastInteractor.swift */,
 				2067144C249F25AD00220D73 /* WeeklyWeatherForecastProtocols.swift */,
 			);
 			path = WeeklyWeatherForecast;
@@ -276,6 +302,9 @@
 				20DD35D0247BFBB100BD2E32 /* DailyHourlyWeatherResponse.swift */,
 				20671454249F2D1100220D73 /* RealmCity.swift */,
 				20FCBF8F24A1C1A0008E3319 /* SettingsMenuItem.swift */,
+				2018424624A4689400946662 /* WeekDayItem.swift */,
+				2018424824A46B6400946662 /* WeeklyHourlyWeatherResponse.swift */,
+				2018424C24A46FFF00946662 /* WeeklyHourlyWeatherForecast.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -449,9 +478,11 @@
 			files = (
 				203BC42B24890B7900692907 /* WeatherForecast + Extensions.swift in Sources */,
 				20FCBF9524A1C58A008E3319 /* SettingsWeatherForecastPresenter.swift in Sources */,
+				2018425024A473DE00946662 /* WeeklyWeatherForecastConverter.swift in Sources */,
 				2038D38D247D6FD500151673 /* DailyForecastWeatherPresenter.swift in Sources */,
 				2037C616248815C5003C6BEF /* AppFramework.swift in Sources */,
 				2038D38F247D704F00151673 /* DailyWeatherForecastInteractor.swift in Sources */,
+				2018424924A46B6400946662 /* WeeklyHourlyWeatherResponse.swift in Sources */,
 				203D5381249F792D00AFA7B3 /* PersistanceDIPart.swift in Sources */,
 				20DD35CF247BF86700BD2E32 /* WeatherForecastConverter.swift in Sources */,
 				206CA5602489747000A8C987 /* CoreLocationManager.swift in Sources */,
@@ -468,10 +499,12 @@
 				204030B2247E3788005EF087 /* DayCardCell.swift in Sources */,
 				20FCBF9B24A1CC43008E3319 /* SettingsWeatherForecastDIPart.swift in Sources */,
 				2086946B249740C500C59891 /* ViewController + Extension.swift in Sources */,
+				2018424D24A46FFF00946662 /* WeeklyHourlyWeatherForecast.swift in Sources */,
 				204E2C042488187200E5F991 /* DailyWeatherForecastDIPart.swift in Sources */,
 				20DD35CA247BF24600BD2E32 /* HTTPClient.swift in Sources */,
 				849A78922492449A0007F6AB /* DashedCircleView.swift in Sources */,
 				20FCBF9324A1C318008E3319 /* SettingsWeatherForecastProtocols.swift in Sources */,
+				202A59A024A5CE710083ED06 /* WeeklyWeatherForecastInteractor.swift in Sources */,
 				208352FA24A0809F005B253B /* SettingsMenuCell.swift in Sources */,
 				203C6D34248BFCBA0075CF6C /* UITabViewControllerDIPart.swift in Sources */,
 				2067144D249F25AD00220D73 /* WeeklyWeatherForecastProtocols.swift in Sources */,
@@ -479,9 +512,12 @@
 				20DD35AB247BBBCB00BD2E32 /* AppDelegate.swift in Sources */,
 				20FCBF9924A1CAAE008E3319 /* SettingsWeatherForecastInteractor.swift in Sources */,
 				20DD35C5247BEAEE00BD2E32 /* WeatherForecast.swift in Sources */,
+				2018424B24A46F2600946662 /* WeeklyWeatherForecastPresenter.swift in Sources */,
 				20671450249F26A900220D73 /* WeekDayWeatherCell.swift in Sources */,
+				2018424724A4689400946662 /* WeekDayItem.swift in Sources */,
 				20B2BDE124A2873800F20EEC /* WeatherCity + Extension.swift in Sources */,
 				20FCBF9024A1C1A0008E3319 /* SettingsMenuItem.swift in Sources */,
+				2018425224A4B24400946662 /* String + Extension.swift in Sources */,
 				2077C664249B872C00A116CB /* WeeklyWeatherForecastViewController.swift in Sources */,
 				20671455249F2D1100220D73 /* RealmCity.swift in Sources */,
 				20DD35D1247BFBB100BD2E32 /* DailyHourlyWeatherResponse.swift in Sources */,
