@@ -17,13 +17,13 @@ class CitySelectCell: UITableViewCell {
     
     func select(_ selected: Bool) {
         if selected {
-            cardView.backgroundColor = .white
-            cityNameLabel.textColor = .black
-            currentCityImageView.tintColor = .black
+            cardView.backgroundColor = UIColor(named: "Selected City Cell Background Color")
+            cityNameLabel.textColor = UIColor(named: "Selected City Cell Text Color")
+            currentCityImageView.tintColor = UIColor(named: "Selected City Cell Icon Color")
         } else {
-            cardView.backgroundColor = UIColor(named: "upperViewBackgroundColor")
-            cityNameLabel.textColor = .white
-            currentCityImageView.tintColor = .white
+            cardView.backgroundColor = UIColor(named: "Unselected City Cell Background Color")
+            cityNameLabel.textColor = UIColor(named: "Unselected City Cell Text Color")
+            currentCityImageView.tintColor = UIColor(named: "Unselected City Cell Icon Color")
         }
     }
     
