@@ -31,7 +31,7 @@ class DatabaseManager {
     
     func delete(city: RealmCity) {
         try! realm.write {
-            realm.delete(city)
+            realm.delete(realm.objects(RealmCity.self).filter("name=%@", city.name))
         }
     }
     
@@ -43,7 +43,7 @@ class DatabaseManager {
                                       lattitude: lattitude,
                                       longtitude: longtitude, isCurrent: isCurrent)
         try! realm.write {
-            realm.add(weatherCity, update: .all)
+            realm.create(RealmCity.self, value: weatherCity, update: .all)
         }
     }
 }

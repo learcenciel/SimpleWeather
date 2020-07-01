@@ -16,5 +16,7 @@ public class AppFramework: DIFramework {
         container.append(part: UITabViewControllerDIPart.self)
         container.append(part: PersistanceDIPart.self)
         container.append(part: SettingsWeatherForecastDIPart.self)
+        container.append(part: SelectCityWeatherForecastDIPart.self)
+        container.append(part: AboutAppDIPart.self)
     }
 }

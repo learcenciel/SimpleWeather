@@ -38,15 +38,15 @@ extension SettingsWeatherForecastViewController: UITableViewDelegate {
             let cell = tv.cellForRow(at: indexPath),
             let cellTitleText = (cell as? SettingsMenuCell)?.menuItemLabel.text,
             let cellType = CellType(rawValue: cellTitleText)
-            else { return }
+        else { return }
         
         switch cellType {
         case .chooseCity:
             presenter.showCityChooser()
         case .selectExistingCity:
-            print("Select")
+            presenter.showCityPicker()
         case .aboutApp:
-            print("About")
+            presenter.showAbout()
         }
     }
 }

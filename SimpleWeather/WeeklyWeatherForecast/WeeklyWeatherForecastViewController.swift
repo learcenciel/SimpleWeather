@@ -103,6 +103,7 @@ extension WeeklyWeatherForecastViewController: WeeklyWeatherForecastViewProtocol
         setupViews(0)
         self.weekDaysCollectionView.reloadData()
         setupWeekDaysCollectionView()
+        print(model.count)
     }
 }
 

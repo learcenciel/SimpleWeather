@@ -23,6 +23,8 @@ protocol SettingsWeatherForecastPresenterProtocol: GMSAutocompleteViewController
     
     // VIEW -> PRESENTER
     func showCityChooser()
+    func showAbout()
+    func showCityPicker()
     
     // INTERACTOR -> PRESENTER
     func didSelectCurrentCity()
@@ -30,7 +32,9 @@ protocol SettingsWeatherForecastPresenterProtocol: GMSAutocompleteViewController
 
 protocol SettingsWeatherForecastRouterProtocol: class {
     // PRESENTER -> ROUTER
+    func presentAbout(from view: SettingsWeatherForecastViewProtocol)
     func presentCityChooser(from view: SettingsWeatherForecastViewProtocol)
+    func presentCityPicker(from view: SettingsWeatherForecastViewProtocol)
 }
 
 protocol SettingsWeatherForecastInteractorProtocol: class {

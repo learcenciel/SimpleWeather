@@ -21,8 +21,16 @@ class SettingsWeatherForecastPresenter: NSObject, SettingsWeatherForecastPresent
         self.interactor = interactor
     }
     
+    func showAbout() {
+        router.presentAbout(from: view)
+    }
+    
     func showCityChooser() {
         router.presentCityChooser(from: view)
+    }
+    
+    func showCityPicker() {
+        router.presentCityPicker(from: view)
     }
     
     func didSelectCurrentCity() {

@@ -21,6 +21,22 @@ class SettingsWeatherForecastRouter: SettingsWeatherForecastRouterProtocol {
         self.presenter = presenter
     }
     
+    func presentAbout(from view: SettingsWeatherForecastViewProtocol) {
+        if let viewController = view as? UIViewController {
+            let storyBoard: UIStoryboard = container.resolve(name: "Main")
+            let aboutViewController: AboutAppViewController = storyBoard.instantiateViewController(withIdentifier: "AboutAppViewController") as! AboutAppViewController
+            viewController.present(aboutViewController, animated: true, completion: nil)
+        }
+    }
+    
+    func presentCityPicker(from view: SettingsWeatherForecastViewProtocol) {
+        if let viewController = view as? UIViewController {
+            let storyBoard: UIStoryboard = container.resolve(name: "Main")
+            let aboutViewController: UINavigationController = storyBoard.instantiateViewController(withIdentifier: "SelectCityNavigationController") as! UINavigationController
+            viewController.present(aboutViewController, animated: true, completion: nil)
+        }
+    }
+    
     func presentCityChooser(from view: SettingsWeatherForecastViewProtocol) {
         if let viewController = view as? UIViewController {
             

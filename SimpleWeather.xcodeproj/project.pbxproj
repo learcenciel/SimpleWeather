@@ -14,8 +14,14 @@
 		2018424D24A46FFF00946662 /* WeeklyHourlyWeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2018424C24A46FFF00946662 /* WeeklyHourlyWeatherForecast.swift */; };
 		2018425024A473DE00946662 /* WeeklyWeatherForecastConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2018424F24A473DE00946662 /* WeeklyWeatherForecastConverter.swift */; };
 		2018425224A4B24400946662 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2018425124A4B24400946662 /* String + Extension.swift */; };
+		2025926924ACCE8E00BF9E3D /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2025926824ACCE8E00BF9E3D /* AboutAppViewController.swift */; };
+		2025926B24ACCF4F00BF9E3D /* AboutAppDIPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2025926A24ACCF4F00BF9E3D /* AboutAppDIPart.swift */; };
 		202A59A024A5CE710083ED06 /* WeeklyWeatherForecastInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A599F24A5CE710083ED06 /* WeeklyWeatherForecastInteractor.swift */; };
 		2037C616248815C5003C6BEF /* AppFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037C615248815C5003C6BEF /* AppFramework.swift */; };
+		2038BC9324A9B58400074929 /* SelectCityWeatherForecastPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2038BC9224A9B58400074929 /* SelectCityWeatherForecastPresenter.swift */; };
+		2038BC9524A9B63C00074929 /* SelectCityWeatherForecastInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2038BC9424A9B63C00074929 /* SelectCityWeatherForecastInteractor.swift */; };
+		2038BC9824A9B76900074929 /* CitySelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2038BC9724A9B76900074929 /* CitySelectCell.swift */; };
+		2038BC9A24A9B88B00074929 /* SelectCityWeatherForecastDIPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2038BC9924A9B88B00074929 /* SelectCityWeatherForecastDIPart.swift */; };
 		2038D38D247D6FD500151673 /* DailyForecastWeatherPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2038D38C247D6FD500151673 /* DailyForecastWeatherPresenter.swift */; };
 		2038D38F247D704F00151673 /* DailyWeatherForecastInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2038D38E247D704F00151673 /* DailyWeatherForecastInteractor.swift */; };
 		2038EF83247CE13C0000A5A9 /* DailyWeatherForecastProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2038EF82247CE13C0000A5A9 /* DailyWeatherForecastProtocols.swift */; };
@@ -27,6 +33,8 @@
 		204030B4247E59AB005EF087 /* DaySelectControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204030B3247E59AB005EF087 /* DaySelectControl.swift */; };
 		204E2C042488187200E5F991 /* DailyWeatherForecastDIPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204E2C032488187200E5F991 /* DailyWeatherForecastDIPart.swift */; };
 		204E2C0624881C7700E5F991 /* NetworkingDIPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204E2C0524881C7700E5F991 /* NetworkingDIPart.swift */; };
+		2053C86F24A8F0BE00A1D226 /* SelectCityWeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2053C86E24A8F0BE00A1D226 /* SelectCityWeatherForecastViewController.swift */; };
+		2053C87124A8F24700A1D226 /* SelectCityWeatherForecastProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2053C87024A8F24700A1D226 /* SelectCityWeatherForecastProtocols.swift */; };
 		2067144B249F254F00220D73 /* WeeklyWeatherForecastDIPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2067144A249F254F00220D73 /* WeeklyWeatherForecastDIPart.swift */; };
 		2067144D249F25AD00220D73 /* WeeklyWeatherForecastProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2067144C249F25AD00220D73 /* WeeklyWeatherForecastProtocols.swift */; };
 		20671450249F26A900220D73 /* WeekDayWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2067144F249F26A900220D73 /* WeekDayWeatherCell.swift */; };
@@ -67,8 +75,14 @@
 		2018424C24A46FFF00946662 /* WeeklyHourlyWeatherForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyHourlyWeatherForecast.swift; sourceTree = "<group>"; };
 		2018424F24A473DE00946662 /* WeeklyWeatherForecastConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWeatherForecastConverter.swift; sourceTree = "<group>"; };
 		2018425124A4B24400946662 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
+		2025926824ACCE8E00BF9E3D /* AboutAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
+		2025926A24ACCF4F00BF9E3D /* AboutAppDIPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppDIPart.swift; sourceTree = "<group>"; };
 		202A599F24A5CE710083ED06 /* WeeklyWeatherForecastInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWeatherForecastInteractor.swift; sourceTree = "<group>"; };
 		2037C615248815C5003C6BEF /* AppFramework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFramework.swift; sourceTree = "<group>"; };
+		2038BC9224A9B58400074929 /* SelectCityWeatherForecastPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCityWeatherForecastPresenter.swift; sourceTree = "<group>"; };
+		2038BC9424A9B63C00074929 /* SelectCityWeatherForecastInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCityWeatherForecastInteractor.swift; sourceTree = "<group>"; };
+		2038BC9724A9B76900074929 /* CitySelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySelectCell.swift; sourceTree = "<group>"; };
+		2038BC9924A9B88B00074929 /* SelectCityWeatherForecastDIPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCityWeatherForecastDIPart.swift; sourceTree = "<group>"; };
 		2038D38C247D6FD500151673 /* DailyForecastWeatherPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastWeatherPresenter.swift; sourceTree = "<group>"; };
 		2038D38E247D704F00151673 /* DailyWeatherForecastInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherForecastInteractor.swift; sourceTree = "<group>"; };
 		2038EF82247CE13C0000A5A9 /* DailyWeatherForecastProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherForecastProtocols.swift; sourceTree = "<group>"; };
@@ -80,6 +94,8 @@
 		204030B3247E59AB005EF087 /* DaySelectControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySelectControl.swift; sourceTree = "<group>"; };
 		204E2C032488187200E5F991 /* DailyWeatherForecastDIPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherForecastDIPart.swift; sourceTree = "<group>"; };
 		204E2C0524881C7700E5F991 /* NetworkingDIPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingDIPart.swift; sourceTree = "<group>"; };
+		2053C86E24A8F0BE00A1D226 /* SelectCityWeatherForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCityWeatherForecastViewController.swift; sourceTree = "<group>"; };
+		2053C87024A8F24700A1D226 /* SelectCityWeatherForecastProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCityWeatherForecastProtocols.swift; sourceTree = "<group>"; };
 		2067144A249F254F00220D73 /* WeeklyWeatherForecastDIPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWeatherForecastDIPart.swift; sourceTree = "<group>"; };
 		2067144C249F25AD00220D73 /* WeeklyWeatherForecastProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWeatherForecastProtocols.swift; sourceTree = "<group>"; };
 		2067144F249F26A900220D73 /* WeekDayWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDayWeatherCell.swift; sourceTree = "<group>"; };
@@ -138,6 +154,14 @@
 			path = ModelConverters;
 			sourceTree = "<group>";
 		};
+		2025926724ACCE7600BF9E3D /* AboutApp */ = {
+			isa = PBXGroup;
+			children = (
+				2025926824ACCE8E00BF9E3D /* AboutAppViewController.swift */,
+			);
+			path = AboutApp;
+			sourceTree = "<group>";
+		};
 		2037C614248815B1003C6BEF /* DI */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,11 +169,21 @@
 				204E2C032488187200E5F991 /* DailyWeatherForecastDIPart.swift */,
 				2067144A249F254F00220D73 /* WeeklyWeatherForecastDIPart.swift */,
 				20FCBF9A24A1CC43008E3319 /* SettingsWeatherForecastDIPart.swift */,
+				2038BC9924A9B88B00074929 /* SelectCityWeatherForecastDIPart.swift */,
+				2025926A24ACCF4F00BF9E3D /* AboutAppDIPart.swift */,
+				203C6D33248BFCBA0075CF6C /* UITabViewControllerDIPart.swift */,
 				204E2C0524881C7700E5F991 /* NetworkingDIPart.swift */,
 				203D5380249F792D00AFA7B3 /* PersistanceDIPart.swift */,
-				203C6D33248BFCBA0075CF6C /* UITabViewControllerDIPart.swift */,
 			);
 			path = DI;
+			sourceTree = "<group>";
+		};
+		2038BC9624A9B74400074929 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				2038BC9724A9B76900074929 /* CitySelectCell.swift */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 		2038EF77247CDE4D0000A5A9 /* Recources */ = {
@@ -197,6 +231,18 @@
 				849A78912492449A0007F6AB /* DashedCircleView.swift */,
 			);
 			path = Subviews;
+			sourceTree = "<group>";
+		};
+		2053C86D24A8F0A000A1D226 /* SelectCityWeatherForecast */ = {
+			isa = PBXGroup;
+			children = (
+				2038BC9624A9B74400074929 /* Subviews */,
+				2053C86E24A8F0BE00A1D226 /* SelectCityWeatherForecastViewController.swift */,
+				2038BC9224A9B58400074929 /* SelectCityWeatherForecastPresenter.swift */,
+				2038BC9424A9B63C00074929 /* SelectCityWeatherForecastInteractor.swift */,
+				2053C87024A8F24700A1D226 /* SelectCityWeatherForecastProtocols.swift */,
+			);
+			path = SelectCityWeatherForecast;
 			sourceTree = "<group>";
 		};
 		20671449249F24D900220D73 /* WeeklyWeatherForecast */ = {
@@ -290,6 +336,8 @@
 				2038EF7B247CDFDA0000A5A9 /* DailyWeatherForecast */,
 				20671449249F24D900220D73 /* WeeklyWeatherForecast */,
 				208352F324A07E66005B253B /* SettingsWeatherForecast */,
+				2053C86D24A8F0A000A1D226 /* SelectCityWeatherForecast */,
+				2025926724ACCE7600BF9E3D /* AboutApp */,
 			);
 			path = SimpleWeather;
 			sourceTree = "<group>";
@@ -483,8 +531,11 @@
 				2037C616248815C5003C6BEF /* AppFramework.swift in Sources */,
 				2038D38F247D704F00151673 /* DailyWeatherForecastInteractor.swift in Sources */,
 				2018424924A46B6400946662 /* WeeklyHourlyWeatherResponse.swift in Sources */,
+				2053C86F24A8F0BE00A1D226 /* SelectCityWeatherForecastViewController.swift in Sources */,
 				203D5381249F792D00AFA7B3 /* PersistanceDIPart.swift in Sources */,
+				2025926B24ACCF4F00BF9E3D /* AboutAppDIPart.swift in Sources */,
 				20DD35CF247BF86700BD2E32 /* WeatherForecastConverter.swift in Sources */,
+				2038BC9524A9B63C00074929 /* SelectCityWeatherForecastInteractor.swift in Sources */,
 				206CA5602489747000A8C987 /* CoreLocationManager.swift in Sources */,
 				20DD35C7247BEF8C00BD2E32 /* DailyWeatherResponse.swift in Sources */,
 				2038EF83247CE13C0000A5A9 /* DailyWeatherForecastProtocols.swift in Sources */,
@@ -500,6 +551,7 @@
 				20FCBF9B24A1CC43008E3319 /* SettingsWeatherForecastDIPart.swift in Sources */,
 				2086946B249740C500C59891 /* ViewController + Extension.swift in Sources */,
 				2018424D24A46FFF00946662 /* WeeklyHourlyWeatherForecast.swift in Sources */,
+				2053C87124A8F24700A1D226 /* SelectCityWeatherForecastProtocols.swift in Sources */,
 				204E2C042488187200E5F991 /* DailyWeatherForecastDIPart.swift in Sources */,
 				20DD35CA247BF24600BD2E32 /* HTTPClient.swift in Sources */,
 				849A78922492449A0007F6AB /* DashedCircleView.swift in Sources */,
@@ -507,20 +559,24 @@
 				202A59A024A5CE710083ED06 /* WeeklyWeatherForecastInteractor.swift in Sources */,
 				208352FA24A0809F005B253B /* SettingsMenuCell.swift in Sources */,
 				203C6D34248BFCBA0075CF6C /* UITabViewControllerDIPart.swift in Sources */,
+				2038BC9324A9B58400074929 /* SelectCityWeatherForecastPresenter.swift in Sources */,
 				2067144D249F25AD00220D73 /* WeeklyWeatherForecastProtocols.swift in Sources */,
 				20DD35AF247BBBCB00BD2E32 /* DailyWeatherForecastViewController.swift in Sources */,
 				20DD35AB247BBBCB00BD2E32 /* AppDelegate.swift in Sources */,
+				2025926924ACCE8E00BF9E3D /* AboutAppViewController.swift in Sources */,
 				20FCBF9924A1CAAE008E3319 /* SettingsWeatherForecastInteractor.swift in Sources */,
 				20DD35C5247BEAEE00BD2E32 /* WeatherForecast.swift in Sources */,
 				2018424B24A46F2600946662 /* WeeklyWeatherForecastPresenter.swift in Sources */,
 				20671450249F26A900220D73 /* WeekDayWeatherCell.swift in Sources */,
 				2018424724A4689400946662 /* WeekDayItem.swift in Sources */,
 				20B2BDE124A2873800F20EEC /* WeatherCity + Extension.swift in Sources */,
+				2038BC9824A9B76900074929 /* CitySelectCell.swift in Sources */,
 				20FCBF9024A1C1A0008E3319 /* SettingsMenuItem.swift in Sources */,
 				2018425224A4B24400946662 /* String + Extension.swift in Sources */,
 				2077C664249B872C00A116CB /* WeeklyWeatherForecastViewController.swift in Sources */,
 				20671455249F2D1100220D73 /* RealmCity.swift in Sources */,
 				20DD35D1247BFBB100BD2E32 /* DailyHourlyWeatherResponse.swift in Sources */,
+				2038BC9A24A9B88B00074929 /* SelectCityWeatherForecastDIPart.swift in Sources */,
 				20671453249F2C5900220D73 /* DatabaseManager.swift in Sources */,
 				20FCBF9724A1C776008E3319 /* SettingsWeatherForecastRouter.swift in Sources */,
 			);
