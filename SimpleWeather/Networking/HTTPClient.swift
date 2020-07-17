@@ -22,7 +22,7 @@ class HTTPClient {
     func get<T: Decodable>(url: String,
                            parameters: [String: Any]?, completionHandler: @escaping(Result<T, HTTPErrors>) -> Void) {
         var queryParameters = HTTPClient.commonParameters
-        
+
         if let parameters = parameters {
             for key in parameters.keys {
                 queryParameters[key] = parameters[key]
@@ -34,6 +34,7 @@ class HTTPClient {
             case .success(let responseData):
                 do {
                     let jsonDecoder = JSONDecoder()
+                    jsonDecoder.dateDecodingStrategy = .secondsSince1970
                     let decodedResponseData = try jsonDecoder.decode(T.self, from: responseData)
                     completionHandler(.success(decodedResponseData))
                 } catch {

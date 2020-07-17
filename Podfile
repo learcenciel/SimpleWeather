@@ -8,5 +8,8 @@ target 'SimpleWeather' do
   # Pods for SimpleWeather
   pod 'Alamofire'
   pod 'Kingfisher'
+  pod 'DITranquillity'
+  pod 'RealmSwift'
+  pod 'GooglePlaces'
 
 end
