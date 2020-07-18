@@ -10,11 +10,11 @@ import CoreLocation
 
 class CoreLocationManager {
     
-    let locationManager = CLLocationManager()
+    private let locationManager = CLLocationManager()
     var delegate: CLLocationManagerDelegate
     
-    init(interactor: CLLocationManagerDelegate) {
-        self.delegate = interactor
+    init(delegate: CLLocationManagerDelegate) {
+        self.delegate = delegate
         checkLocationServices()
     }
     
@@ -32,7 +32,7 @@ class CoreLocationManager {
         }
     }
     
-    func checkLocationAuthorization() {
+    private func checkLocationAuthorization() {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
             print("Authorization granted!")
@@ -52,7 +52,11 @@ class CoreLocationManager {
         }
     }
     
-    func getCurrentLocation() {
+    func requestCurrentLocation() {
+        
+        guard CLLocationManager.authorizationStatus() == .authorizedAlways ||
+            CLLocationManager.authorizationStatus() == .authorizedWhenInUse else { return }
+        
         locationManager.requestLocation()
     }
 }

@@ -34,6 +34,7 @@ class HTTPClient {
             case .success(let responseData):
                 do {
                     let jsonDecoder = JSONDecoder()
+                    jsonDecoder.dateDecodingStrategy = .secondsSince1970
                     let decodedResponseData = try jsonDecoder.decode(T.self, from: responseData)
                     completionHandler(.success(decodedResponseData))
                 } catch {

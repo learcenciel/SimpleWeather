@@ -34,38 +34,34 @@ class DaySelectControl: UIControl {
         setupView()
     }
     
-    func setupView() {
+    private func setupView() {
         backgroundColor = .clear
         isUserInteractionEnabled = false
         setupLabels()
     }
     
-    func setupLabels() {
+    private func setupLabels() {
         for label in labels {
             label.removeFromSuperview()
         }
         
         labels.removeAll(keepingCapacity: true)
         
-        for index in 1...items.count {
+        for index in 0 ..< items.count {
             let label = UILabel(frame: .zero)
-            label.text = items[index - 1]
+            label.text = items[index]
             label.textAlignment = .center
-            label.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+            label.textColor = UIColor(named: "segmentedControlUnselectedColor")
             label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
             self.addSubview(label)
             labels.append(label)
         }
         
-        self.labels[0].textColor = .black
+        self.labels[0].textColor = UIColor(named: "segmentedContolSelectedColor")
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        var selectedFrame = self.bounds
-        let newWidth = selectedFrame.width / CGFloat(items.count)
-        selectedFrame.size.width = newWidth
         
         let labelHeight = self.bounds.height
         let labelWidth = self.bounds.width / CGFloat(labels.count)
@@ -78,29 +74,11 @@ class DaySelectControl: UIControl {
         }
     }
     
-    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        let location = touch.location(in: self)
-        var calculatedIndex: Int?
-        
-        for (index, item) in labels.enumerated() {
-            if (item.frame.contains(location)) {
-                calculatedIndex = index
-            }
-        }
-        
-        if calculatedIndex != nil {
-            selectedIndex = calculatedIndex!
-            sendActions(for: .valueChanged)
-        }
-        
-        return false
-    }
-    
     func displayNewSelectedIndex() {
-        self.labels[self.selectedIndex].textColor = .black
+        self.labels[self.selectedIndex].textColor = UIColor(named: "segmentedContolSelectedColor")
         for (index, item) in self.labels.enumerated() {
             if index != self.selectedIndex {
-                item.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                item.textColor = UIColor(named: "segmentedControlUnselectedColor")
             }
         }
     }

@@ -10,7 +10,11 @@ import Foundation
 
 class WeatherAPI {
     
-    var httpClient: HTTPClient!
+    private let httpClient: HTTPClient
+    
+    init(httpClient: HTTPClient) {
+        self.httpClient = httpClient
+    }
 
     func fetchCurrentWeather(parameters: [String: Any]?,
                              completionHandler: @escaping(Result<DailyWeatherResponse, HTTPErrors>) -> Void) {
@@ -24,5 +28,10 @@ class WeatherAPI {
         httpClient.get(url: "https://api.openweathermap.org/data/2.5/forecast",
                        parameters: parameters,
                        completionHandler: completionHandler)
+    }
+    
+    func fetchWeeklyHourlyWeather(parameters: [String: Any]?,
+                                  completionHandler: @escaping(Result<WeeklyHourlyWeatherResponse, HTTPErrors>) -> Void) {
+        httpClient.get(url: "https://api.openweathermap.org/data/2.5/forecast", parameters: parameters, completionHandler: completionHandler)
     }
 }

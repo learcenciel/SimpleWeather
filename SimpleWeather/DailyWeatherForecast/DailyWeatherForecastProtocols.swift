@@ -14,20 +14,12 @@ protocol DailyWeatherForecastViewProtocol: class {
     
     // PRESENTER -> VIEW
     func showCurrentWeather(with currentWeather: WeatherForecast)
-}
-
-protocol DailyWeatherForecastConfiguratorProtocol: class {
-    static func createDailyWeatherForecastModule() -> UIViewController
-}
-
-protocol DailyWeatherForecastRouterProtocol: class {
-    func showWeeklyChart(from view: DailyWeatherForecastViewProtocol, forCity cityId: Int)
+    func showLocationError(_ error: String)
 }
 
 protocol DailyWeatherForecastPresenterProtocol: class {
     var view: DailyWeatherForecastViewProtocol { get set }
-    var interactor: DailyWeatherForecastInteractorProtocol! { get set }
-    //var router: DailyWeatherForecastRouterProtocol? { get set }
+    var interactor: DailyWeatherForecastInteractorProtocol { get set }
     
     // VIEW -> PRESENTER
     func viewDidLoad()
@@ -35,17 +27,13 @@ protocol DailyWeatherForecastPresenterProtocol: class {
     
     // INTERACTOR -> PRESENTER
     func didRetreiveWeatherForecast(_ weatherForecast: WeatherForecast)
+    func didRetrieveLocationError(_ error: CLError)
+    func didRetreieveLocationAccessDenied(_ error: String)
 }
 
 protocol DailyWeatherForecastInteractorProtocol: class, CLLocationManagerDelegate {
     var presenter: DailyWeatherForecastPresenterProtocol! { get set }
-    var httpClient: WeatherAPI { get set }
-    var modelConverter: WeatherForecastConverter { get set }
-    var locationManager: CoreLocationManager! { get set }
     
     // PRESENTER -> INTERACTOR
     func retreiveDailyWeatherForecast()
-    
-    // HTTPCLIENT -> INTERACTOR
-    func didRetreieveWeatherForecastFromNetwork(_ weatherForecast: WeatherForecast?)
 }

@@ -7,6 +7,7 @@
 //
 
 import DITranquillity
+import GooglePlaces
 import UIKit
 
 @UIApplicationMain
@@ -15,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        GMSPlacesClient.provideAPIKey("AIzaSyC9xYUyQ5C1QvIszXJ81BGfGWKIi7UN7SM")
         
         let container = DIContainer()
         container.append(framework: AppFramework.self)
@@ -27,18 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let storyboard: UIStoryboard = container.resolve(name: "Main")
         
-        let vc = storyboard.instantiateInitialViewController() as! UITabBarController
-        
-        vc.tabBar.tintColor = .darkGray
-        vc.tabBar.unselectedItemTintColor = .lightGray
-        vc.tabBar.tintAdjustmentMode = .automatic
-        vc.tabBar.barTintColor = .white
-        vc.tabBar.layer.borderWidth = 0
-        vc.tabBar.layer.borderColor = UIColor.clear.cgColor
-        vc.tabBar.clipsToBounds = true
+        let tabBarController = storyboard.instantiateInitialViewController() as! UITabBarController
+        UITabBar.appearance().barTintColor = UIColor(named: "tabBarBackgroundColor")
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window!.rootViewController = vc
+        window!.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         
         return true

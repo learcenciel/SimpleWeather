@@ -14,8 +14,8 @@ enum CardType: CaseIterable {
     case night
 }
 
-extension UIView {
-    func getPath(cardType: CardType) -> UIBezierPath {
+extension DayCardCell {
+    private func getPath(for cardType: CardType) -> UIBezierPath {
         switch cardType {
         case .day:
             return UIBezierPath(roundedRect: CGRect(x: 0,
@@ -36,25 +36,25 @@ extension UIView {
         }
     }
     
-    func getBackGroundColor(cardType: CardType) -> UIColor {
+    private func getBackGroundColor(for cardType: CardType) -> UIColor {
         switch cardType {
         case .day:
-            return #colorLiteral(red: 0.9411764706, green: 0.537254902, blue: 0.3607843137, alpha: 1)
+            return UIColor(named: "dayCardFirstDayBackgroundColor")!
         case .evening:
-            return #colorLiteral(red: 0.7019607843, green: 0.3921568627, blue: 0.5764705882, alpha: 1)
+            return UIColor(named: "dayCardSecondDayBackgroundColor")!
         case .night:
-            return #colorLiteral(red: 0.1803921569, green: 0.2823529412, blue: 0.3411764706, alpha: 1)
+            return UIColor(named: "dayCardThirdDayBackgroundColor")!
         }
     }
     
-    func getPathColor(cardType: CardType) -> UIColor {
+    private func getPathColor(for: CardType) -> UIColor {
         switch cardType {
         case .day:
-            return #colorLiteral(red: 0.8823529412, green: 0.431372549, blue: 0.4823529412, alpha: 1)
+            return UIColor(named: "dayCardFirstDayPathColor")!
         case .evening:
-            return #colorLiteral(red: 0.4823529412, green: 0.3725490196, blue: 0.5607843137, alpha: 1)
+            return UIColor(named: "dayCardSecondDayPathColor")!
         case .night:
-            return #colorLiteral(red: 0.2862745098, green: 0.3411764706, blue: 0.4784313725, alpha: 1)
+            return UIColor(named: "dayCardThirdDayPathColor")!
         }
     }
 }
@@ -66,7 +66,7 @@ class DayCardCell: UICollectionViewCell {
     @IBOutlet weak var temperatureLabel: UILabel!
     
     var cardType: CardType = .day
-    let shapeLayer = CAShapeLayer()
+    private let shapeLayer = CAShapeLayer()
         
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -84,24 +84,34 @@ class DayCardCell: UICollectionViewCell {
         clipsToBounds = true
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-    
     func bind(_ weather: TemperatureInfo, cardType: CardType) {
-        self.cardType = cardType
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        shapeLayer.path = getPath(cardType: self.cardType).cgPath
-        shapeLayer.fillColor = getPathColor(cardType: self.cardType).cgColor
-        CATransaction.commit()
-        backgroundColor = getBackGroundColor(cardType: self.cardType)
         
-        self.timeLabel.text = weather.time.getTime()
+        self.cardType = cardType
+        
+        backgroundColor = getBackGroundColor(for: self.cardType)
+        self.timeLabel.text = configureDate(for: weather.time)
         let number = Double(weather.temperature)
         self.temperatureLabel.text = "\(String(format: "%.0f", number))°"
-        self.iconImageView.image = weather.weatherIcon
+        self.iconImageView.image = weather.weatherIcon.withRenderingMode(.alwaysTemplate)
+        self.iconImageView.tintColor = .white
+        
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        shapeLayer.path = getPath(for: self.cardType).cgPath
+        shapeLayer.fillColor = getPathColor(for: self.cardType).cgColor
+        CATransaction.commit()
         
         setNeedsLayout()
+    }
+    
+    private func configureDate(for time: Int) -> String? {
+        let date = NSDate(timeIntervalSince1970: TimeInterval(time))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0000)!
+        
+        let formattedString = dateFormatter.string(from: date as Date)
+        
+        return formattedString
     }
 }

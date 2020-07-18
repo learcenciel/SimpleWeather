@@ -11,14 +11,15 @@ import Foundation
 import UIKit
 
 enum WeatherIconType: String {
-    case clearSky, fewClounds, scatteredClouds, brokenClouds,
-    showerRain, rain, thunderStorm, snow, mist, drizzle
-    case mainClouds
+    case clear, atmosphere, clouds, rain, thunderStorm, snow, drizzle
+    case mainClouds, mainClear, mainAtmosphere, mainSnow,
+    mainRain, mainDrizzle, mainThunderstorm
 }
 
 struct WeatherForecast {
     let countryName: String
-    let cityName: String
+    var cityName: String
+    let timeZone: Int
     let currentTemperature: Float
     let weatherIconType: WeatherIconType
     var weatherIcon: UIImage {
@@ -26,11 +27,13 @@ struct WeatherForecast {
     }
     let futureDays: [TemperatureInfo]
     let currentAdditionalInfo: CurrentAdditionalInfo
+    let sunrise: Date
+    let sunset: Date
 }
 
 struct CurrentAdditionalInfo {
-    let wind: Float
-    let windDeg: Float
+    let windSpeed: Float
+    let windDegree: Float
     let humidity: Float
     let pressure: Float
 }

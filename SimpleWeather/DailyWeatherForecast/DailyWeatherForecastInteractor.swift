@@ -11,77 +11,117 @@ import Foundation
 
 class DailyWeatherForecastInteractor: NSObject, DailyWeatherForecastInteractorProtocol {
     
-    var locationManager: CoreLocationManager!
     var presenter: DailyWeatherForecastPresenterProtocol!
-    var httpClient: WeatherAPI
-    var modelConverter: WeatherForecastConverter
+    var locationManager: CoreLocationManager!
+    private var httpClient: WeatherAPI
+    private var modelConverter: WeatherForecastConverter
+    private var databaseManager: DatabaseManager
+    private var currentUserSession: CurrentUserSession
     
-    var locations: [CLLocation]?
-    
-    var isComplete = false
+    private var isFetchComplete = false
     
     init(httpClient: WeatherAPI,
-         modelConverter: WeatherForecastConverter) {
+         modelConverter: WeatherForecastConverter,
+         databaseManager: DatabaseManager,
+         currentUserSession: CurrentUserSession) {
         self.httpClient = httpClient
         self.modelConverter = modelConverter
+        self.databaseManager = databaseManager
+        self.currentUserSession = currentUserSession
     }
     
     func retreiveDailyWeatherForecast() {
-        locationManager.getCurrentLocation()
+        self.locationManager.requestCurrentLocation()
     }
     
-    func retreiveCurrentDailyWeatherForecast() {
-        guard let lat = locations?.first?.coordinate.latitude,
-            let lon = locations?.first?.coordinate.longitude
-            else { return }
-        
-        if isComplete { return }
-        
-        isComplete = true
+    private func retreiveCurrentDailyWeatherForecast(_ cityName: String?, _ locations: [CLLocation]?, isCurrent: Bool) {
+        guard let coords = locations?.first?.coordinate else { return }
         
         httpClient.fetchCurrentWeather(
-            parameters: ["lat": lat,
-                         "lon": lon, "units": "metric"],
+            parameters: ["lat": coords.latitude,
+                         "lon": coords.longitude,
+                         "units": "metric"],
             completionHandler: { dailyWeatherResult in
                 switch dailyWeatherResult {
                 case .success(let dailyWeatherResponse):
-                    self.httpClient.fetchCurrentHourlyWeather(
-                        parameters: ["lat": lat,
-                                     "lon": lon, "units": "metric"],
-                        completionHandler: { dailyWeeklyHourlyResult in
-                            switch dailyWeeklyHourlyResult {
-                            case .success(let dailyWeeklyHourlyResponse):
-                                let weatherForecast =
-                                    self.modelConverter.convertWeatherForecast(dailyWeatherResponse,
-                                                                               dailyWeeklyHourlyResponse)
-                                self.didRetreieveWeatherForecastFromNetwork(weatherForecast)
-                                self.isComplete = false
-                            case .failure(let err):
-                                print(err)
-                            }
-                    })
+                    self.fetchCurrentHourlyWeatherForecast(coords: coords,
+                                                      dailyWeatherResponse: dailyWeatherResponse,
+                                                      cityName: cityName,
+                                                      isCurrent: isCurrent)
                 case .failure(let err):
                     print(err)
                 }
         })
     }
     
-    func didRetreieveWeatherForecastFromNetwork(_ weatherForecast: WeatherForecast?) {
-        if let weatherForecast = weatherForecast {
-            self.presenter.didRetreiveWeatherForecast(weatherForecast)
-        }
+    private func fetchCurrentHourlyWeatherForecast(coords: CLLocationCoordinate2D,
+                                           dailyWeatherResponse: DailyWeatherResponse,
+                                           cityName: String?,
+                                           isCurrent: Bool) {
+        self.httpClient.fetchCurrentHourlyWeather(
+            parameters: ["lat": coords.latitude,
+                         "lon": coords.longitude,
+                         "units": "metric"],
+            completionHandler: { dailyWeeklyHourlyResult in
+                switch dailyWeeklyHourlyResult {
+                case .success(let dailyWeeklyHourlyResponse):
+                    var weatherForecast =
+                        self.modelConverter.convertWeatherForecast(dailyWeatherResponse,
+                                                                   dailyWeeklyHourlyResponse)
+                    let cityName = cityName != nil ? cityName : weatherForecast.cityName
+                    self.saveCitiesToDatabase(cityName!,
+                                              lattitude: Double(coords.latitude),
+                                              longitude: Double(coords.longitude),
+                                              isCurrent: isCurrent)
+                    weatherForecast.cityName = cityName!
+                    self.didRetreieveWeatherForecastFromNetwork(weatherForecast)
+                    self.isFetchComplete = false
+                case .failure(let err):
+                    print(err)
+                }
+        })
+    }
+    
+    private func saveCitiesToDatabase(_ weatherCityName: String,
+                              lattitude: Double,
+                              longitude: Double,
+                              isCurrent: Bool) {
+        databaseManager.saveCity(weatherCityName,
+                                 lattitude: lattitude,
+                                 longtitude: longitude, isCurrent: isCurrent)
+    }
+    
+    private func didRetreieveWeatherForecastFromNetwork(_ weatherForecast: WeatherForecast) {
+        self.presenter.didRetreiveWeatherForecast(weatherForecast)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.locations = locations
-        self.retreiveCurrentDailyWeatherForecast()
+        
+        if isFetchComplete { return }
+        
+        isFetchComplete = true
+        
+        if let currentCity = currentUserSession.getCurrentCity() {
+            let locations = [currentCity.location]
+            self.retreiveCurrentDailyWeatherForecast(currentCity.name, locations, isCurrent: currentCity.isCurrent)
+        } else {
+            self.retreiveCurrentDailyWeatherForecast(nil, locations, isCurrent: true)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print(status)
+        if status == .authorizedAlways || status == .authorizedWhenInUse {
+            self.retreiveDailyWeatherForecast()
+        } else if status == .denied {
+            self.presenter.didRetreieveLocationAccessDenied("Please give location determination access in settings")
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error.localizedDescription)
+        
+        if let error = error as? CLError {
+            presenter.didRetrieveLocationError(error)
+        }
     }
 }
